@@ -8,7 +8,7 @@
 </head>
 <body>
 <ul>
-	<li><a href="index.do">index.do</a></li>
+	<li><a href="chacarge_home.do">chacarge_home.do</a></li>
 </ul>
 </body>
 </html>

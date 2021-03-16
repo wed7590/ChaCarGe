@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>ChaCarGe - 차카게 차량 견적</title>
+<title>ChaCarGe</title>
 
 <!-- Bootstrap core CSS -->
 <link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -53,64 +53,31 @@
 			</div>
 		</div>
 	</nav>
-	
+
+
+<!-- header 부분 : 사진 이동 기능 포함된 곳 -->
+	<header>
+	</header>
+
 
 <!-- 페이지 내용 -->
 	<!-- Page Content -->
 	<div class="container">
+		<h1 class="my-4">여기다가 로그인 폼 넣자 ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ</h1>
 
-	<!-- 페이지 제목 -->
-		<!-- Page Heading/Breadcrumbs -->
-		<h1 class="mt-4 mb-3">Sidebar Page <small>Subheading</small></h1>
-
-	<!-- 페이지 경로 표시 -->
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="chacarge_home.do">Home</a></li>
-			<li class="breadcrumb-item"><a>관리자 페이지</a></li>
-			<li class="breadcrumb-item active">매물 관리</li>
-		</ol>
-
-	<!-- 매물 관리 내용 부분 -->
-		<!-- Content Row -->
-		<div class="row">
-		
-		<!-- 사이드바 설정 -->
-			<!-- Sidebar Column -->
-			<div class="col-lg-3 mb-4">
-				<div class="list-group">
-					<a href="chacarge_admin_deal.do" class="list-group-item">매물 관리</a>
-					<a href="chacarge_admin_user.do" class="list-group-item">유저 관리</a>
-<!-- 					<a href="resources/index.html" class="list-group-item">Home</a>
-					<a href="resources/about.html" class="list-group-item">About</a>
-					<a href="resources/services.html" class="list-group-item">Services</a>
-					<a href="resources/contact.html" class="list-group-item">Contact</a>
-					<a href="resources/portfolio-1-col.html" class="list-group-item">1 Column	Portfolio</a>
-					<a href="resources/portfolio-2-col.html" class="list-group-item">2 Column Portfolio</a>
-					<a href="resources/portfolio-3-col.html" class="list-group-item">3 Column Portfolio</a>
-					<a href="resources/portfolio-4-col.html" class="list-group-item">4 Column Portfolio</a>
-					<a href="resources/portfolio-item.html" class="list-group-item">Single Portfolio Item</a>
-					<a href="resources/blog-home-1.html" class="list-group-item">Blog Home 1</a>
-					<a href="resources/blog-home-2.html" class="list-group-item">Blog Home 2</a>
-					<a href="resources/blog-post.html" class="list-group-item">Blog Post</a>
-					<a href="resources/full-width.html" class="list-group-item">Full Width Page</a>
-					<a href="resources/sidebar.html" class="list-group-item active">Sidebar Page</a>
-					<a href="resources/faq.html" class="list-group-item">FAQ</a>
-					<a href="resources/404.html" class="list-group-item">404</a>
-					<a href="resources/pricing.html" class="list-group-item">Pricing Table</a> -->
-				</div>
+	<!-- 이 부분 빠지면  Footer 설정이 이상해짐 -->
+	<!-- Call to Action Section -->
+		<div class="row mb-4">
+			<div class="col-md-8">
+				<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
 			</div>
-			
-		<!-- 내용 설정 -->
-			<!-- Content Column -->
-			<div class="col-lg-9 mb-4">
-				<h2>Section Heading</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+			<div class="col-md-4">
+				<a class="btn btn-lg btn-secondary btn-block" href="#">Call to Action</a>
 			</div>
 		</div>
-		<!-- /.row -->
 
 	</div>
-	<!-- /.container -->
+<!-- /.container -->
 
 
 <!-- 하단부 Footer 부분 -->
