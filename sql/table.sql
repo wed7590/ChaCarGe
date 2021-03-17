@@ -7,7 +7,7 @@ CREATE TABLE `User` (
  `user_password` varchar(15) NOT NULL,
  `user_email` varchar(30) NOT NULL,
  `user_name` varchar(15) NOT NULL,
- `user_join_date` varchar(15) NOT NULL,
+ `user_join_date` datetime NOT NULL,
  `user_grade` varchar(1) NOT NULL DEFAULT 1,
  `user_token` varchar(15) NULL
 );

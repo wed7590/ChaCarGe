@@ -79,4 +79,22 @@ public class HomeController {
 		
 		return "chacarge_login_ok";
 	}
+	
+	@RequestMapping(value = "/chacarge_join_ok.do", method = RequestMethod.GET)
+	public String chacarge_join_ok(HttpServletRequest request, HttpServletResponse response, Model model) {
+		UserTO to = new UserTO();
+		to.setUser_id( request.getParameter( "user_join_id" ) );
+		to.setUser_password( request.getParameter( "user_join_password" ) );
+		to.setUser_name( request.getParameter( "user_join_name" ) );
+		to.setUser_email( request.getParameter( "user_join_email" ) );
+
+		System.out.println( to.getUser_id() );
+		System.out.println( to.getUser_password() );
+		
+		int flag = userDAO.join_ok(to) ;
+		
+		model.addAttribute( "flag", flag );
+		
+		return "chacarge_join_ok";
+	}
 }

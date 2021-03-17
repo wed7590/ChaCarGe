@@ -332,12 +332,30 @@ input {
 			document.lfrm.submit();
 		};
 		
-		var error = "${error}";
-		if( error == 'id' ) {
-			alert( '회원을 찾을 수 없습니다.' );
-		} else if ( error == 'pw' ) {
-			alert( '비밀번호를 확인해주세요' );
-		}
+		document.getElementById('join').onclick = function() {
+			if( document.jfrm.user_join_id.value.trim() == '' ) {
+				alert('아이디를 입력 하셔야 합니다.');
+				return false;
+			}
+
+			if( document.jfrm.user_join_password.value.trim() == '' ) {
+				alert('비밀번호를 입력하셔야 합니다.');
+				return false;
+			}
+			
+			if( document.jfrm.user_join_name.value.trim() == '' ) {
+				alert('이름을 입력하셔야 합니다.');
+				return false;
+			}
+			
+			if( document.jfrm.user_join_email.value.trim() == '' ) {
+				alert('이메일을 입력하셔야 합니다.');
+				return false;
+			}
+
+			document.jfrm.submit();
+		};
+		
 	};
 </script>
 
@@ -376,11 +394,13 @@ input {
 			</div>
 			<div class="form sign-up">
 				<h2>Time to feel like home,</h2>
-				<label> <span>Name</span> <input type="text">
-				</label> <label> <span>Email</span> <input type="email">
-				</label> <label> <span>Password</span> <input type="password">
-				</label>
-				<button type="button" class="submit">Sign Up</button>
+				<form action="chacarge_join_ok.do" method="get" name="jfrm">
+					<label> <span>ID</span> <input type="text" name="user_join_id"> </label>
+					<label> <span>Password</span> <input type="password" name="user_join_password"> </label>
+					<label> <span>Name</span> <input type="text" name="user_join_name"> </label>
+					<label> <span>Email</span> <input type="text" name="user_join_email"> </label>
+				</form>	
+				<button type="button" id="join" class="submit">Sign Up</button>
 				<button type="button" class="fb-btn">
 					Join with <span>kakao</span>
 				</button>

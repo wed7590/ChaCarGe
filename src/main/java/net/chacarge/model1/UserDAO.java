@@ -29,4 +29,15 @@ public class UserDAO {
 		return flag;
 	}
 	
+	// join_ok
+	public int join_ok(UserTO to) {
+
+		int flag = 1;
+		int result = sqlSession.insert("join_ok", to);
+		if ( result == 1 ) {
+			flag = 0;
+		}
+		return flag;
+	}
+	
 }
