@@ -40,6 +40,18 @@ public class HomeController {
 		return "chacarge_deal_list";
 	}
 	
+	@RequestMapping(value = "/chacarge_deal_write.do", method = RequestMethod.GET)
+	public String chacarge_deal_write(Locale locale, Model model) {
+
+		return "chacarge_deal_write";
+	}
+	
+	@RequestMapping(value = "/chacarge_deal_write_ok.do", method =  RequestMethod.GET)
+	public String chacarge_deal_write_ok(Locale locale, Model model) {
+
+		return "chacarge_deal_write_ok";
+	}
+	
 	@RequestMapping(value = "/chacarge_deal_view.do", method = RequestMethod.GET)
 	public String chacarge_deal_view(Locale locale, Model model) {
 

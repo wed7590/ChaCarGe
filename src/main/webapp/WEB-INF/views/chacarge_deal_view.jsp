@@ -75,7 +75,7 @@
 		<div class="row">
 
 		<!-- 사진 부분 -->
-			<div class="col-md-8"><img class="img-fluid" src="http://www.autoherald.co.kr/news/photo/201910/36137_59995_61.jpg" alt=""></div>
+			<div class="col-md-8"><img class="img-fluid" src="http://www.autoherald.co.kr/news/photo/201910/36137_59995_61.jpg" weight="300" height="400" alt=""></div>
 
 		<!-- 설명 부분 -->
 			<div class="col-md-4">
