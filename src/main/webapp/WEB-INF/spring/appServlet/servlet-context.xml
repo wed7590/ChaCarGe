@@ -22,7 +22,6 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="net.chacarge.controller" />
-	
-	
-	
+	<context:component-scan base-package="net.chacarge.model1" />
+
 </beans:beans>

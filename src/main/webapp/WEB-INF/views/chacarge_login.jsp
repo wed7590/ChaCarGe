@@ -310,14 +310,36 @@ input {
 	};
 </script>
 
-
-
 <script>
 	if (document.location.search.match(/type=embed/gi)) {
 		window.parent.postMessage("resize", "*");
 	}
 </script>
 
+<script type="text/javascript">
+	window.onload = function() {
+		document.getElementById('login').onclick = function() {
+			if( document.lfrm.user_id.value.trim() == '' ) {
+				alert('아이디를 입력 하셔야 합니다.');
+				return false;
+			}
+
+			if( document.lfrm.user_password.value.trim() == '' ) {
+				alert('비밀번호를 입력하셔야 합니다.');
+				return false;
+			}
+
+			document.lfrm.submit();
+		};
+		
+		var error = "${error}";
+		if( error == 'id' ) {
+			alert( '회원을 찾을 수 없습니다.' );
+		} else if ( error == 'pw' ) {
+			alert( '비밀번호를 확인해주세요' );
+		}
+	};
+</script>
 
 </head>
 
@@ -326,11 +348,12 @@ input {
 	<div class="cont">
 		<div class="form sign-in">
 			<h2>Welcome back,</h2>
-			<label> <span>Email</span> <input type="email">
-			</label> <label> <span>Password</span> <input type="password">
-			</label>
+			<form action="chacarge_login_ok.do" method="get" name="lfrm">
+				<label> <span>ID</span> <input type="text" name="user_id"> </label>
+				<label> <span>Password</span> <input type="password" name="user_password"> </label>
+			</form>
 			<p class="forgot-pass">Forgot password?</p>
-			<button type="button" class="submit">Sign In</button>
+			<button type="button" id="login" class="submit">Sign In</button>
 			<button type="button" class="fb-btn">
 				Connect with <span>kakao</span>
 			</button>
@@ -368,7 +391,6 @@ input {
 	<script
 		src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-157cd5b220a5c80d4ff8e0e70ac069bffd87a61252088146915e8726e5d9f147.js"></script>
 
-
 	<script id="rendered-js">
 		document.querySelector('.img__btn').addEventListener(
 				'click',
@@ -378,12 +400,6 @@ input {
 				});
 		//# sourceURL=pen.js
 	</script>
-
-
-
-
-
-
 
 </body>
 </html>
