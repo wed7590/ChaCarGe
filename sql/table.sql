@@ -23,7 +23,7 @@ CREATE TABLE `board` (
 
 CREATE TABLE `visitor` (
  `visit_seq` int NOT NULL primary key auto_increment,
- `visit_date` varchar(15) NOT NULL,
+ `visit_date` datetime NOT NULL,
  `user_seq` int NOT NULL
 );
 
