@@ -115,7 +115,27 @@ alter table user auto_increment=1;
 set @count = 0;
 update user set user_seq = @count:=@count+1;
 
-insert into User values( 0, 'admin1', '123456', 'admin1@chacarge.net', 'admin1', '2021-03-17', '2', null );
-insert into User values( 0, 'admin2', '123456', 'admin2@chacarge.net', 'admin2', '2021-03-17', '2', null );
-insert into User values( 0, 'admin3', '123456', 'admin3@chacarge.net', 'admin3', '2021-03-17', '2', null );
-insert into User values( 0, 'admin4', '123456', 'admin4@chacarge.net', 'admin4', '2021-03-17', '2', null );
+
+-- user 테이블 dummy 데이터
+insert into User values( 0, 'admin1', '123456', 'admin1@chacarge.net', 'admin1', DATE_FORMAT(now(), '%Y-%m-%d'), '2', null );
+insert into User values( 0, 'admin2', '123456', 'admin2@chacarge.net', 'admin2', DATE_FORMAT(now(), '%Y-%m-%d'), '2', null );
+insert into User values( 0, 'admin3', '123456', 'admin3@chacarge.net', 'admin3', DATE_FORMAT(now(), '%Y-%m-%d'), '2', null );
+insert into User values( 0, 'admin4', '123456', 'admin4@chacarge.net', 'admin4', DATE_FORMAT(now(), '%Y-%m-%d'), '2', null );
+
+-- visitor 테이블 dummy 데이터
+insert into visitor values (0, '2021-03-17', 1);
+insert into visitor values (0, '2021-03-16', 1);
+insert into visitor values (0, '2021-03-15', 1);
+insert into visitor values (0, '2021-03-14', 1);
+insert into visitor values (0, '2021-03-13', 2);
+insert into visitor values (0, '2021-03-12', 2);
+insert into visitor values (0, '2021-03-11', 2);
+insert into visitor values (0, '2021-03-10', 2);
+insert into visitor values (0, '2021-03-09', 3);
+insert into visitor values (0, '2021-03-08', 3);
+insert into visitor values (0, '2021-03-07', 3);
+insert into visitor values (0, '2021-03-06', 3);
+insert into visitor values (0, '2021-03-05', 4);
+insert into visitor values (0, '2021-03-04', 4);
+insert into visitor values (0, '2021-03-03', 4);
+insert into visitor values (0, '2021-03-02', 4);
