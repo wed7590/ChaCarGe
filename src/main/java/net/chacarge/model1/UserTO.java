@@ -1,6 +1,7 @@
 package net.chacarge.model1;
 
 public class UserTO {
+	private String user_seq;
 	private String user_id;
 	private String user_password;
 	private String user_email;
@@ -8,8 +9,13 @@ public class UserTO {
 	private String user_join_date;
 	private String user_grade;
 	private String user_token;
-	private String visit_seq;
 	
+	public String getUser_seq() {
+		return user_seq;
+	}
+	public void setUser_seq(String user_seq) {
+		this.user_seq = user_seq;
+	}
 	public String getUser_id() {
 		return user_id;
 	}
@@ -51,12 +57,6 @@ public class UserTO {
 	}
 	public void setUser_token(String user_token) {
 		this.user_token = user_token;
-	}
-	public String getVisit_seq() {
-		return visit_seq;
-	}
-	public void setVisit_seq(String visit_seq) {
-		this.visit_seq = visit_seq;
 	}
 	
 }

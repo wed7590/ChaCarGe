@@ -4,12 +4,14 @@ USE chacarge;
 CREATE TABLE `User` (
  `user_seq` int NOT NULL primary key auto_increment,
  `user_id` varchar(15) NOT NULL,
- `user_password` varchar(15) NOT NULL,
+ `user_password` varchar(100) NOT NULL,
  `user_email` varchar(30) NOT NULL,
  `user_name` varchar(15) NOT NULL,
- `user_join_date` datetime NOT NULL,
+ `user_join_date` datetime NOT NULL DEFAULT DATE_FORMAT(now(), '%Y-%m-%d'), -- now() 로 변경
  `user_grade` varchar(1) NOT NULL DEFAULT 1,
- `user_token` varchar(15) NULL
+ `user_token` varchar(15) NULL DEFAULT NULL,
+ `user_session_key` varchar(50) NOT NULL DEFAULT 'none',
+ `user_session_limit` TIMESTAMP
 );
 
 CREATE TABLE `board` (
@@ -107,20 +109,11 @@ REFERENCES `car_data` (
  `car_seq`
 );
 
--- auto_increment 1부터 초기화하는 구문 (데이터 다지우고 1로 시작할 때 - 테이블에 새로 시작할 값보다 높은 값이 있으면 안됨 )
-alter table user auto_increment=1;
-
--- auto_increment 1부터 다시 새로 만들어줌
-alter table user auto_increment=1;
-set @count = 0;
-update user set user_seq = @count:=@count+1;
-
-
 -- user 테이블 dummy 데이터
-insert into User values( 0, 'admin1', '123456', 'admin1@chacarge.net', 'admin1', DATE_FORMAT(now(), '%Y-%m-%d'), '2', null );
-insert into User values( 0, 'admin2', '123456', 'admin2@chacarge.net', 'admin2', DATE_FORMAT(now(), '%Y-%m-%d'), '2', null );
-insert into User values( 0, 'admin3', '123456', 'admin3@chacarge.net', 'admin3', DATE_FORMAT(now(), '%Y-%m-%d'), '2', null );
-insert into User values( 0, 'admin4', '123456', 'admin4@chacarge.net', 'admin4', DATE_FORMAT(now(), '%Y-%m-%d'), '2', null );
+insert into User ( user_seq, user_id, user_password, user_email, user_name, user_join_date, user_grade ) values( 0, 'admin1', '123456', 'admin1@chacarge.net', 'admin1', DATE_FORMAT(now(), '%Y-%m-%d'), '2' );
+insert into User ( user_seq, user_id, user_password, user_email, user_name, user_join_date, user_grade ) values( 0, 'admin2', '123456', 'admin2@chacarge.net', 'admin2', DATE_FORMAT(now(), '%Y-%m-%d'), '2' );
+insert into User ( user_seq, user_id, user_password, user_email, user_name, user_join_date, user_grade ) values( 0, 'admin3', '123456', 'admin3@chacarge.net', 'admin3', DATE_FORMAT(now(), '%Y-%m-%d'), '2' );
+insert into User ( user_seq, user_id, user_password, user_email, user_name, user_join_date, user_grade ) values( 0, 'admin4', '123456', 'admin4@chacarge.net', 'admin4', DATE_FORMAT(now(), '%Y-%m-%d'), '2' );
 
 -- visitor 테이블 dummy 데이터
 insert into visitor values (0, '2021-03-17', 1);
@@ -139,3 +132,11 @@ insert into visitor values (0, '2021-03-05', 4);
 insert into visitor values (0, '2021-03-04', 4);
 insert into visitor values (0, '2021-03-03', 4);
 insert into visitor values (0, '2021-03-02', 4);
+
+-- auto_increment 1부터 초기화하는 구문 (데이터 다지우고 1로 시작할 때 - 테이블에 새로 시작할 값보다 높은 값이 있으면 안됨 )
+alter table user auto_increment=1;
+
+-- auto_increment 1부터 다시 새로 만들어줌
+alter table user auto_increment=1;
+set @count = 0;
+update user set user_seq = @count:=@count+1;

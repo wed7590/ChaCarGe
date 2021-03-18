@@ -366,7 +366,7 @@ input {
 	<div class="cont">
 		<div class="form sign-in">
 			<h2>Welcome back,</h2>
-			<form action="chacarge_login_ok.do" method="get" name="lfrm">
+			<form action="chacarge_login_ok.do" method="post" name="lfrm">
 				<label> <span>ID</span> <input type="text" name="user_id"> </label>
 				<label> <span>Password</span> <input type="password" name="user_password"> </label>
 			</form>
@@ -394,7 +394,7 @@ input {
 			</div>
 			<div class="form sign-up">
 				<h2>Time to feel like home,</h2>
-				<form action="chacarge_join_ok.do" method="get" name="jfrm">
+				<form action="chacarge_join_ok.do" method="post" name="jfrm">
 					<label> <span>ID</span> <input type="text" name="user_join_id"> </label>
 					<label> <span>Password</span> <input type="password" name="user_join_password"> </label>
 					<label> <span>Name</span> <input type="text" name="user_join_name"> </label>

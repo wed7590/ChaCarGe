@@ -5,12 +5,14 @@ import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import net.chacarge.model1.LoginTO;
 import net.chacarge.model1.UserDAO;
 import net.chacarge.model1.UserTO;
 
@@ -76,32 +78,36 @@ public class HomeController {
 		return "chacarge_login";
 	}
 	
-	@RequestMapping(value = "/chacarge_login_ok.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/chacarge_login_ok.do", method = RequestMethod.POST)
 	public String chacarge_login_ok(HttpServletRequest request, HttpServletResponse response, Model model) {
-		UserTO to = new UserTO();
-		to.setUser_id( request.getParameter( "user_id" ) );
-		to.setUser_password( request.getParameter( "user_password" ) );
+		LoginTO to = new LoginTO();
+		to.setLogin_id( request.getParameter( "user_id" ) );
+		to.setLogin_pw( request.getParameter( "user_password" ) );
 
-		System.out.println( to.getUser_id() );
-		System.out.println( to.getUser_password() );
+		UserTO to1 = new UserTO();
+		to1 = userDAO.login_ok(to) ;
 		
-		int flag = userDAO.login_ok(to) ;
+		int flag = 0;
+
+		if( to1 == null || !BCrypt.checkpw( to.getLogin_pw(), to1.getUser_password() ) ) {
+			flag = 1;
+		}
 		
 		model.addAttribute( "flag", flag );
 		
 		return "chacarge_login_ok";
 	}
 	
-	@RequestMapping(value = "/chacarge_join_ok.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/chacarge_join_ok.do", method = RequestMethod.POST)
 	public String chacarge_join_ok(HttpServletRequest request, HttpServletResponse response, Model model) {
+		
 		UserTO to = new UserTO();
 		to.setUser_id( request.getParameter( "user_join_id" ) );
 		to.setUser_password( request.getParameter( "user_join_password" ) );
 		to.setUser_name( request.getParameter( "user_join_name" ) );
 		to.setUser_email( request.getParameter( "user_join_email" ) );
-
-		System.out.println( to.getUser_id() );
-		System.out.println( to.getUser_password() );
+		String hashedPw = BCrypt.hashpw( to.getUser_password(), BCrypt.gensalt() );
+		to.setUser_password( hashedPw );
 		
 		int flag = userDAO.join_ok(to) ;
 		

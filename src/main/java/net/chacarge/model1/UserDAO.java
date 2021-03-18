@@ -19,14 +19,9 @@ public class UserDAO {
 	private SqlSession sqlSession;
 	
 	// login_ok
-	public int login_ok( UserTO to ) {
+	public UserTO login_ok( LoginTO to ) {
 		
-		int flag = 1;
-		UserTO to1 = sqlSession.selectOne( "login_ok", to );
-		if( to1 != null ) {
-			flag = 0;
-		}
-		return flag;
+		return sqlSession.selectOne( "login_ok", to );
 	}
 	
 	// join_ok
