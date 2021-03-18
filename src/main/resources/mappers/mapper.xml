@@ -11,6 +11,6 @@
 	<!-- join_ok -->
 	<insert id="join_ok" parameterType="net.chacarge.model1.UserTO">
 		insert into user 
-		values( 0, #{user_id}, #{user_password}, #{user_email}, #{user_name}, now(), 1, null )
+		values( 0, #{user_id}, #{user_password}, #{user_email}, #{user_name}, DATE_FORMAT(now(), '%Y-%m-%d'), 1, null )
 	</insert>
 </mapper>
