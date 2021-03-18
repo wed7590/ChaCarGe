@@ -8,8 +8,7 @@
 <head>
 
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 
@@ -60,40 +59,32 @@
 
 <body>
 
-	<!-- 최상단 Navigation 메뉴 부분  -  모든 페이지 공통 -->
-	<nav
-		class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+<!-- 최상단 Navigation 메뉴 부분  -  모든 페이지 공통 -->
+	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
-			<!-- 왼쪽의 페이지 이름 : 클릭시 시작 페이지로 이동 -->
+	<!-- 왼쪽의 페이지 이름 : 클릭시 시작 페이지로 이동 -->
 			<a class="navbar-brand" href="chacarge_home.do">ChaCarGe</a>
-			<button class="navbar-toggler navbar-toggler-right" type="button"
-				data-toggle="collapse" data-target="#navbarResponsive"
-				aria-controls="navbarResponsive" aria-expanded="false"
-				aria-label="Toggle navigation">
+			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-
-			<!-- 오른쪽의 이동 메뉴 : 클릭시 해당 페이지로 이동 -->
+			
+	<!-- 오른쪽의 이동 메뉴 : 클릭시 해당 페이지로 이동 -->
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a class="nav-link"
-						href="chacarge_estimate.do">차량 견적</a></li>
+					<li class="nav-item"><a class="nav-link" href="chacarge_estimate.do">차량 견적</a></li>
 					<li class="nav-item"><a>&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="chacarge_deal_list.do">차량 매물</a></li>
+					<li class="nav-item"><a class="nav-link" href="chacarge_deal_list.do">차량 매물</a></li>
 					<li class="nav-item"><a>&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" id="navbarDropdownBlog"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">관리자
-							페이지</a>
-						<div class="dropdown-menu dropdown-menu-right"
-							aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item" href="chacarge_admin_deal.do">매물 관리</a>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">관리자 페이지</a>
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
 							<a class="dropdown-item" href="chacarge_admin_user.do">유저 관리</a>
-						</div></li>
+							<a class="dropdown-item" href="chacarge_admin_deal.do">매물 관리</a>
+							<a class="dropdown-item" href="chacarge_admin_statistics.do">통계</a>
+						</div>
+					</li>
 					<li class="nav-item"><a>&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="chacarge_login.do">로그인</a></li>
+					<li class="nav-item"><a class="nav-link" href="chacarge_login.do">로그인</a></li>
 				</ul>
 			</div>
 		</div>
@@ -325,12 +316,11 @@
 	<!-- /.container -->
 
 
-	<!-- 하단부 Footer 부분 -->
+<!-- 하단부 Footer 부분 -->
 	<!-- Footer -->
 	<footer class="py-5 bg-dark">
 		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; ChaCarGe
-				2021</p>
+			<p class="m-0 text-center text-white">Copyright &copy; ChaCarGe 2021</p>
 		</div>
 		<!-- /.container -->
 	</footer>

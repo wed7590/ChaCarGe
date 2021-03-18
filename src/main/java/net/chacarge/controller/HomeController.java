@@ -1,5 +1,6 @@
 package net.chacarge.controller;
 
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import net.chacarge.model1.AdminDAO;
+import net.chacarge.model1.AdminTO;
 import net.chacarge.model1.LoginTO;
 import net.chacarge.model1.UserDAO;
 import net.chacarge.model1.UserTO;
@@ -23,7 +26,9 @@ import net.chacarge.model1.UserTO;
 public class HomeController {
 	@Autowired
 	private UserDAO userDAO;
-
+	@Autowired
+	private AdminDAO adminDAO;
+	
 	@RequestMapping(value = "/chacarge_home.do", method = RequestMethod.GET)
 	public String chacarge_home(Locale locale, Model model) {
 
@@ -60,16 +65,47 @@ public class HomeController {
 		return "chacarge_deal_view";
 	}
 	
+	@RequestMapping(value = "/chacarge_admin_user.do", method = RequestMethod.GET)
+	public String chacarge_admin_user(Locale locale, Model model) {
+
+		// 회원 목록 데이터 받기
+		List<AdminTO> member_management = adminDAO.member_management();
+		model.addAttribute("member_management", member_management);
+		
+		// 현재 회원수 데이터 받기
+		List<AdminTO> member_count = adminDAO.member_count();
+		model.addAttribute("member_count", member_count);
+		
+		return "chacarge_admin_user";
+	}
+
+	
 	@RequestMapping(value = "/chacarge_admin_deal.do", method = RequestMethod.GET)
 	public String chacarge_admin_deal(Locale locale, Model model) {
+		
+		// 매물 목록 데이터 받기
+		List<AdminTO> item_management = adminDAO.item_management();
+		model.addAttribute("item_management", item_management);
 
 		return "chacarge_admin_deal";
 	}
 	
-	@RequestMapping(value = "/chacarge_admin_user.do", method = RequestMethod.GET)
-	public String chacarge_admin_user(Locale locale, Model model) {
+	@RequestMapping(value = "/chacarge_admin_statistics.do", method = RequestMethod.GET)
+	public String chacarge_admin_statistics(Locale locale, Model model) {
 
-		return "chacarge_admin_user";
+		// 방문자 수 통계 데이터 받기
+		List<AdminTO> visitor_statistics = adminDAO.visitor_statistics();
+		model.addAttribute("visitor_statistics", visitor_statistics);
+		
+		// 회원 가입자 수 통계 데이터 받기
+		List<AdminTO> member_statistics = adminDAO.member_statistics();
+		model.addAttribute("member_statistics", member_statistics);
+		
+		// 게시물 수 통계 데이터 받기
+		List<AdminTO> post_statistics = adminDAO.post_statistics();
+		model.addAttribute("post_statistics", post_statistics);
+		
+		return "chacarge_admin_statistics";
 	}
 	
 	@RequestMapping(value = "/chacarge_login.do", method = RequestMethod.GET)

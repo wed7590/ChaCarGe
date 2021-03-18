@@ -43,8 +43,9 @@
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">관리자 페이지</a>
 						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item" href="chacarge_admin_deal.do">매물 관리</a>
 							<a class="dropdown-item" href="chacarge_admin_user.do">유저 관리</a>
+							<a class="dropdown-item" href="chacarge_admin_deal.do">매물 관리</a>
+							<a class="dropdown-item" href="chacarge_admin_statistics.do">통계</a>
 						</div>
 					</li>
 					<li class="nav-item"><a>&nbsp;&nbsp;&nbsp;&nbsp;</a></li>

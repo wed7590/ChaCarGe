@@ -13,4 +13,54 @@
 		insert into user ( user_seq, user_id, user_password, user_email, user_name)
 		values( 0, #{user_id}, #{user_password}, #{user_email}, #{user_name} )
 	</insert>
+	
+	<!-- admin_member_management -->
+	<select id="member_management" parameterType="net.chacarge.model1.AdminTO" resultType="net.chacarge.model1.AdminTO">
+		select user.user_seq, user_id, user_token, user_name, user_email, user_join_date, user_grade, visitor.visit_date
+		from user
+		join visitor
+		where (user.user_seq = visitor.user_seq)
+		and visitor.visit_date in (select max(visitor.visit_date) from visitor group by visitor.user_seq)
+		group by user.user_seq
+		order by user.user_seq asc
+	</select>
+	
+	<!-- admin_member_count -->
+	<select id="member_count" parameterType="net.chacarge.model1.AdminTO" resultType="net.chacarge.model1.AdminTO">
+		select count(user_seq) user_count
+		from user
+	</select>
+	
+	<!-- admin_item_management -->
+	<select id="item_management" parameterType="net.chacarge.model1.AdminTO" resultType="net.chacarge.model1.AdminTO"> 
+		select board_seq, board_subject, user.user_id, board_hit, board_wdate
+		from board
+		join user
+		where (user.user_seq = board.user_seq)
+ 		order by board_seq asc
+	</select>
+	
+	<!-- admin_visitor_statistics -->
+	<select id="visitor_statistics" parameterType="net.chacarge.model1.AdminTO" resultType="net.chacarge.model1.AdminTO"> 
+		select visit_date, count(visit_seq) visit_count, sum(count(visit_seq)) over(order by visit_date) visit_sum_count
+		from visitor
+		group by visitor.visit_date
+		order by visit_date desc
+	</select>
+	
+	<!-- admin_member_statistics -->
+	<select id="member_statistics" parameterType="net.chacarge.model1.AdminTO" resultType="net.chacarge.model1.AdminTO"> 
+		select user_join_date, count(user_seq) user_count, sum(count(user_seq)) over(order by user_join_date) user_sum_count
+		from user
+		group by user_join_date
+		order by user_join_date desc
+	</select>
+	
+	<!-- admin_post_statistics -->
+	<select id="post_statistics" parameterType="net.chacarge.model1.AdminTO" resultType="net.chacarge.model1.AdminTO"> 
+		select board_wdate, count(board_seq) post_count, sum(count(board_seq)) over(order by board_wdate) post_sum_count
+		from board
+		group by board_wdate
+		order by board_wdate desc
+	</select>
 </mapper>

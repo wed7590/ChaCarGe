@@ -7,26 +7,55 @@
 <%@ page import="java.util.ArrayList" %>
 
 <%
-	ArrayList<AdminTO> item_management = (ArrayList)request.getAttribute("item_management");
+	ArrayList<AdminTO> visitor_statistics = (ArrayList)request.getAttribute("visitor_statistics");
+	ArrayList<AdminTO> member_statistics = (ArrayList)request.getAttribute("member_statistics");
+	ArrayList<AdminTO> post_statistics = (ArrayList)request.getAttribute("post_statistics");
 	
-	// sbHtmlManagement 안에 회원 목록 데이터 담아서 html 양식으로 출력
-	StringBuffer sbHtmlManagement = new StringBuffer();
+	// sbHtmlManagement 안에 방문자 수 데이터 담아서 html 양식으로 출력
+	StringBuffer sbHtmlVisitor = new StringBuffer();
 	
-	for (AdminTO to : item_management) {
-		int board_seq = to.getBoard_seq();
-		String board_subject = to.getBoard_subject();
-		String user_id = to.getUser_id();
-		int board_hit = to.getBoard_hit();
-		String board_wdate = to.getBoard_wdate();
+	for (AdminTO to : visitor_statistics) {
+		String visit_date = to.getVisit_date();
+		int visit_count = to.getVisit_count();
+		int visit_sum_count = to.getVisit_sum_count();
 		
-		sbHtmlManagement.append("<tr>");
-		sbHtmlManagement.append("	<td width='8%'>" + board_seq + "</td>");
-		sbHtmlManagement.append("	<td width='44%'>" + board_subject + "</td>");
-		sbHtmlManagement.append("	<td width='20%'>" + user_id + "</td>");
-		sbHtmlManagement.append("	<td width='8%'>" + board_hit + "</td>");
-		sbHtmlManagement.append("	<td width='20%'>" + board_wdate.substring(0, 10) + "</td>");
-		sbHtmlManagement.append("</tr>");
+		sbHtmlVisitor.append("<tr>");
+		sbHtmlVisitor.append("	<td width='33%'>" + visit_date.substring(0, 10) + "</td>");
+		sbHtmlVisitor.append("	<td width='33%'>" + visit_count + "</td>");
+		sbHtmlVisitor.append("	<td width='34%'>" + visit_sum_count + "</td>");
+		sbHtmlVisitor.append("</tr>");
 	}
+
+	// sbHtmlManagement 안에 회원 가입자 수 데이터 담아서 html 양식으로 출력
+	StringBuffer sbHtmlMember = new StringBuffer();
+	
+	for (AdminTO to : member_statistics) {
+		String user_join_date = to.getUser_join_date();
+		int user_count = to.getUser_count();
+		int user_sum_count = to.getUser_sum_count();
+		
+		sbHtmlMember.append("<tr>");
+		sbHtmlMember.append("	<td width='33%'>" + user_join_date.substring(0, 10) + "</td>");
+		sbHtmlMember.append("	<td width='33%'>" + user_count + "</td>");
+		sbHtmlMember.append("	<td width='34%'>" + user_sum_count + "</td>");
+		sbHtmlMember.append("</tr>");
+	}
+		
+	// sbHtmlPost 안에 게시물 수 데이터 담아서 html 양식으로 출력
+	StringBuffer sbHtmlPost = new StringBuffer();
+	
+	for (AdminTO to : post_statistics) {
+		String board_wdate = to.getBoard_wdate();
+		int post_count = to.getPost_count();
+		int post_sum_count = to.getPost_sum_count();
+		
+		sbHtmlPost.append("<tr>");
+		sbHtmlPost.append("	<td width='33%'>" + board_wdate.substring(0, 10) + "</td>");
+		sbHtmlPost.append("	<td width='33%'>" + post_count + "</td>");
+		sbHtmlPost.append("	<td width='34%'>" + post_sum_count + "</td>");
+		sbHtmlPost.append("</tr>");
+	}
+	
 %>
 
 <!DOCTYPE html>
@@ -166,7 +195,7 @@
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="chacarge_home.do">Home</a></li>
 			<li class="breadcrumb-item"><a>관리자 페이지</a></li>
-			<li class="breadcrumb-item active">매물 관리</li>
+			<li class="breadcrumb-item active">통계</li>
 		</ol>
 
 	<!-- 매물 관리 내용 부분 -->
@@ -186,25 +215,50 @@
 		<!-- 내용 설정 -->
 			<!-- Content Column -->
 			<div class="col-lg-9 mb-4">
-				<h2>매물 관리</h2>
-				<p>ChaCarGe.net 의 매물을 관리할 수 있습니다.</p>
+				<h2>통계</h2>
+				<p>ChaCarGe.net 의 통계를 확인할 수 있습니다.</p>
 				<hr/>
 			    <div class="docs-wrapper">
 				    <div class="docs-content">
 					    <div class="container">
 						    <article class="docs-article" id="section-1">
 								<section class="docs-section" id="item-1-1">
-									<h4 class="section-heading">매물목록</h4>
+									<h4 class="section-heading">방문자 수 통계</h4>
 									<div class="board">
 										<table>
 											<tr>
-												<th width="8%">글번호</th>
-												<th width="44%">글제목</th>
-												<th width="20%">작성자 ID</th>
-												<th width="8%">조회 수</th>
-												<th width="20%">올린 날짜</th>
+												<th width="33%">연월일</th>
+												<th width="33%">방문자 수</th>
+												<th width="34%">누적 방문자 수</th>
 											</tr>
-											<%=sbHtmlManagement %>	
+											<%=sbHtmlVisitor %>
+											
+										</table>
+									</div>
+									<hr/>
+									<h4 class="section-heading">회원 가입자 수 통계</h4>
+									<div class="board">
+										<table>
+											<tr>
+												<th width="33%">연월일</th>
+												<th width="33%">가입자 수</th>
+												<th width="34%">누적 가입자 수</th>
+											</tr>
+											<%=sbHtmlMember %>
+											
+										</table>
+									</div>
+									<hr/>
+									<h4 class="section-heading">게시물 수 통계</h4>
+									<div class="board">
+										<table>
+											<tr>
+												<th width="33%">연월일</th>
+												<th width="33%">게시물 수</th>
+												<th width="34%">누적 게시물 수</th>
+											</tr>
+											<%=sbHtmlPost %>
+											
 										</table>
 									</div>
 								</section>
