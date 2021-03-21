@@ -8,9 +8,8 @@
 </head>
 <body>
 	<script>
-		alert( "아이디와 비밀번호를 확인해주세요." );
-		self.location = "chacarge_login.do";
-		out.println( "Hello" );
+		alert( "로그아웃 되었습니다." );
+		self.location = "chacarge_home.do";
 	</script>
 </body>
 </html>

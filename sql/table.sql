@@ -132,6 +132,7 @@ insert into visitor values (0, '2021-03-11', 4);
 insert into visitor values (0, '2021-03-10', 4);
 insert into visitor values (0, '2021-03-09', 4);
 insert into visitor values (0, '2021-03-08', 4);
+insert into visitor values(0, DATE_FORMAT(now(), '%Y-%m-%d'), 5);
 
 -- board 테이블 dummy 데이터
 insert into board values (0, 'item1', 'item1 내용입니다.', 0, '2021-03-17', 1);
@@ -154,7 +155,6 @@ insert into board values (0, 'item17', 'item17 내용입니다.', 0, '2021-03-10
 insert into board values (0, 'item18', 'item18 내용입니다.', 0, '2021-03-09', 2);
 insert into board values (0, 'item19', 'item19 내용입니다.', 0, '2021-03-09', 3);
 insert into board values (0, 'item20', 'item20 내용입니다.', 0, '2021-03-09', 4);
-
 
 -- auto_increment 1부터 초기화하는 구문 (데이터 다지우고 1로 시작할 때 - 테이블에 새로 시작할 값보다 높은 값이 있으면 안됨 )
 alter table user auto_increment=1;

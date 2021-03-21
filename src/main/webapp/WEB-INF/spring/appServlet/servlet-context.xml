@@ -23,5 +23,20 @@
 	
 	<context:component-scan base-package="net.chacarge.controller" />
 	<context:component-scan base-package="net.chacarge.model1" />
+	<context:component-scan base-package="net.chacarge.service" />
+	
+	<beans:bean id="loginInterceptor" class="net.chacarge.interceptor.LoginInterceptor" />
+	<beans:bean id="authInterceptor" class="net.chacarge.interceptor.AuthInterceptor" />
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/chacarge_login_ok.do"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/chacarge_deal_write.do" />
+			<beans:ref bean="authInterceptor"/>
+		</interceptor>
+	</interceptors>
 
 </beans:beans>

@@ -5,13 +5,13 @@
 	<select id="login_ok" parameterType="net.chacarge.model1.LoginTO" resultType="net.chacarge.model1.UserTO">
 		select *
 		from user
-		where user_id = #{login_id}
+		where user_id = #{userId}
 	</select>
 
 	<!-- join_ok -->
-	<insert id="join_ok" parameterType="net.chacarge.model1.UserTO">
-		insert into user ( user_seq, user_id, user_password, user_email, user_name)
-		values( 0, #{user_id}, #{user_password}, #{user_email}, #{user_name} )
+	<insert id="join_ok">
+		insert into user( user_id, user_password, user_email, user_name )
+		values( #{user_id}, #{user_password}, #{user_email}, #{user_name} )
 	</insert>
 	
 	<!-- admin_member_management -->
