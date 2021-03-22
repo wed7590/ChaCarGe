@@ -19,8 +19,6 @@
 }
 </style>  
 
-</head>
-
 <body>
 <!-- 최상단 Navigation 메뉴 부분  -  모든 페이지 공통 -->
 	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -39,11 +37,13 @@
 					<li class="nav-item"><a class="nav-link" href="chacarge_deal_list.do">차량 매물</a></li>
 					<li class="nav-item"><a>&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">관리자 페이지</a>
+						<a class="nav-link dropdown-toggle" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor:pointer">관리자 페이지</a>
 						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item" href="chacarge_admin_user.do">유저 관리</a>
-							<a class="dropdown-item" href="chacarge_admin_deal.do">매물 관리</a>
-							<a class="dropdown-item" href="chacarge_admin_statistics.do">통계</a>
+							<a class="dropdown-item" href="chacarge_admin_member.do">회원 관리</a>
+							<a class="dropdown-item" href="chacarge_admin_deal.do">매물 게시판 관리</a>
+							<a class="dropdown-item" href="chacarge_admin_statistics_visitor.do">방문자 통계</a>
+							<a class="dropdown-item" href="chacarge_admin_statistics_member.do">회원 통계</a>
+							<a class="dropdown-item" href="chacarge_admin_statistics_deal.do">게시물 통계</a>
 						</div>
 					</li>
 					<li class="nav-item"><a>&nbsp;&nbsp;&nbsp;&nbsp;</a></li>

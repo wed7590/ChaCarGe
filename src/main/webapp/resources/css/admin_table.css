@@ -1,0 +1,74 @@
+/*!
+ * Start Bootstrap - Modern Business (https://startbootstrap.com/template/modern-business)
+ * Copyright 2013-2020 Start Bootstrap
+ * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-logomodern-business-nav/blob/master/LICENSE)
+ */
+.board_top {
+	width: 100%;
+	overflow: hidden;
+	table-layout: fixed;
+	word-break: break-all;
+}
+
+.board_top .f_search {
+	float: right;
+	width: 380px;
+	text-align: right;
+}
+
+.board_top .bold {
+	float: left;
+	width: 200px;
+	margin: 10px 0;
+}
+
+.board_title {
+	font-size: 14px;
+	font-weight: bold;
+	color: #000;
+}
+
+.coment_number {
+	font: bold 10px verdana;
+	color: #6fa800;
+}
+
+.board {
+	width: 100%;
+	table-layout: fixed;
+	word-break: break-all;
+}
+
+.board th {
+	font-size: 12px;
+	height: 41px;
+	background-color: #f9f9fb;
+	color: #464646;
+	font-weight: 600;
+	word-wrap: break-word;
+	border: 1px solid #464646;
+	word-break: break-all;
+	text-align: center;
+}
+
+.board td {
+	font-size: 12px;
+	height: 30px;
+	border: 1px solid #dadada;
+	color: #797979;
+	text-align: center;
+	padding: 5px;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+.board td.left {
+	text-align: left;
+}
+
+.board td.category {
+	font-weight: bold;
+}
+
+
+

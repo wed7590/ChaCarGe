@@ -8,25 +8,21 @@
 <%@ include file="header.jsp" %>
 
 <%
-	ArrayList<AdminTO> deal_management = (ArrayList)request.getAttribute("deal_management");
+	ArrayList<AdminTO> statistics_visitor = (ArrayList)request.getAttribute("statistics_visitor");
 	
-	// sbHtmlManagement 안에 회원 목록 데이터 담아서 html 양식으로 출력
-	StringBuffer sbHtmlManagement = new StringBuffer();
+	// sbHtmlManagement 안에 방문자 수 데이터 담아서 html 양식으로 출력
+	StringBuffer sbHtmlVisitor = new StringBuffer();
 	
-	for (AdminTO to : deal_management) {
-		int board_seq = to.getBoard_seq();
-		String board_subject = to.getBoard_subject();
-		String user_id = to.getUser_id();
-		int board_hit = to.getBoard_hit();
-		String board_wdate = to.getBoard_wdate();
+	for (AdminTO to : statistics_visitor) {
+		String visit_date = to.getVisit_date();
+		int visit_count = to.getVisit_count();
+		int visit_sum_count = to.getVisit_sum_count();
 		
-		sbHtmlManagement.append("<tr>");
-		sbHtmlManagement.append("	<td width='12%'>" + board_seq + "</td>");
-		sbHtmlManagement.append("	<td width='40%'>" + board_subject + "</td>");
-		sbHtmlManagement.append("	<td width='20%'>" + user_id + "</td>");
-		sbHtmlManagement.append("	<td width='12%'>" + board_hit + "</td>");
-		sbHtmlManagement.append("	<td width='16%'>" + board_wdate.substring(0, 10) + "</td>");
-		sbHtmlManagement.append("</tr>");
+		sbHtmlVisitor.append("<tr>");
+		sbHtmlVisitor.append("	<td width='33%'>" + visit_date.substring(0, 10) + "</td>");
+		sbHtmlVisitor.append("	<td width='33%'>" + visit_count + "</td>");
+		sbHtmlVisitor.append("	<td width='34%'>" + visit_sum_count + "</td>");
+		sbHtmlVisitor.append("</tr>");
 	}
 %>
 
@@ -70,7 +66,7 @@
 <body>
 
 <%@ include file="header.jsp" %>
-
+	
 <!-- 페이지 내용 -->
 	<!-- Page Content -->
 	<div class="container">
@@ -83,45 +79,35 @@
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="chacarge_home.do">Home</a></li>
 			<li class="breadcrumb-item"><a>관리자 페이지</a></li>
-			<li class="breadcrumb-item">매물 게시판 관리</li>
+			<li class="breadcrumb-item">방문자 통계</li>
 		</ol>
 
 <%@ include file="header_admin_side.jsp" %>
-
+			
 		<!-- 내용 설정 -->
 			<!-- Content Column -->
 			<div class="col-lg-9 mb-4">
-				<h2>매물 게시판 관리</h2>
-				<p>ChaCarGe.net 의 매물을 관리할 수 있습니다.</p>
+				<h2>방문자 통계</h2>
+				<p>ChaCarGe.net 의 통계를 확인할 수 있습니다.</p>
 				<hr/>
 			    <div class="docs-wrapper">
 				    <div class="docs-content">
 					    <div class="container">
 						    <article class="docs-article" id="section-1">
 								<section class="docs-section" id="item-1-1">
-									<span id="list_modal">
-										<h4 class="section-heading">매물 게시판 목록</h4>
-									</span>
-									<span id="setting_modal">
-										<form action="chacarge_admin_deal.do" method="get">
-											<input type="text" name="board_search" id="board_search" placeholder="게시물 제목 검색" value="${board_search }"/>
-											<button type="submit">검색</button>
-										</form>
-									</span>
+									<h4 class="section-heading">방문자 수 통계</h4>
 									<div class="board">
 										<table class="table paginated">
 											<thead>
 												<tr>
-													<th width="12%">글번호</th>
-													<th width="40%">글제목</th>
-													<th width="20%">작성자 ID</th>
-													<th width="12%">조회 수</th>
-													<th width="16%">올린 날짜</th>
+													<th width="33%">연월일</th>
+													<th width="33%">방문자 수</th>
+													<th width="34%">누적 방문자 수</th>
 												</tr>
 											</thead>
 											<tbody>
-												<%=sbHtmlManagement %>
-											</tbody>	
+												<%=sbHtmlVisitor %>
+											</tbody>
 										</table>
 									</div>
 								</section>

@@ -12,16 +12,19 @@ public class AdminDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	// 유저관리 - 회원목록 출력 페이지
+	// 회원 관리 - 회원 목록 출력 + 검색
 	// member_management
 	public List<AdminTO> member_management() {
 
 		List<AdminTO> member_management = sqlSession.selectList("member_management");
 		return member_management;
 	}
-	
-	
-	// 유저관리 - 현재 회원수 출력 관련
+	public List<AdminTO> member_management_search(String user_search) {
+
+		List<AdminTO> member_management_search = sqlSession.selectList("member_management_search", user_search);
+		return member_management_search;
+	}
+	// 회원 관리 - 현재 회원수 출력
 	// member_count
 	public List<AdminTO> member_count() {
 		
@@ -29,40 +32,41 @@ public class AdminDAO {
 		return member_count;
 	}
 	
-	
-	// 매물관리 - 매물 목록 출력 관련
-	// item_management
-	public List<AdminTO> item_management() {
+	// 매물 게시판 관리 - 매물 목록 출력
+	// deal_management
+	public List<AdminTO> deal_management() {
 		
-		List<AdminTO> item_management = sqlSession.selectList("item_management");
-		return item_management;
+		List<AdminTO> deal_management = sqlSession.selectList("deal_management");
+		return deal_management;
+	}
+	public List<AdminTO> deal_management_search(String board_search) {
+		
+		List<AdminTO> deal_management_search = sqlSession.selectList("deal_management_search", board_search);
+		return deal_management_search;
 	}
 	
-	
-	// 통계 - 방문자수 통계 출력 관련 
-	// visitor_statistics 
-	public List<AdminTO> visitor_statistics() {
+	// 방문자 통계 관리 - 일별 방문자수 출력
+	// statistics_visitor 
+	public List<AdminTO> statistics_visitor() {
 		
-		List<AdminTO> visitor_statistics = sqlSession.selectList("visitor_statistics");
-		return visitor_statistics;
+		List<AdminTO> statistics_visitor = sqlSession.selectList("statistics_visitor");
+		return statistics_visitor;
 	}
 	
-	
-	// 통계 - 회원 가입자수 통계 출력 관련
-	// member_statistics
-	public List<AdminTO> member_statistics() {
+	// 회원 통계 관리 - 일별 회원수 출력
+	// statistics_member
+	public List<AdminTO> statistics_member() {
 		
-		List<AdminTO> member_statistics = sqlSession.selectList("member_statistics");
-		return member_statistics;
+		List<AdminTO> statistics_member = sqlSession.selectList("statistics_member");
+		return statistics_member;
 	}
 
-	
-	// 통계 - 게시물수 통계 출력 관련
-	// post_statistics
-	public List<AdminTO> post_statistics() {
+	// 게시물 통계 관리 - 일별 게시물수 출력
+	// statistics_deal
+	public List<AdminTO> statistics_deal() {
 		
-		List<AdminTO> post_statistics = sqlSession.selectList("post_statistics");
-		return post_statistics;
+		List<AdminTO> statistics_deal = sqlSession.selectList("statistics_deal");
+		return statistics_deal;
 	}
 	
 }

@@ -39,7 +39,7 @@
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="chacarge_home.do">Home</a></li>
 			<li class="breadcrumb-item"><a href="chacarge_deal_list.do">차량 매물</a></li>
-			<li class="breadcrumb-item active">현대 Tucson 2016</li>
+			<li class="breadcrumb-item">현대 Tucson 2016</li>
 		</ol>
 
 	<!-- 매물 설명 부분 -->
@@ -88,15 +88,7 @@
 	</div>
 	<!-- /.container -->
 
-
-<!-- 하단부 Footer 부분 -->
-	<!-- Footer -->
-	<footer class="py-5 bg-dark">
-		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; ChaCarGe 2021</p>
-		</div>
-		<!-- /.container -->
-	</footer>
+<%@ include file="footer.jsp" %>
 
 	<!-- Bootstrap core JavaScript -->
 	<script src="vendor/jquery/jquery.min.js"></script>

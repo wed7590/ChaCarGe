@@ -12,6 +12,7 @@ public class AdminTO {
 	
 	private int user_count;
 	private int user_sum_count;
+	private String user_search;
 	
 	private int visit_seq;
 	private String visit_date;
@@ -25,24 +26,43 @@ public class AdminTO {
 	private int board_hit;
 	private String board_wdate;
 	
-	private int post_count;
-	private int post_sum_count;
+	private int board_count;
+	private int board_sum_count;
+	private String board_search;
 	
 	private int comment_seq;
 	private String comment_content;
 	private String comment_wdate;
 	
+	public String getUser_search() {
+		return user_search;
+	}
+	public void setUser_search(String user_search) {
+		this.user_search = user_search;
+	}
+	public String getBoard_search() {
+		return board_search;
+	}
+	public void setBoard_search(String board_search) {
+		this.board_search = board_search;
+	}
+	public int getBoard_count() {
+		return board_count;
+	}
+	public void setBoard_count(int board_count) {
+		this.board_count = board_count;
+	}
+	public int getBoard_sum_count() {
+		return board_sum_count;
+	}
+	public void setBoard_sum_count(int board_sum_count) {
+		this.board_sum_count = board_sum_count;
+	}
 	public int getVisit_count() {
 		return visit_count;
 	}
 	public void setVisit_count(int visit_count) {
 		this.visit_count = visit_count;
-	}
-	public int getPost_count() {
-		return post_count;
-	}
-	public void setPost_count(int post_count) {
-		this.post_count = post_count;
 	}
 	public int getUser_sum_count() {
 		return user_sum_count;
@@ -55,12 +75,6 @@ public class AdminTO {
 	}
 	public void setVisit_sum_count(int visit_sum_count) {
 		this.visit_sum_count = visit_sum_count;
-	}
-	public int getPost_sum_count() {
-		return post_sum_count;
-	}
-	public void setPost_sum_count(int post_sum_count) {
-		this.post_sum_count = post_sum_count;
 	}
 	public int getUser_seq() {
 		return user_seq;

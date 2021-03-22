@@ -66,83 +66,29 @@
 <!-- Custom styles for this template -->
 <link href="resources/css/modern-business.css" rel="stylesheet">
 
-<style type="text/css">
-	.board_top {
-		width: 100%;
-		overflow: hidden;
-	}
-	
-	.board_top .f_search {
-		float: right;
-		width: 380px;
-		text-align: right;
-	}
-	
-	.board_top .bold {
-		float: left;
-		width: 200px;
-		margin: 10px 0;
-	}
-	
-	.board_title {
-		font-size: 14px;
-		font-weight: bold;
-		color: #000;
-	}
-	
-	.coment_number {
-		font: bold 10px verdana;
-		color: #6fa800;
-	}
-	
-	.board {
-		width: 100%;
-	}
-	
-	.board th {
-		font-size: 12px;
-		height: 41px;
-		background-color: #f9f9fb;
-		color: #464646;
-		font-weight: 600;
-		word-wrap: break-word;
-		border: 1px solid #464646;
-		word-break: break-all;
-		text-align: center;
-	}
-	
-	.board td {
-		font-size: 12px;
-		height: 30px;
-		border: 1px solid #dadada;
-		color: #797979;
-		text-align: center;
-		padding: 5px;
-		word-wrap: break-word;
-		word-break: break-all;
-	}
-	
-	.board td.left {
-		text-align: left;
-	}
-	
-	.board td.category {
-		font-weight: bold;
-	}
-	
-	.board_input {
-		border: 1px solid #cecece;
-		height: 24px;
-		width: 160px;
-	}
+<!-- board_admin_table CSS - 표 양식 부분 -->
+<link href="resources/css/admin_table.css" rel="stylesheet">
+
+<style>
+.board_input {border:1px solid #cecece; height:24px; width:160px;}
+.clickable {cursor:pointer;}
+.hover {text-decoration:underline;}
+.active{width:10px;	height:10px; font-weight:bold; pointer-events:none;}
+.page-number:hover{text-decoration:underline;}
+#list_modal{float:left;}
+#setting_modal{float:right;}
 </style>
+
+<!-- 테이블 페이징 처리 부분 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="resources/js/board_paging.js"></script>
 
 </head>
 
 <body>
 
 <%@ include file="header.jsp" %>
-	
+
 <!-- 페이지 내용 -->
 	<!-- Page Content -->
 	<div class="container">
@@ -155,23 +101,11 @@
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="chacarge_home.do">Home</a></li>
 			<li class="breadcrumb-item"><a>관리자 페이지</a></li>
-			<li class="breadcrumb-item active">유저 관리</li>
+			<li class="breadcrumb-item">회원 관리</li>
 		</ol>
 
-	<!-- 매물 관리 내용 부분 -->
-		<!-- Content Row -->
-		<div class="row">
-		
-		<!-- 사이드바 설정 -->
-			<!-- Sidebar Column -->
-			<div class="col-lg-3 mb-4">
-				<div class="list-group">
-					<a href="chacarge_admin_user.do" class="list-group-item">유저 관리</a>
-					<a href="chacarge_admin_deal.do" class="list-group-item">매물 관리</a>
-					<a href="chacarge_admin_statistics.do" class="list-group-item">통계</a>
-				</div>
-			</div>
-			
+<%@ include file="header_admin_side.jsp" %>
+
 		<!-- 내용 설정 -->
 			<!-- Content Column -->
 			<div class="col-lg-9 mb-4">
@@ -183,26 +117,38 @@
 					    <div class="container">
 						    <article class="docs-article" id="section-1">
 								<section class="docs-section" id="item-1-1">
-									<h4 class="section-heading">회원목록</h4>
+									<span id="list_modal">
+										<h4 class="section-heading">회원 목록</h4>
+									</span>
+									<span id="setting_modal">
+										<form action="chacarge_admin_member.do" method="get">
+											<input type="text" name="user_search" id="user_search" placeholder="회원 ID 검색" value="${user_search }"/>
+											<button type="submit">검색</button>
+										</form>
+									</span>
 									<div class="board">
-										<table>
-											<tr>
- 												<th width="8%">번호</th>
-												<th width="12%">ID</th>
-												<th width="12%">소셜토큰</th>
-												<th width="8%">이름</th>
-												<th width="28%">이메일</th>
-												<th width="12%">가입일</th>
-												<th width="8%">등급</th>
-												<th width="12%">최종방문일</th>
-											</tr>
-											<%=sbHtmlManagement %>
+										<table class="table paginated">
+											<thead>
+												<tr>
+	 												<th width="8%">번호</th>
+													<th width="12%">ID</th>
+													<th width="12%">소셜토큰</th>
+													<th width="8%">이름</th>
+													<th width="28%">이메일</th>
+													<th width="12%">가입일</th>
+													<th width="8%">등급</th>
+													<th width="12%">최종방문일</th>
+												</tr>
+											</thead>
+											<tbody>
+												<%=sbHtmlManagement %>
+											</tbody>
 										</table>
 									</div>
 									<hr/>
 									<h4 class="section-heading">현재 회원 수</h4>
 									<div class="board">
-										<table>
+										<table class="table">
 											<tr>
  												<th width="100%">현재 회원 수</th>
 											</tr>
@@ -221,15 +167,7 @@
 	</div>
 	<!-- /.container -->
 
-
-<!-- 하단부 Footer 부분 -->
-	<!-- Footer -->
-	<footer class="py-5 bg-dark">
-		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; ChaCarGe 2021</p>
-		</div>
-		<!-- /.container -->
-	</footer>
+<%@ include file="footer.jsp" %>
 
 	<!-- Bootstrap core JavaScript -->
 	<script src="resources/vendor/jquery/jquery.min.js"></script>

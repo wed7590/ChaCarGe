@@ -109,105 +109,6 @@
 		</div>
 	<!-- /.row -->
 
-<%--
-	<!-- Portfolio Section -->
-		<h2>Portfolio Heading</h2>
-
-		<div class="row">
-			<div class="col-lg-4 col-sm-6 portfolio-item">
-				<div class="card h-100">
-					<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#">Project One</a>
-						</h4>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-sm-6 portfolio-item">
-				<div class="card h-100">
-					<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#">Project Two</a>
-						</h4>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-sm-6 portfolio-item">
-				<div class="card h-100">
-					<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#">Project Three</a>
-						</h4>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-sm-6 portfolio-item">
-				<div class="card h-100">
-					<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#">Project Four</a>
-						</h4>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-sm-6 portfolio-item">
-				<div class="card h-100">
-					<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#">Project Five</a>
-						</h4>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-sm-6 portfolio-item">
-				<div class="card h-100">
-					<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#">Project Six</a>
-						</h4>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	<!-- /.row -->
-
-	<!-- Features Section -->
-		<div class="row">
-			<div class="col-lg-6">
-				<h2>Modern Business Features</h2>
-				<p>The Modern Business template by Start Bootstrap includes:</p>
-				<ul>
-					<li><strong>Bootstrap v4</strong></li>
-					<li>jQuery</li>
-					<li>Font Awesome</li>
-					<li>Working contact form with validation</li>
-					<li>Unstyled page elements for easy customization</li>
-				</ul>
-				<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-			</div>
-			<div class="col-lg-6">
-				<img class="img-fluid rounded" src="http://placehold.it/700x450" alt="">
-			</div>
-		</div>
-	<!-- /.row -->
-
-		<hr>
-
---%>
-
-
 	<!-- 이 부분 빠지면  Footer 설정이 이상해짐 -->
 	<!-- Call to Action Section -->
 		<div class="row mb-4">
@@ -222,15 +123,7 @@
 	</div>
 <!-- /.container -->
 
-
-<!-- 하단부 Footer 부분 -->
-	<!-- Footer -->
-	<footer class="py-5 bg-dark">
-		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; ChaCarGe 2021</p>
-		</div>
-		<!-- /.container -->
-	</footer>
+<%@ include file="footer.jsp" %>
 
 	<!-- Bootstrap core JavaScript -->
 	<script src="resources/vendor/jquery/jquery.min.js"></script>

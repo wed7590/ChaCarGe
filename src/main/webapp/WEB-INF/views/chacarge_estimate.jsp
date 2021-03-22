@@ -16,46 +16,14 @@
 <title>ChaCarGe - 차카게 차량 견적</title>
 
 <!-- Bootstrap core CSS -->
-<link href="resources/vendor/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
+<link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
 <link href="resources/css/modern-business.css" rel="stylesheet">
-<style>
-.grid-container {
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-  grid-gap: 10px;
-  background-color: #f2f2f2;
-  padding: 10px;
-}
 
-.grid-container > div {
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid black;
-  text-align: center;
-  font-size: 30px;
-  
-}
-.img-fluid rounded mb-4 {
-  padding: 15px;
-  border: 1px solid red;
-  width: 30%;
-  float: right;
-  padding: 15px;
-  border: 1px solid red;
+<!-- 기타 css 설정 -->
+<link href="resources/css/estimate.css" rel="stylesheet">
 
-}
-.select_list {
-  padding: 15px;
-  border: 1px solid red;
-  width: 70%;
-  float: right;
-  padding: 15px;
-  border: 1px solid red;
-}
-
-</style>
 </head>
 
 <body>
@@ -75,7 +43,7 @@
 		<!-- 페이지 경로 표시 -->
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="chacarge_home.do">Home</a></li>
-			<li class="breadcrumb-item active">차량 견적</li>
+			<li class="breadcrumb-item">차량 견적</li>
 		</ol>
 
 		<!-- 이미지 입력 부분 -->
@@ -208,93 +176,10 @@
 					<td id="Photo_5" code="" segment="" series="" useestm=""><div
 							class="buttonAddComp"></div></td>
 
-
-
-
-		<!-- 내용 입력 부분 -->
-		<!-- Marketing Icons Section 
-		<div class="row">
-			<div class="col-lg-4 mb-4">
-				<div class="card h-100">
-					<h4 class="card-header">Card Title</h4>
-					<div class="card-body">
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary">Learn More</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 mb-4">
-				<div class="card h-100">
-					<h4 class="card-header">Card Title</h4>
-					<div class="card-body">
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary">Learn More</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 mb-4">
-				<div class="card h-100">
-					<h4 class="card-header">Card Title</h4>
-					<div class="card-body">
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary">Learn More</a>
-					</div>
-				</div>
-			</div>
-						<div class="col-lg-4 mb-4">
-				<div class="card h-100">
-					<h4 class="card-header">Card Title</h4>
-					<div class="card-body">
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary">Learn More</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 mb-4">
-				<div class="card h-100">
-					<h4 class="card-header">Card Title</h4>
-					<div class="card-body">
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary">Learn More</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 mb-4">
-				<div class="card h-100">
-					<h4 class="card-header">Card Title</h4>
-					<div class="card-body">
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary">Learn More</a>
-					</div>
-				</div>
-			</div>
-		</div>-->
-		<!-- /.row -->
-
 	</div>
 	<!-- /.container -->
 
-
-<!-- 하단부 Footer 부분 -->
-	<!-- Footer -->
-	<footer class="py-5 bg-dark">
-		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; ChaCarGe 2021</p>
-		</div>
-		<!-- /.container -->
-	</footer>
+<%@ include file="footer.jsp" %>
 
 	<!-- Bootstrap core JavaScript -->
 	<script src="resources/vendor/jquery/jquery.min.js"></script>

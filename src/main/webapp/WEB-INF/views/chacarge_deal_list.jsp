@@ -13,11 +13,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-
-
 <title>ChaCarGe - 차카게 차량 매물</title>
-
-
 
 <!-- Bootstrap core CSS -->
 <link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -81,7 +77,7 @@
 	<!-- 페이지 경로 표시 -->
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="chacarge_home.do">Home</a></li>
-			<li class="breadcrumb-item active">차량 매물</li>
+			<li class="breadcrumb-item">차량 매물</li>
 		</ol>
 
 	<!-- 매물 입력 부분 -->
@@ -200,15 +196,7 @@
 	
 	<!-- /.container -->
 
-
-<!-- 하단부 Footer 부분 -->
-	<!-- Footer -->
-	<footer class="py-5 bg-dark">
-		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; ChaCarGe 2021</p>
-		</div>
-		<!-- /.container -->
-	</footer>
+<%@ include file="footer.jsp" %>
 
 	<!-- Bootstrap core JavaScript -->
 	<script src="resources/vendor/jquery/jquery.min.js"></script>
