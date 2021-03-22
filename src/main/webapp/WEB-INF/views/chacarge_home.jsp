@@ -21,8 +21,6 @@
 <!-- Custom styles for this template -->
 <link href="resources/css/modern-business.css" rel="stylesheet">
 
-
-
 <%@ include file="header.jsp" %>
 
 <!-- header 부분 : 사진 이동 기능 포함된 곳 -->

@@ -1,16 +1,8 @@
 package net.chacarge.model1;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import net.chacarge.model1.UserTO;
 
 @Repository
 public class UserDAO {
@@ -19,20 +11,15 @@ public class UserDAO {
 	private SqlSession sqlSession;
 	
 	// login_ok
-	public UserTO login_ok( LoginTO to ) {
+	public UserTO login_ok( LoginTO to ) throws Exception {
 		
 		return sqlSession.selectOne( "login_ok", to );
 	}
 	
 	// join_ok
-	public int join_ok(UserTO to) {
+	public void join_ok(UserTO to) throws Exception {
 
-		int flag = 1;
-		int result = sqlSession.insert("join_ok", to);
-		if ( result == 1 ) {
-			flag = 0;
-		}
-		return flag;
+		sqlSession.insert("join_ok", to);
 	}
 	
 }
