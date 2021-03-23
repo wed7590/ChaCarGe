@@ -2,7 +2,38 @@
 <%@ page session="true"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="header.jsp" %>
+
+<%@ page import="net.chacarge.model1.BoardTO" %>
+<%@ page import="java.util.List" %>
+
+<%
+	List<BoardTO> lists = (List)request.getAttribute( "boardLists" );
+
+	StringBuffer sbHtml = new StringBuffer();
+	for( BoardTO to : lists ) {
+		String board_seq = to.getBoard_seq();
+		String board_subject = to.getBoard_subject();
+		String board_content = to.getBoard_content();
+		String board_hit = to.getBoard_hit();
+		String board_wdate = to.getBoard_wdate();
+		String board_pic_seq = to.getBoard_pic_seq();
+		String board_pic_path = to.getBoard_pic_path();
+		
+		sbHtml.append( "<div class='col-lg-3 col-md-4 col-sm-6 portfolio-item'>" );
+		sbHtml.append( "	<div class='card h-100'>" );
+		sbHtml.append( "	<a href='chacarge_deal_view.do?seq=" + board_seq + "'><img class='card-img-top' src='resources/image/" + board_pic_path + "' alt=''></a>" );
+		sbHtml.append( "		<div class='card-body'>" );
+		sbHtml.append( "			<h4 class='card-title'>" );
+		sbHtml.append( "				<a href='chacarge_deal_view.do?seq=" + board_seq + "'>" + board_subject + "</a>" );
+		sbHtml.append( "			</h4>" );
+		sbHtml.append( "			<p class='card-text'>" + board_content + "</p>" );
+		sbHtml.append( "		</div>" );
+		sbHtml.append( "	</div>" );
+		sbHtml.append( "</div>" );
+		
+	}
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,48 +52,12 @@
 <!-- Custom styles for this template -->
 <link href="resources/css/modern-business.css" rel="stylesheet">
 
-<!-- 게시글 작성 버튼 css -->
 <style>
-
-.styled {
-    border: 0;
-    line-height: 2.5;
-    padding: 0 20px;
-    font-size: 1rem;
-    text-align: center;
-    color: #fff;
-    text-shadow: 1px 1px 1px #000;
-    border-radius: 10px;
-    background-color: rgba(220, 0, 0, 1);
-    background-image: linear-gradient(to top left,
-                                      rgba(0, 0, 0, .2),
-                                      rgba(0, 0, 0, .2) 30%,
-                                      rgba(0, 0, 0, 0));
-    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
-                inset -2px -2px 3px rgba(0, 0, 0, .6);
+.write {
+	text-align : right;
+	margin-bottom : 10px;
 }
-
-.styled:hover {
-    background-color: rgba(255, 0, 0, 1);
-}
-
-.styled:active {
-    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
-                inset 2px 2px 3px rgba(0, 0, 0, .6);
-}
-
 </style>
-
-<!-- 게시글 작성 버튼 -->
-<a href="chacarge_deal_write.do"> 
-<button class="favorite styled"
-        type="button">
-게시글 작성
-</button>
-
-</head>
-
-<body>
 
 <%@ include file="header.jsp" %>
 
@@ -72,7 +67,12 @@
 
 	<!-- 페이지 제목 -->
 		<!-- Page Heading/Breadcrumbs -->
-		<h1 class="mt-4 mb-3"> 차량 매물 <small>Subheading</small></h1>
+		<h1 class="mt-4 mb-3"> 차량 매물 </h1>
+		
+	<!-- 게시글 작성 버튼 -->
+		<div class="write">
+			<input type="button" value="매물등록" onclick="location.href='chacarge_deal_write'" />
+		</div>
 		
 	<!-- 페이지 경로 표시 -->
 		<ol class="breadcrumb">
@@ -82,96 +82,8 @@
 
 	<!-- 매물 입력 부분 -->
 		<div class="row">
-			<div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-				<div class="card h-100">
-					<a href="chacarge_deal_view.do"><img class="card-img-top" src="https://www.hyundai.com/static/images/model/tucson/20lc/tucson_highlights_usp_inspiration_back_side.jpg" alt=""></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="chacarge_deal_view.do">현대 Tucson 2016</a>
-						</h4>
-						<p class="card-text">5억 정도 합니다. 당장 사세요. 안사면 죽임!!</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-				<div class="card h-100">
-					<a href="chacarge_deal_view.do"><img class="card-img-top" src="https://www.hyundai.com/static/images/lineUp/SEDAN/IG08_EXT.jpg" object-fit: contain; alt=""></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="chacarge_deal_view.do">현대  Grandeur</a>
-						</h4>
-						<p class="card-text">성공을 새롭게 정의하다 기존의 룰을 깨고 새로운 성공의 방정식을 써 내려가는 당신에게, 그랜저는 새로운 성공의 기준을 제시합니다.</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-				<div class="card h-100">
-					<a href="#"><img class="card-img-top" src="https://w.namu.la/s/86bf41404adee6fd5433474abf91b9a0be3798ac896580763a411e0db216b953dc56a27a7bceb9dfdea60f4839d3279cf57f7e128105f3bbca6972fce46ae64a17beb9401662f9acaba86a2add057088eb78417f3f84882e10dfd4017352cfb2351e827223e89398414a65568702bfdc" alt=""></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="chacarge_deal_view.do">도요타 going메리호 </a>
-						</h4>
-						<p class="card-text">가자 올블루로 </p>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-				<div class="card h-100">
-					<a href="#"><img class="card-img-top" src="https://t1.daumcdn.net/cfile/tistory/220ED43A593C00B836" alt=""></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="chacarge_deal_view.do">혼다  모비딕호</a>
-						</h4>
-						<p class="card-text">원피스는 ... 실존한다</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-				<div class="card h-100">
-					<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="chacarge_deal_view.do">현대 Tucson 2016</a>
-						</h4>
-						<p class="card-text">5억 정도 합니다. 당장 사세요. 안사면 죽임!!</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-				<div class="card h-100">
-					<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="chacarge_deal_view.do">현대 Tucson 2016</a>
-						</h4>
-						<p class="card-text">5억 정도 합니다. 당장 사세요. 안사면 죽임!!</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-				<div class="card h-100">
-					<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="chacarge_deal_view.do">현대 Tucson 2016</a>
-						</h4>
-						<p class="card-text">5억 정도 합니다. 당장 사세요. 안사면 죽임!!</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-				<div class="card h-100">
-					<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="chacarge_deal_view.do">현대 Tucson 2016</a>
-						</h4>
-						<p class="card-text">5억 정도 합니다. 당장 사세요. 안사면 죽임!!</p>
-					</div>
-				</div>
-			</div>
+			<%= sbHtml %>
 		</div>
-
 
 <!-- 페이징 부분 -->
 		<!-- Pagination -->

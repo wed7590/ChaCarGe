@@ -109,11 +109,11 @@ REFERENCES `car_data` (
  `car_seq`
 );
 
--- user 테이블 dummy 데이터
-insert into User ( user_seq, user_id, user_password, user_email, user_name, user_join_date, user_grade ) values( 0, 'admin1', '123456', 'admin1@chacarge.net', 'admin1', '2021-03-07', '2' );
-insert into User ( user_seq, user_id, user_password, user_email, user_name, user_join_date, user_grade ) values( 0, 'admin2', '123456', 'admin2@chacarge.net', 'admin2', '2021-03-10', '2' );
-insert into User ( user_seq, user_id, user_password, user_email, user_name, user_join_date, user_grade ) values( 0, 'admin3', '123456', 'admin3@chacarge.net', 'admin3', '2021-03-13', '2' );
-insert into User ( user_seq, user_id, user_password, user_email, user_name, user_join_date, user_grade ) values( 0, 'admin4', '123456', 'admin4@chacarge.net', 'admin4', DATE_FORMAT(now(), '%Y-%m-%d'), '2' );
+-- user 테이블 - 회원가입으로 생성
+-- admin => AdminCar 로 시작하는 id로 만들면 grade = 2인 관리자 계정
+-- windows의 mariadb는 대소문자 구분 안해서 만들때 유의
+-- linux의 mariadb에서는 대소문자를 구분 할 것이므로 sql문 작성할때 대소문자 구분 잘하기
+-- 나머지 일반적인 회원가입은 grade = 1인 일반 계정 생성
 
 -- visitor 테이블 dummy 데이터
 insert into visitor values (0, '2021-03-17', 1);
@@ -156,6 +156,63 @@ insert into board values (0, 'item18', 'item18 내용입니다.', 0, '2021-03-09
 insert into board values (0, 'item19', 'item19 내용입니다.', 0, '2021-03-09', 3);
 insert into board values (0, 'item20', 'item20 내용입니다.', 0, '2021-03-09', 4);
 
+insert into board_picture values( 0, '1.webp', 1 );
+insert into board_picture values( 0, '2.webp', 1 );
+insert into board_picture values( 0, 'kona_1.jpg', 2 );
+insert into board_picture values( 0, 'kona_2.jpg', 2 );
+insert into board_picture values( 0, 'kona_3.jpg', 2 );
+insert into board_picture values( 0, 'kona_4.jpg', 2 );
+insert into board_picture values( 0, 'kona_5.jpg', 2 );
+insert into board_picture values( 0, 'venue_1.webp', 3 );
+insert into board_picture values( 0, 'venue_2.webp', 3 );
+insert into board_picture values( 0, 'venue_3.webp', 3 );
+insert into board_picture values( 0, 'venue_4.webp', 3 );
+insert into board_picture values( 0, 'venue_5.webp', 3 );
+insert into board_picture values( 0, 'venue_6.webp', 3 );
+insert into board_picture values( 0, 'venue_7.webp', 3 );
+insert into board_picture values( 0, 'venue_8.webp', 3 );
+insert into board_picture values( 0, 'venue_9.webp', 3 );
+insert into board_picture values( 0, 'venue_10.webp', 3 );
+insert into board_picture values( 0, 'venue_11.webp', 3 );
+insert into board_picture values( 0, 'venue_12.jpg', 3 );
+insert into board_picture values( 0, 'venue_13.webp', 3 );
+insert into board_picture values( 0, '1.webp', 4 );
+insert into board_picture values( 0, '2.webp', 4 );
+insert into board_picture values( 0, '1.webp', 5 );
+insert into board_picture values( 0, '2.webp', 5 );
+insert into board_picture values( 0, '1.webp', 6 );
+insert into board_picture values( 0, '2.webp', 6 );
+insert into board_picture values( 0, '1.webp', 7 );
+insert into board_picture values( 0, '2.webp', 7 );
+insert into board_picture values( 0, '1.webp', 8 );
+insert into board_picture values( 0, '2.webp', 8 );
+insert into board_picture values( 0, '1.webp', 9 );
+insert into board_picture values( 0, '2.webp', 9 );
+insert into board_picture values( 0, '1.webp', 10 );
+insert into board_picture values( 0, '2.webp', 10 );
+insert into board_picture values( 0, '1.webp', 11 );
+insert into board_picture values( 0, '2.webp', 11 );
+insert into board_picture values( 0, '1.webp', 12 );
+insert into board_picture values( 0, '2.webp', 12 );
+insert into board_picture values( 0, '1.webp', 13 );
+insert into board_picture values( 0, '2.webp', 13 );
+insert into board_picture values( 0, '1.webp', 14 );
+insert into board_picture values( 0, '2.webp', 14 );
+insert into board_picture values( 0, '1.webp', 14 );
+insert into board_picture values( 0, '2.webp', 14 );
+insert into board_picture values( 0, '1.webp', 15 );
+insert into board_picture values( 0, '2.webp', 15 );
+insert into board_picture values( 0, '1.webp', 16 );
+insert into board_picture values( 0, '2.webp', 16 );
+insert into board_picture values( 0, '1.webp', 17 );
+insert into board_picture values( 0, '2.webp', 17 );
+insert into board_picture values( 0, '1.webp', 18 );
+insert into board_picture values( 0, '2.webp', 18 );
+insert into board_picture values( 0, '1.webp', 19 );
+insert into board_picture values( 0, '2.webp', 19 );
+insert into board_picture values( 0, '1.webp', 20 );
+insert into board_picture values( 0, '2.webp', 20 );
+
 -- auto_increment 1부터 초기화하는 구문 (데이터 다지우고 1로 시작할 때 - 테이블에 새로 시작할 값보다 높은 값이 있으면 안됨 )
 alter table user auto_increment=1;
 
@@ -163,3 +220,7 @@ alter table user auto_increment=1;
 alter table user auto_increment=1;
 set @count = 0;
 update user set user_seq = @count:=@count+1;
+
+alter table board auto_increment=1;
+set @count = 0;
+update board set board_seq = @count:=@count+1;

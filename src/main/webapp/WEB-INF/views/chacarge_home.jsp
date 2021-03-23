@@ -65,7 +65,6 @@
 		</div>
 	</header>
 
-
 <!-- 페이지 내용 -->
 	<!-- Page Content -->
 	<div class="container">
@@ -73,7 +72,7 @@
 
 	<!-- Marketing Icons Section -->
 		<div class="row">
-			<div class="col-lg-4 mb-4">
+			<div class="col-lg-3 mb-3">
 				<div class="card h-100">
 					<h4 class="card-header">유진영 팀장</h4>
 					<div class="card-body">
@@ -84,7 +83,18 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-4 mb-4">
+			<div class="col-lg-3 mb-3">
+				<div class="card h-100">
+					<h4 class="card-header">윤동하 부장</h4>
+					<div class="card-body">
+						<p class="card-text">8806**-1******</p>
+					</div>
+					<div class="card-footer">
+						<a href="#" class="btn btn-primary">Learn More</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 mb-3">
 				<div class="card h-100">
 					<h4 class="card-header">장진동 차장</h4>
 					<div class="card-body">
@@ -95,7 +105,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-4 mb-4">
+			<div class="col-lg-3 mb-3">
 				<div class="card h-100">
 					<h4 class="card-header">전환호 인턴</h4>
 					<div class="card-body">
@@ -107,19 +117,6 @@
 				</div>
 			</div>
 		</div>
-	<!-- /.row -->
-
-	<!-- 이 부분 빠지면  Footer 설정이 이상해짐 -->
-	<!-- Call to Action Section -->
-		<div class="row mb-4">
-			<div class="col-md-8">
-				<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-			</div>
-			<div class="col-md-4">
-				<a class="btn btn-lg btn-secondary btn-block" href="#">Call to Action</a>
-			</div>
-		</div>
-
 	</div>
 <!-- /.container -->
 

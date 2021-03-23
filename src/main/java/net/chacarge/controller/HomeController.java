@@ -21,6 +21,8 @@ import org.springframework.web.util.WebUtils;
 
 import net.chacarge.model1.AdminDAO;
 import net.chacarge.model1.AdminTO;
+import net.chacarge.model1.BoardDAO;
+import net.chacarge.model1.BoardTO;
 import net.chacarge.model1.LoginTO;
 import net.chacarge.model1.UserDAO;
 import net.chacarge.model1.UserTO;
@@ -36,6 +38,8 @@ public class HomeController {
 	private final UserService userService;
 	@Autowired
 	private AdminDAO adminDAO;
+	@Autowired
+	private BoardDAO boardDAO;
 	
 	@Inject
 	public HomeController( UserService userService ) {
@@ -57,6 +61,9 @@ public class HomeController {
 	@RequestMapping(value = "/chacarge_deal_list.do", method = RequestMethod.GET)
 	public String chacarge_deal_list(Locale locale, Model model) {
 
+		List<BoardTO> boardLists = boardDAO.boardList();
+		
+		model.addAttribute( "boardLists", boardLists );
 		return "chacarge_deal_list";
 	}
 	

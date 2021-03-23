@@ -91,4 +91,14 @@
 		group by board_wdate
 		order by board_wdate desc
 	</select>
+	
+	<!-- board_list -->
+	<select id="board_list" resultType="net.chacarge.model1.BoardTO">
+		select board.board_seq, board_subject, board_content, board_hit, date_format(board_wdate, '%Y-%m-%d') board_wdate, user_seq, board_pic_seq, board_pic_path
+		from board
+		inner join board_picture
+		where board.board_seq = board_picture.board_seq
+		group by board.board_seq
+		order by board_seq desc
+	</select>
 </mapper>
