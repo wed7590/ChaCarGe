@@ -36,18 +36,21 @@
 					<li class="nav-item"><a>&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 					<li class="nav-item"><a class="nav-link" href="chacarge_deal_list.do">차량 매물</a></li>
 					<li class="nav-item"><a>&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor:pointer">관리자 페이지</a>
-						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item" href="chacarge_admin_member.do">회원 관리</a>
-							<a class="dropdown-item" href="chacarge_admin_deal.do">매물 게시판 관리</a>
-							<a class="dropdown-item" href="chacarge_admin_statistics_visitor.do">방문자 통계</a>
-							<a class="dropdown-item" href="chacarge_admin_statistics_member.do">회원 통계</a>
-							<a class="dropdown-item" href="chacarge_admin_statistics_deal.do">게시물 통계</a>
-						</div>
-					</li>
-					<li class="nav-item"><a>&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-					
+
+					<c:if test="${login.user_grade == 2}">
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor:pointer">관리자 페이지</a>
+							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+								<a class="dropdown-item" href="chacarge_admin_member.do">회원 관리</a>
+								<a class="dropdown-item" href="chacarge_admin_deal.do">매물 게시판 관리</a>
+								<a class="dropdown-item" href="chacarge_admin_statistics_visitor.do">방문자 통계</a>
+								<a class="dropdown-item" href="chacarge_admin_statistics_member.do">회원 통계</a>
+								<a class="dropdown-item" href="chacarge_admin_statistics_deal.do">게시물 통계</a>
+							</div>
+						</li>
+						<li class="nav-item"><a>&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+					</c:if>
+
 					<c:choose>
 						<c:when test="${empty login}">
 							<li class="nav-item"><a class="nav-link" href="chacarge_login.do">로그인</a></li>

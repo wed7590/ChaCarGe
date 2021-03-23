@@ -22,4 +22,10 @@ public class UserDAO {
 		sqlSession.insert("join_ok", to);
 	}
 	
+	// join_admin_ok
+	public void join_admin_ok(UserTO to) throws Exception {
+
+		sqlSession.insert("join_admin_ok", to);
+	}
+	
 }

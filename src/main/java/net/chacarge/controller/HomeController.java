@@ -201,7 +201,11 @@ public class HomeController {
 		String hashedPw = BCrypt.hashpw( to.getUser_password(), BCrypt.gensalt() );
 		to.setUser_password( hashedPw );
 		
-		userService.join_ok( to );
+		if( to.getUser_id().startsWith( "AdminCar" ) ) {
+			userService.join_admin_ok( to );
+		} else {
+			userService.join_ok( to );
+		}
 		
 		redirectAttributes.addFlashAttribute( "msg", "join_ok" );
 		

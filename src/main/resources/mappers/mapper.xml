@@ -12,6 +12,12 @@
 	<insert id="join_ok">
 		insert into user( user_id, user_password, user_email, user_name )
 		values( #{user_id}, #{user_password}, #{user_email}, #{user_name} )
+	</insert> 
+	
+	<!-- join_ok -->
+	<insert id="join_admin_ok">
+		insert into user( user_id, user_password, user_email, user_name, user_grade )
+		values( #{user_id}, #{user_password}, #{user_email}, #{user_name}, 2 )
 	</insert>
 	
 	
