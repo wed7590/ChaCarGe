@@ -8,6 +8,7 @@ public class BoardTO {
 	private String board_wdate;
 	private String board_pic_seq;
 	private String board_pic_path;
+	private String user_seq;
 	
 	public String getBoard_seq() {
 		return board_seq;
@@ -50,6 +51,12 @@ public class BoardTO {
 	}
 	public void setBoard_pic_path(String board_pic_path) {
 		this.board_pic_path = board_pic_path;
+	}
+	public String getUser_seq() {
+		return user_seq;
+	}
+	public void setUser_seq(String user_seq) {
+		this.user_seq = user_seq;
 	}
 	
 }

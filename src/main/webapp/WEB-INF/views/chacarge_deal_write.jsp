@@ -2,13 +2,28 @@
 <%@ page session="true"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="header.jsp" %>
+
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-<link href="resources/css/board_write.css" rel="stylesheet">
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>ChaCarGe - 차카게 차량 매물 등록</title>
+
+<!-- Bootstrap core CSS -->
+<link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="resources/css/modern-business.css" rel="stylesheet">
+
+<!-- SummerNote CSS -->
+<link rel="stylesheet" href="resources/summernote/summernote-lite.css" >
+
 <script type="text/javascript">
 	const checkfrm = function() {
 		if ( document.wfrm.board_subject.value.trim() == '' ) {
@@ -18,87 +33,133 @@
 		if ( document.wfrm.board_content.value.trim() == '' ) {
 			alert( '내용을 입력하셔야합니다.' );
 			return false;
+		}
+/* 		// 이미지 게시판에서 추가되는 Javascript
+		if( document.wfrm.files.value.trim() == '' ) {
+			alert( '사진을 업로드하셔야 합니다.');
+			return false;
+		} else {
+			const extension = document.wfrm.files.value.split( '.' ).pop();
+			if( extension != 'png' && extension != 'jpg' && extenstion != 'jpeg' ){
+				alert( '사진파일을 업로드하셔야 합니다.(png, jpg, ipeg 파일)')
 			}
+		} */
+		document.wfrm.submit();
 	};
 </script>
-</head>
-
-<body>
 
 <%@ include file="header.jsp" %>
 
-<!-- 상단 디자인 -->
-<div class="contents1"> 
-	<div class="con_title"> 
-		<p style="margin: 0px; text-align: right">
-			<img style="vertical-align: middle" alt="" src="../../images/home_icon.gif" /> &gt; 커뮤니티 &gt; <strong>여행지리뷰</strong>
-		</p>
-	</div> 
+<!-- 페이지 내용 -->
+	<!-- Page Content -->
+	<div class="container">
+	
+	<!-- 페이지 제목 -->
+		<!-- Page Heading/Breadcrumbs -->
+		<h1 class="mt-4 mb-3"> 차량 매물 등록 </h1>
 
-	<form action="chacarge_deal_write_ok.do" method="get" name="wfrm" onsubmit="return checkfrm()">
-		<div class="contents_sub">
-		<!--게시판-->
-			<div class="chacarge_deal_write">
-				<table>
-				<tr>
-					<th>글제목</th>
-					<td colspan="3"><input type="text" name="board_subject" value="" class="board_view_input" maxlength="30" /></td>
-				</tr>
-				<tr>
-					<th>내용</th>
-					<td colspan="3">
-						<textarea name="board_content" class="board_editor_area" maxlength="3000" ></textarea>
-					</td>
-				</tr>
-				<tr>
-					<th>파일첨부</th>
-					<td colspan="3"><input type="file" name="upload" value="" class="board_view_input" /></td>
-				</tr>
-				<%--
-				<tr>
-					<th>이메일</th>
-					<td colspan="3"><input type="text" name="mail1" value="" class="board_view_input_mail"/> @ <input type="text" name="mail2" value="" class="board_view_input_mail"/></td>
-				</tr>
-				--%>
-				<%-- 
-				</table>
-				<table>	
-				<tr>
-					<br />
-					<td style="text-align:left;border:1px solid #e0e0e0;background-color:f9f9f9;padding:5px">
-						<div style="padding-top:7px;padding-bottom:5px;font-weight:bold;padding-left:7px;font-family: Gulim,Tahoma,verdana;">※ 개인정보 수집 및 이용에 관한 안내</div>
-						<div style="padding-left:10px;">
-							<div style="width:97%;height:95px;font-size:11px;letter-spacing: -0.1em;border:1px solid #c5c5c5;background-color:#fff;padding-left:14px;padding-top:7px;"> 
-								 1. 수집 개인정보 항목 : 회사명, 담당자명, 메일 주소, 전화번호, 홈페이지 주소, 팩스번호, 주소 <br />
-								 2. 개인정보의 수집 및 이용목적 : 제휴신청에 따른 본인확인 및 원활한 의사소통 경로 확보 <br />
-								 3. 개인정보의 이용기간 : 모든 검토가 완료된 후 3개월간 이용자의 조회를 위하여 보관하며, 이후 해당정보를 지체 없이 파기합니다. <br />
-								 4. 그 밖의 사항은 개인정보취급방침을 준수합니다.
-							</div>
-						</div>
-						<div style="padding-top:7px;padding-left:5px;padding-bottom:7px;font-family: Gulim,Tahoma,verdana;">
-							<input type="checkbox" name="info" value="1" class="input_radio"> 개인정보 수집 및 이용에 대해 동의합니다.
-						</div>
-						--%>
-					</td>
-				</tr>
-				</table>
-			</div>
-			
-			<div class="btn_area">
-				<div class="align_left">
-					<a href="chacarge_deal_list.do">	
-					<input type="button" value="차량매물" class="btn_list btn_txt02" style="cursor: pointer;"  />
-					</a>
+		<form action="chacarge_deal_write_ok.do" method="post" name="wfrm" onsubmit="return checkfrm()" enctype="multipart/form-data">
+			<input type="hidden" name="user_seq" value="${login.user_seq}" />
+			<div class="write">
+				<div class="subject" >
+					<label>제목</label>
+					<input type="text" name="board_subject" />
 				</div>
-				<div class="align_right">			
-					<button id="wbtn" class="btn_write btn_txt01" style="cursor: pointer;">등록</button>			
-				</div>	
-			</div>		
+			<!--게시판-->
+				<div class="content">
+					<textarea id="summernote" name="board_content"></textarea>
+				</div>
+				<div class="btn_area">
+					<input multiple="multiple" type="file" name="files" />
+					<div class="align_left">
+						<a href="chacarge_deal_list.do">	
+						<input type="button" value="차량매물" class="btn_list btn_txt02" style="cursor: pointer;"  />
+						</a>
+					</div>
+					<div class="align_right">			
+						<button id="wbtn" class="btn_write btn_txt01" style="cursor: pointer;">등록</button>			
+					</div>	
+				</div>		
 			<!--//게시판-->
-		</div>
-	</form>
-</div>
-<!-- 하단 디자인 -->
+			</div>
+		</form>
+	</div>
+	<!-- /.container -->
 
+<%@ include file="footer.jsp" %>
+
+<!-- Bootstrap core JavaScript -->
+<script src="resources/vendor/jquery/jquery.min.js"></script>
+<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- SummerNote -->
+<script src="resources/summernote/summernote-lite.js" ></script>
+<script src="resources/summernote/lang/summernote-ko-KR.js" ></script>
+
+<script>
+$(document).ready(function() {
+	fontSizeUnits: ['8px','9px','10px','11px','12px','14px','16px','18px','20px','24px','30px','36px'];
+	
+	var toolbar = [
+		[ 'fontname', ['fontname'] ],
+		[ 'fontsize', ['fontsize'] ],
+		[ 'style', ['bold', 'italic', 'underline', 'strikethrough', 'clear'] ],
+		[ 'color', ['forecolor', 'color'] ],
+		[ 'table', ['table'] ],
+		[ 'para', ['ul', 'ol', 'paragraph'] ],
+		[ 'height', ['height'] ],
+		[ 'insert', ['picture', 'link', 'video'] ],
+		[ 'view', ['codeview', 'help'] ]
+	];
+	
+	var setting = {
+		height: 300,
+		minHeight: null,
+		maxHeight: null,
+		focus: true,
+		lang: "ko-KR",
+	 	placeholder: 'Hello stand alone ui',
+        tabsize: 2,	
+		toolbar: toolbar,
+		callbacks: { // 이미지 첨부 부분
+			onImageUpload: function( files, editor, welEditable ) {
+				for( var i = files.length - 1; i >= 0; i-- ) {
+					uploadSummernoteImageFile( files[i], this );
+				}
+			},
+			onPaste: function (e) {
+				var clipboardData = e.originalEvent.clipboardData;
+				if (clipboardData && clipboardData.items && clipboardData.items.length) {
+					var item = clipboardData.items[0];
+					if (item.kind === 'file' && item.type.indexOf('image/') !== -1) {
+						e.preventDefault();
+					}
+				}
+			}
+		}
+	};
+	
+	// 이미지 파일 업로드
+	function uploadSummernoteImageFile(file, el) {
+		data = new FormData();
+		data.append("file", file);
+		$.ajax({
+			data : data,
+			type : "POST",
+			url : "uploadSummernoteImageFile",
+			contentType : false,
+			enctype : 'multipart/form-data',
+			processData : false,
+			success : function(data) {
+				$(el).summernote('editor.insertImage', data.url);
+			}
+		});
+	}
+	
+	$('#summernote').summernote(setting); 
+});
+
+</script>
+	
 </body>
 </html>

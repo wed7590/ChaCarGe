@@ -33,7 +33,7 @@
 
 	<!-- 페이지 제목 -->
 		<!-- Page Heading/Breadcrumbs -->
-		<h1 class="mt-4 mb-3">Portfolio Item <small>Subheading</small></h1>
+		<h1 class="mt-4 mb-3">구현중</h1>
 
 	<!-- 페이지 경로 표시 -->
 		<ol class="breadcrumb">

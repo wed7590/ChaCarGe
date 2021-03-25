@@ -19,4 +19,21 @@ public class BoardDAO {
 		List<BoardTO> boardLists = sqlSession.selectList("board_list");
 		return boardLists;
 	}
+	
+	// Write_ok
+	public int boardWriteOk(BoardTO to) {
+		int flag = 1;
+		int result = sqlSession.insert("board_write_ok", to);
+		if (result == 1) {
+			flag = 0;
+		}
+		return flag;
+	}
+	
+	public void upload(List<PictureTO> to) {
+		for( PictureTO to1 : to ) {
+			sqlSession.insert("board_write_pic", to1 );
+		}
+		
+	}
 }

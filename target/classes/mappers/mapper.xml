@@ -101,4 +101,22 @@
 		group by board.board_seq
 		order by board_seq desc
 	</select>
+	
+	<!-- board_write_ok -->
+	<insert id="board_write_ok" >
+		insert into board( board_seq, board_subject, board_content, board_hit, board_wdate, user_seq )
+		values( 0, "${board_subject}", '${board_content}', 0, now(), ${user_seq} )
+	</insert>
+	
+	<insert id="board_write_pic" >
+		insert into board_picture( board_pic_seq, o_pic_name, u_pic_name, board_seq )
+		values( 0, ${o_pic_name}, ${u_pic_name} , ${board_seq} )
+	</insert>
+	
+	<!-- user_seq로 user 정보 가져오기 -->
+	<select id="id_check" resultType="net.chacarge.model1.UserTO" >
+		select * 
+		from user
+		where user_seq = ${user_seq}
+	</select>
 </mapper>
