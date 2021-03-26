@@ -17,11 +17,12 @@
 		String board_hit = to.getBoard_hit();
 		String board_wdate = to.getBoard_wdate();
 		String board_pic_seq = to.getBoard_pic_seq();
-		String board_pic_path = to.getBoard_pic_path();
+		String u_pic_name = to.getU_pic_name();
 		
 		sbHtml.append( "<div class='col-lg-3 col-md-4 col-sm-6 portfolio-item'>" );
 		sbHtml.append( "	<div class='card h-100'>" );
-		sbHtml.append( "	<a href='chacarge_deal_view.do?seq=" + board_seq + "'><img class='card-img-top' src='resources/image/" + board_pic_path + "' alt=''></a>" );
+		sbHtml.append( "	<a href='chacarge_deal_view.do?seq=" + board_seq + "'><img class='card-img-top' src='http://localhost:8080/img/" + u_pic_name + "' alt=''></a>" );
+		//sbHtml.append( "	<a href='chacarge_deal_view.do?seq=" + board_seq + "'><img class='card-img-top' src='/resources/image/" + u_pic_name + "' alt=''></a>" );
 		sbHtml.append( "		<div class='card-body'>" );
 		sbHtml.append( "			<h4 class='card-title'>" );
 		sbHtml.append( "				<a href='chacarge_deal_view.do?seq=" + board_seq + "'>" + board_subject + "</a>" );

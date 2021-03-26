@@ -7,7 +7,8 @@ public class BoardTO {
 	private String board_hit;
 	private String board_wdate;
 	private String board_pic_seq;
-	private String board_pic_path;
+	private String o_pic_name;
+	private String u_pic_name;
 	private String user_seq;
 	
 	public String getBoard_seq() {
@@ -46,11 +47,17 @@ public class BoardTO {
 	public void setBoard_pic_seq(String board_pic_seq) {
 		this.board_pic_seq = board_pic_seq;
 	}
-	public String getBoard_pic_path() {
-		return board_pic_path;
+	public String getO_pic_name() {
+		return o_pic_name;
 	}
-	public void setBoard_pic_path(String board_pic_path) {
-		this.board_pic_path = board_pic_path;
+	public void setO_pic_name(String o_pic_name) {
+		this.o_pic_name = o_pic_name;
+	}
+	public String getU_pic_name() {
+		return u_pic_name;
+	}
+	public void setU_pic_name(String u_pic_name) {
+		this.u_pic_name = u_pic_name;
 	}
 	public String getUser_seq() {
 		return user_seq;

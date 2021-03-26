@@ -30,10 +30,7 @@ public class BoardDAO {
 		return flag;
 	}
 	
-	public void upload(List<PictureTO> to) {
-		for( PictureTO to1 : to ) {
-			sqlSession.insert("board_write_pic", to1 );
-		}
-		
+	public void boardUpload(PictureTO to) {
+		sqlSession.insert("board_write_pic", to );
 	}
 }

@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 
@@ -145,14 +146,32 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/chacarge_deal_write_ok.do", method =  RequestMethod.POST)
-	public String chacarge_deal_write_ok(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam("files") List<MultipartFile> fileList ) throws Exception {
+	public String chacarge_deal_write_ok(MultipartHttpServletRequest request, HttpServletResponse response, Model model, @RequestParam("files") List<MultipartFile> fileList ) throws Exception {
+		
+		// board 정보 
+		BoardTO boardTO = new BoardTO();
+		boardTO.setBoard_subject( request.getParameter( "board_subject" ) );
+		boardTO.setBoard_content( request.getParameter( "board_content" ) );
+
+		UserTO userTO = new UserTO();
+		userTO.setUser_seq( request.getParameter( "user_seq" ) );
+		userTO = userDAO.id_check( userTO );
+		
+		boardTO.setUser_seq( userTO.getUser_seq() );
+		
+		int flag = boardDAO.boardWriteOk(boardTO) ;
+		
+		model.addAttribute( "flag", flag );
 		
 		PictureTO pictureTO = new PictureTO();
 		
-		//업로드한 파일이 없으면 실행되지 않음
+		// 업로드한 파일이 없으면 실행되지 않음
 		if(fileList != null){
-			//파일이 저장될 경로 설정
-			String path = "D://upload/";
+			// 파일이 저장될 경로 설정
+			// resources/image/ 에 저장하고 싶음
+			//String path = request.getSession().getServletContext().getRealPath( "/resource/image/" );
+			String path = "C://upload/";
+			System.out.println( path );
 			File dir = new File(path);
 			if(!dir.isDirectory()){
 				dir.mkdirs();
@@ -160,7 +179,7 @@ public class HomeController {
 		
 			if(!fileList.isEmpty()){
 			//넘어온 파일을 리스트로 저장
-				for( int i = 0; i < fileList.size() ; i++ ) {
+				for( int i = 1; i < fileList.size() ; i++ ) {
 					//파일 중복명 처리
 					String random = UUID.randomUUID().toString();
 					//원래 파일명
@@ -177,30 +196,13 @@ public class HomeController {
 					pictureTO.setO_pic_name( originalfilename );
 					pictureTO.setU_pic_name( saveFileName );
 					
-					//boardDAO.boardUpload( PictureTO );
+					boardDAO.boardUpload( pictureTO );
 				}
+				
+				model.addAttribute( "pictureTO", pictureTO );
 			}
+			
 		}
-		
-		System.out.println( pictureTO.getBoard_pic_seq() );
-		
-		
-
-		// board 정보 
-		BoardTO boardTO = new BoardTO();
-		boardTO.setBoard_subject( request.getParameter( "board_subject" ) );
-		boardTO.setBoard_content( request.getParameter( "board_content" ) );
-
-		UserTO userTO = new UserTO();
-		userTO.setUser_seq( request.getParameter( "user_seq" ) );
-		userTO = userDAO.id_check( userTO );
-		
-		boardTO.setUser_seq( userTO.getUser_seq() );
-		
-		int flag = boardDAO.boardWriteOk(boardTO) ;
-		
-		model.addAttribute( "flag", flag );
-		model.addAttribute( "pictureTO", pictureTO );
 		
 		return "chacarge_deal_write_ok";
 	}

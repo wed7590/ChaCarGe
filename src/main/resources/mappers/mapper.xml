@@ -155,7 +155,7 @@
 	
 	<!-- board_list -->
 	<select id="board_list" resultType="net.chacarge.model1.BoardTO">
-		select board.board_seq, board_subject, board_content, board_hit, date_format(board_wdate, '%Y-%m-%d') board_wdate, user_seq, board_pic_seq, board_pic_path
+		select board.board_seq, board_subject, board_content, board_hit, date_format(board_wdate, '%Y-%m-%d') board_wdate, user_seq, board_pic_seq, u_pic_name
 		from board
 		inner join board_picture
 		where board.board_seq = board_picture.board_seq
@@ -169,10 +169,12 @@
 		values( 0, "${board_subject}", '${board_content}', 0, now(), ${user_seq} )
 	</insert>
 	
+	<!-- insert into board_picture( board_pic_seq, o_pic_name, u_pic_name, board_seq) values( 0, 0, 0, (select max(board_seq) from board) ); -->
 	<insert id="board_write_pic" >
 		insert into board_picture( board_pic_seq, o_pic_name, u_pic_name, board_seq )
-		values( 0, ${o_pic_name}, ${u_pic_name} , ${board_seq} )
+		values( 0, "${o_pic_name}", "${u_pic_name}", (select max(board_seq) from board) )
 	</insert>
+	
 	
 	<!-- user_seq로 user 정보 가져오기 -->
 	<select id="id_check" resultType="net.chacarge.model1.UserTO" >

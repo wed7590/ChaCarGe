@@ -1,15 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     
 <%
 	int flag = (Integer)request.getAttribute( "flag" );
 		
 	out.println( "<script type='text/javascript'>" );
 	if( flag == 0 ) {
-		out.println( "alert( '±Û¾²±â¿¡ ¼º°øÇß½À´Ï´Ù.' );" );
+		out.println( "alert( 'ê¸€ì“°ê¸°ì— ì„±ê³µí–ˆìŠµë‹ˆë‹¤.' );" );
 		out.println( "location.href='./chacarge_deal_list.do';" );
 	} else {
-		out.println( "alert( '±Û¾²±â¿¡ ½ÇÆĞÇß½À´Ï´Ù.' );" );
+		out.println( "alert( 'ê¸€ì“°ê¸°ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.' );" );
 		out.println( "history.back();" );
 	}
 	out.println( "</script>" );

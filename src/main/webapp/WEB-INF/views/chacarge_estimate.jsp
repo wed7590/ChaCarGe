@@ -147,7 +147,7 @@
 		<!-- 페이지 제목 -->
 		<!-- Page Heading/Breadcrumbs -->
 		<h1 class="mt-4 mb-3">
-			차량 견적 <small>Subheading</small>
+			차량 견적
 		</h1>
 
 		<!-- 페이지 경로 표시 -->
