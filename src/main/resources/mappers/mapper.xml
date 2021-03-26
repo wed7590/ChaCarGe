@@ -21,6 +21,67 @@
 	</insert>
 	
 	
+	<!-- estimate 페이지에서 car_data 테이블의 car_name 데이터 가져오기 -->
+	<select id="estimate_forSelect_carNameData" parameterType="net.chacarge.model1.EstimateTO" resultType="net.chacarge.model1.EstimateTO">
+		select distinct car_name
+		from car_data
+		order by car_name asc
+	</select>
+	<select id="estimate_forSelect_carYearData" parameterType="net.chacarge.model1.EstimateTO" resultType="net.chacarge.model1.EstimateTO">
+		select distinct car_year
+		from car_data
+		order by cast(car_year as int) asc
+	</select>
+	<select id="estimate_forSelect_carAccidentData" parameterType="net.chacarge.model1.EstimateTO" resultType="net.chacarge.model1.EstimateTO">
+		select distinct car_ref_accident
+		from car_reference_accident
+		order by cast(car_ref_accident as int) asc
+	</select>
+	<select id="estimate_forSelect_carDistanceData" parameterType="net.chacarge.model1.EstimateTO" resultType="net.chacarge.model1.EstimateTO">
+		select distinct car_ref_distance
+		from car_reference_distance
+		order by cast(car_ref_distance as int) asc
+	</select>
+	
+	
+	<!-- estimate 페이지에서 select 된 값에 대한 데이터 가져오기 -->
+	<select id="car_data_selected" parameterType="net.chacarge.model1.EstimateTO" resultType="net.chacarge.model1.EstimateTO">
+		select car_name, car_price, car_year, car_picture
+		from car_data
+		where car_name = #{car_name}
+		and car_year = #{car_year}
+	</select>
+	<select id="car_distance_selected" parameterType="net.chacarge.model1.EstimateTO" resultType="net.chacarge.model1.EstimateTO">
+		select car_ref_distance, car_ref_distance_rate
+		from car_reference_distance
+		where car_ref_distance = #{car_ref_distance}
+	</select>
+	<select id="car_accident_selected" parameterType="net.chacarge.model1.EstimateTO" resultType="net.chacarge.model1.EstimateTO">
+		select car_ref_accident, car_ref_accident_rate
+		from car_reference_accident
+		where car_ref_accident = #{car_ref_accident}
+	</select>
+	
+	
+	<!-- estimate 페이지에서 select 된 값에 대한 데이터 가져오기 -->
+	<select id="car_data_selected_ok" parameterType="net.chacarge.model1.EstimateOkTO" resultType="net.chacarge.model1.EstimateOkTO">
+		select car_name, car_price, car_year, car_picture
+		from car_data
+		where car_name = #{car_name}
+		and car_year = #{car_year}
+	</select>
+	<select id="car_distance_selected_ok" parameterType="net.chacarge.model1.EstimateOkTO" resultType="net.chacarge.model1.EstimateOkTO">
+		select car_ref_distance, car_ref_distance_rate
+		from car_reference_distance
+		where car_ref_distance = #{car_ref_distance}
+	</select>
+	<select id="car_accident_selected_ok" parameterType="net.chacarge.model1.EstimateOkTO" resultType="net.chacarge.model1.EstimateOkTO">
+		select car_ref_accident, car_ref_accident_rate
+		from car_reference_accident
+		where car_ref_accident = #{car_ref_accident}
+	</select>
+	
+	
 	<!-- admin_member_management -->
 	<select id="member_management" parameterType="net.chacarge.model1.AdminTO" resultType="net.chacarge.model1.AdminTO">
 		select user.user_seq, user_id, user_token, user_name, user_email, user_join_date, user_grade, visitor.visit_date

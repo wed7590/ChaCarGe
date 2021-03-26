@@ -46,8 +46,8 @@ CREATE TABLE `board_picture` (
 CREATE TABLE `car_data` (
  `car_seq` int NOT NULL primary key auto_increment,
  `car_name` varchar(20) NOT NULL,
- `car_price` int NOT NULL,
- `car_year` int NOT NULL,
+ `car_price` varchar(10) NOT NULL,
+ `car_year` varchar(10) NOT NULL,
  `car_picture` varchar(50) NOT NULL
 );
 
@@ -57,14 +57,14 @@ CREATE TABLE `car_picture` (
  `car_seq` int NOT NULL
 );
 
-CREATE TABLE `reference_distance` (
- `ref_distance` varchar(10) NOT NULL primary key,
- `ref_distance_rate` varchar(5) NOT NULL
+CREATE TABLE `car_reference_distance` (
+ `car_ref_distance` varchar(10) NOT NULL primary key,
+ `car_ref_distance_rate` varchar(10) NOT NULL
 );
 
-CREATE TABLE `reference_accident` (
- `ref_accident` varchar(1) NOT NULL primary key,
- `ref_accident_rate` varchar(5) NOT NULL
+CREATE TABLE `car_reference_accident` (
+ `car_ref_accident` varchar(10) NOT NULL primary key,
+ `car_ref_accident_rate` varchar(10) NOT NULL
 );
 
 ALTER TABLE `board` ADD CONSTRAINT `FK_User_TO_board_1` FOREIGN KEY (
@@ -273,6 +273,145 @@ insert into board_picture values( 0, 'veloster_4.webp', 15 );
 insert into board_picture values( 0, 'veloster_5.webp', 15 );
 insert into board_picture values( 0, 'veloster_6.webp', 15 );
 
+-- estimate 페이지 car_data 테이블 dummy 데이터
+insert into car_data values (0, "아반테", "18500000", "2021", "Avante.jpg");
+insert into car_data values (0, "아반테", "17575000", "2020", "Avante.jpg");
+insert into car_data values (0, "아반테", "16650000", "2019", "Avante.jpg");
+insert into car_data values (0, "아반테", "15725000", "2018", "Avante.jpg");
+insert into car_data values (0, "아반테", "14800000", "2017", "Avante.jpg");
+insert into car_data values (0, "아반테", "14245000", "2016", "Avante.jpg");
+insert into car_data values (0, "아반테", "13875000", "2015", "Avante.jpg");
+insert into car_data values (0, "아반테", "13320000", "2014", "Avante.jpg");
+insert into car_data values (0, "아반테", "12950000", "2013", "Avante.jpg");
+insert into car_data values (0, "아반테", "12950000", "2012", "Avante.jpg");
+insert into car_data values (0, "벨로스터", "21000000", "2021", "Veloster.jpg");
+insert into car_data values (0, "벨로스터", "19950000", "2020", "Veloster.jpg");
+insert into car_data values (0, "벨로스터", "18900000", "2019", "Veloster.jpg");
+insert into car_data values (0, "벨로스터", "17850000", "2018", "Veloster.jpg");
+insert into car_data values (0, "벨로스터", "16800000", "2017", "Veloster.jpg");
+insert into car_data values (0, "벨로스터", "16170000", "2016", "Veloster.jpg");
+insert into car_data values (0, "벨로스터", "15750000", "2015", "Veloster.jpg");
+insert into car_data values (0, "벨로스터", "15120000", "2014", "Veloster.jpg");
+insert into car_data values (0, "벨로스터", "14700000", "2013", "Veloster.jpg");
+insert into car_data values (0, "벨로스터", "14700000", "2012", "Veloster.jpg");
+insert into car_data values (0, "소나타", "24000000", "2021", "sonata.png");
+insert into car_data values (0, "소나타", "22800000", "2020", "sonata.png");
+insert into car_data values (0, "소나타", "21600000", "2019", "sonata.png");
+insert into car_data values (0, "소나타", "20400000", "2018", "sonata.png");
+insert into car_data values (0, "소나타", "19200000", "2017", "sonata.png");
+insert into car_data values (0, "소나타", "18480000", "2016", "sonata.png");
+insert into car_data values (0, "소나타", "18000000", "2015", "sonata.png");
+insert into car_data values (0, "소나타", "17280000", "2014", "sonata.png");
+insert into car_data values (0, "소나타", "16800000", "2013", "sonata.png");
+insert into car_data values (0, "소나타", "16800000", "2012", "sonata.png");
+insert into car_data values (0, "그랜져", "33000000", "2021", "Grandeur.jpg");
+insert into car_data values (0, "그랜져", "31350000", "2020", "Grandeur.jpg");
+insert into car_data values (0, "그랜져", "29700000", "2019", "Grandeur.jpg");
+insert into car_data values (0, "그랜져", "28050000", "2018", "Grandeur.jpg");
+insert into car_data values (0, "그랜져", "26400000", "2017", "Grandeur.jpg");
+insert into car_data values (0, "그랜져", "25410000", "2016", "Grandeur.jpg");
+insert into car_data values (0, "그랜져", "24750000", "2015", "Grandeur.jpg");
+insert into car_data values (0, "그랜져", "23760000", "2014", "Grandeur.jpg");
+insert into car_data values (0, "그랜져", "23100000", "2013", "Grandeur.jpg");
+insert into car_data values (0, "그랜져", "23100000", "2012", "Grandeur.jpg");
+insert into car_data values (0, "투싼", "24500000", "2021", "Tucson.png");
+insert into car_data values (0, "투싼", "23275000", "2020", "Tucson.png");
+insert into car_data values (0, "투싼", "22050000", "2019", "Tucson.png");
+insert into car_data values (0, "투싼", "20825000", "2018", "Tucson.png");
+insert into car_data values (0, "투싼", "19600000", "2017", "Tucson.png");
+insert into car_data values (0, "투싼", "18865000", "2016", "Tucson.png");
+insert into car_data values (0, "투싼", "18375000", "2015", "Tucson.png");
+insert into car_data values (0, "투싼", "17640000", "2014", "Tucson.png");
+insert into car_data values (0, "투싼", "17150000", "2013", "Tucson.png");
+insert into car_data values (0, "투싼", "17150000", "2012", "Tucson.png");
+insert into car_data values (0, "싼타페", "24640000", "2016", "Santafe.png");
+insert into car_data values (0, "싼타페", "24000000", "2015", "Santafe.png");
+insert into car_data values (0, "싼타페", "23040000", "2014", "Santafe.png");
+insert into car_data values (0, "싼타페", "22400000", "2013", "Santafe.png");
+insert into car_data values (0, "싼타페", "22400000", "2012", "Santafe.png");
+insert into car_data values (0, "베뉴", "32400000", "2019", "Venue.png");
+insert into car_data values (0, "베뉴", "30600000", "2018", "Venue.png");
+insert into car_data values (0, "베뉴", "28800000", "2017", "Venue.png");
+insert into car_data values (0, "베뉴", "27720000", "2016", "Venue.png");
+insert into car_data values (0, "베뉴", "27000000", "2015", "Venue.png");
+insert into car_data values (0, "베뉴", "25920000", "2014", "Venue.png");
+insert into car_data values (0, "베뉴", "25200000", "2013", "Venue.png");
+insert into car_data values (0, "베뉴", "25200000", "2012", "Venue.png");
+insert into car_data values (0, "코나", "15200000", "2017", "kona.png");
+insert into car_data values (0, "코나", "14630000", "2016", "kona.png");
+insert into car_data values (0, "코나", "14250000", "2015", "kona.png");
+insert into car_data values (0, "코나", "13680000", "2014", "kona.png");
+insert into car_data values (0, "코나", "13300000", "2013", "kona.png");
+insert into car_data values (0, "코나", "13300000", "2012", "kona.png");
+insert into car_data values (0, "펠리세이드", "36000000", "2021", "Palisade.jpg");
+insert into car_data values (0, "펠리세이드", "34200000", "2020", "Palisade.jpg");
+insert into car_data values (0, "펠리세이드", "32400000", "2019", "Palisade.jpg");
+insert into car_data values (0, "펠리세이드", "30600000", "2018", "Palisade.jpg");
+insert into car_data values (0, "펠리세이드", "28800000", "2017", "Palisade.jpg");
+insert into car_data values (0, "펠리세이드", "27720000", "2016", "Palisade.jpg");
+insert into car_data values (0, "펠리세이드", "27000000", "2015", "Palisade.jpg");
+insert into car_data values (0, "펠리세이드", "25920000", "2014", "Palisade.jpg");
+insert into car_data values (0, "펠리세이드", "25200000", "2013", "Palisade.jpg");
+insert into car_data values (0, "펠리세이드", "25200000", "2012", "Palisade.jpg");
+insert into car_data values (0, "스타렉스", "24000000", "2021", "Starex.jpg");
+insert into car_data values (0, "스타렉스", "22800000", "2020", "Starex.jpg");
+insert into car_data values (0, "스타렉스", "21600000", "2019", "Starex.jpg");
+insert into car_data values (0, "스타렉스", "20400000", "2018", "Starex.jpg");
+insert into car_data values (0, "스타렉스", "19200000", "2017", "Starex.jpg");
+insert into car_data values (0, "스타렉스", "18480000", "2016", "Starex.jpg");
+insert into car_data values (0, "스타렉스", "18000000", "2015", "Starex.jpg");
+insert into car_data values (0, "스타렉스", "17280000", "2014", "Starex.jpg");
+insert into car_data values (0, "스타렉스", "16800000", "2013", "Starex.jpg");
+insert into car_data values (0, "스타렉스", "16800000", "2012", "Starex.jpg");
+insert into car_data values (0, "i30", "18050000", "2020", "i30.png");
+insert into car_data values (0, "i30", "17100000", "2019", "i30.png");
+insert into car_data values (0, "i30", "16150000", "2018", "i30.png");
+insert into car_data values (0, "i30", "15200000", "2017", "i30.png");
+insert into car_data values (0, "i30", "14630000", "2016", "i30.png");
+insert into car_data values (0, "i30", "14250000", "2015", "i30.png");
+insert into car_data values (0, "i30", "13680000", "2014", "i30.png");
+insert into car_data values (0, "i30", "13300000", "2013", "i30.png");
+insert into car_data values (0, "i30", "13300000", "2012", "i30.png");
+insert into car_data values (0, "i40", "23400000", "2019", "i40.png");
+insert into car_data values (0, "i40", "22100000", "2018", "i40.png");
+insert into car_data values (0, "i40", "20800000", "2017", "i40.png");
+insert into car_data values (0, "i40", "20020000", "2016", "i40.png");
+insert into car_data values (0, "i40", "19500000", "2015", "i40.png");
+insert into car_data values (0, "i40", "18720000", "2014", "i40.png");
+insert into car_data values (0, "i40", "18200000", "2013", "i40.png");
+insert into car_data values (0, "i40", "18200000", "2012", "i40.png");
+insert into car_data values (0, "제네시스g70", "39000000", "2021", "Genesisg70.png");
+insert into car_data values (0, "제네시스g70", "37050000", "2020", "Genesisg70.png");
+insert into car_data values (0, "제네시스g70", "35100000", "2019", "Genesisg70.png");
+insert into car_data values (0, "제네시스g70", "33150000", "2018", "Genesisg70.png");
+insert into car_data values (0, "제네시스g70", "31200000", "2017", "Genesisg70.png");
+insert into car_data values (0, "제네시스g80", "54000000", "2021", "Genesisg80.jpg");
+insert into car_data values (0, "제네시스g80", "51300000", "2020", "Genesisg80.jpg");
+insert into car_data values (0, "제네시스g90", "78000000", "2021", "Genesisg90.jpg");
+insert into car_data values (0, "제네시스g90", "74100000", "2020", "Genesisg90.jpg");
+
+-- estimate 페이지 car_distance 테이블 dummy 데이터
+insert into car_reference_distance values("10000", "500000");
+insert into car_reference_distance values("20000", "1000000");
+insert into car_reference_distance values("30000", "1500000");
+insert into car_reference_distance values("40000", "2000000");
+insert into car_reference_distance values("50000", "2500000");
+insert into car_reference_distance values("60000", "3000000");
+insert into car_reference_distance values("70000", "3500000");
+insert into car_reference_distance values("80000", "4000000");
+insert into car_reference_distance values("90000", "4500000");
+insert into car_reference_distance values("100000", "5000000");
+insert into car_reference_distance values("110000", "5500000");
+insert into car_reference_distance values("120000", "6000000");
+insert into car_reference_distance values("130000", "6500000");
+insert into car_reference_distance values("140000", "7000000");
+insert into car_reference_distance values("150000", "7500000");
+
+-- estimate 페이지 car_accident 테이블 dummy 데이터
+insert into car_reference_accident values("1", "1");
+insert into car_reference_accident values("2", "0.9");
+insert into car_reference_accident values("3", "0.85");
+insert into car_reference_accident values("4", "0.8");
 
 -- auto_increment 1부터 초기화하는 구문 (데이터 다지우고 1로 시작할 때 - 테이블에 새로 시작할 값보다 높은 값이 있으면 안됨 )
 alter table user auto_increment=1;

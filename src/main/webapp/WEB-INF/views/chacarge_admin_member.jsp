@@ -27,12 +27,15 @@
 		sbHtmlManagement.append("<tr>");
 		sbHtmlManagement.append("	<td width='8%'>" + user_seq + "</td>");
 		sbHtmlManagement.append("	<td width='12%'>" + user_id + "</td>");
-		sbHtmlManagement.append("	<td width='12%'>" + user_token + "</td>");
+/* 		sbHtmlManagement.append("	<td width='12%'>" + user_token + "</td>"); */
 		sbHtmlManagement.append("	<td width='8%'>" + user_name + "</td>");
 		sbHtmlManagement.append("	<td width='28%'>" + user_email + "</td>");
 		sbHtmlManagement.append("	<td width='12%'>" + user_join_date.substring(0, 10) + "</td>");
 		sbHtmlManagement.append("	<td width='8%'>" + user_grade + "</td>");
 		sbHtmlManagement.append("	<td width='12%'>" + visit_date.substring(0, 10) + "</td>");
+		sbHtmlManagement.append("	<td width='12%'>");
+		sbHtmlManagement.append("		<input type='button' value='삭제' id='" + user_seq + "' onclick='button_delete()'>");
+		sbHtmlManagement.append("	</td>");
 		sbHtmlManagement.append("</tr>");
 	}
 
@@ -83,6 +86,23 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="resources/js/board_paging.js"></script>
 
+<!-- 삭제용 확인창 부분 -->
+<script type="text/javascript">
+	function button_delete(){
+		if (confirm("정말 삭제하시겠습니까?")==true) {
+			// 확인
+			document.form.submit();
+		} else {
+			// 취소
+			return;
+		}
+	}
+	
+	
+	
+	
+</script>
+
 </head>
 
 <body>
@@ -132,12 +152,12 @@
 												<tr>
 	 												<th width="8%">번호</th>
 													<th width="12%">ID</th>
-													<th width="12%">소셜토큰</th>
 													<th width="8%">이름</th>
 													<th width="28%">이메일</th>
 													<th width="12%">가입일</th>
 													<th width="8%">등급</th>
 													<th width="12%">최종방문일</th>
+													<th width="12%"></th>
 												</tr>
 											</thead>
 											<tbody>

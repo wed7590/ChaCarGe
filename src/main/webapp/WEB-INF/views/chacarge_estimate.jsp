@@ -3,6 +3,111 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<%@ page import="net.chacarge.model1.EstimateTO" %>
+<%@ page import="net.chacarge.model1.EstimateOkTO" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ include file="header.jsp" %>
+
+
+<%
+	/* 페이지 구성할 초기 데이터 불러오기 */
+	ArrayList<EstimateTO> estimate_forSelect_carNameData  = (ArrayList)request.getAttribute("estimate_forSelect_carNameData");
+	ArrayList<EstimateTO> estimate_forSelect_carYearData  = (ArrayList)request.getAttribute("estimate_forSelect_carYearData");
+	ArrayList<EstimateTO> estimate_forSelect_carAccidentData  = (ArrayList)request.getAttribute("estimate_forSelect_carAccidentData");
+	ArrayList<EstimateTO> estimate_forSelect_carDistanceData  = (ArrayList)request.getAttribute("estimate_forSelect_carDistanceData");
+
+	StringBuffer sbHtmlForSelectCarNameData = new StringBuffer();
+	StringBuffer sbHtmlForSelectCarYearData = new StringBuffer();
+	StringBuffer sbHtmlForSelectCarAccidentData = new StringBuffer();
+	StringBuffer sbHtmlForSelectCarDistanceData = new StringBuffer();
+	
+	for (EstimateTO to : estimate_forSelect_carNameData) {
+		String car_name = to.getCar_name();
+		sbHtmlForSelectCarNameData.append("<label>");
+		sbHtmlForSelectCarNameData.append("		<input type='radio' name='car_name_selected' value='" + car_name + "'>");
+		sbHtmlForSelectCarNameData.append("		<span>");
+		sbHtmlForSelectCarNameData.append("			<a>" + car_name + "</a>");
+		sbHtmlForSelectCarNameData.append("		</span>");
+		sbHtmlForSelectCarNameData.append("</label>");
+	}
+
+	for (EstimateTO to : estimate_forSelect_carYearData) {
+		String car_year = to.getCar_year();
+		sbHtmlForSelectCarYearData.append("<option value='" + car_year +"'>" + car_year + "</option>");
+	}
+	
+	for (EstimateTO to : estimate_forSelect_carAccidentData) {
+		String car_ref_accident = to.getCar_ref_accident();
+		if (car_ref_accident.equals("1")) {
+			String car_ref_accident_name = "무사고";
+			sbHtmlForSelectCarAccidentData.append("<option value='" + car_ref_accident +"'>" + car_ref_accident_name + "</option>");
+		} else if (car_ref_accident.equals("2")) {
+			String car_ref_accident_name = "경미";
+			sbHtmlForSelectCarAccidentData.append("<option value='" + car_ref_accident +"'>" + car_ref_accident_name + "</option>");
+		} else if (car_ref_accident.equals("3")) {
+			String car_ref_accident_name = "보통";
+			sbHtmlForSelectCarAccidentData.append("<option value='" + car_ref_accident +"'>" + car_ref_accident_name + "</option>");
+		} else if (car_ref_accident.equals("4")) {
+			String car_ref_accident_name = "심각";
+			sbHtmlForSelectCarAccidentData.append("<option value='" + car_ref_accident +"'>" + car_ref_accident_name + "</option>");
+		}
+	}
+	
+	for (EstimateTO to : estimate_forSelect_carDistanceData) {
+		String car_ref_distance = to.getCar_ref_distance();
+		sbHtmlForSelectCarDistanceData.append("<option value='" + car_ref_distance +"'>" + car_ref_distance + " km</option>");
+	}
+	
+	/* 차 이미지 동적 연동 */
+/* 	ArrayList<EstimateTO> estimate_carImage = (ArrayList)request.getAttribute("estimate_carImage");
+	StringBuffer carImage = new StringBuffer(); */
+	
+	ArrayList<EstimateOkTO> estimate_car_data_selected  = (ArrayList)request.getAttribute("estimate_car_data_selected");
+	ArrayList<EstimateOkTO> estimate_car_distance_selected  = (ArrayList)request.getAttribute("estimate_car_distance_selected");
+	ArrayList<EstimateOkTO> estimate_car_accident_selected  = (ArrayList)request.getAttribute("estimate_car_accident_selected");
+
+	StringBuffer sbHtmlCarNameSelected = new StringBuffer();
+	StringBuffer sbHtmlCarYearSelected = new StringBuffer();
+	StringBuffer sbHtmlCarPictureSelected = new StringBuffer();
+	StringBuffer sbHtmlCarRefDistance = new StringBuffer();
+	StringBuffer sbHtmlCarRefDistanceRate = new StringBuffer();
+	StringBuffer sbHtmlCarRefAccident = new StringBuffer();
+	StringBuffer sbHtmlCarRefAccidentRate = new StringBuffer();
+	
+	
+	for (EstimateOkTO took : estimate_car_data_selected) {
+		sbHtmlCarNameSelected.append(took.getCar_name());
+		sbHtmlCarYearSelected.append(took.getCar_year());
+		sbHtmlCarYearSelected.append(" 년");
+		sbHtmlCarPictureSelected.append("upload/car_default_image/");
+		sbHtmlCarPictureSelected.append(took.getCar_picture());
+	}
+	
+	for (EstimateOkTO took : estimate_car_distance_selected) {
+		sbHtmlCarRefDistance.append(took.getCar_ref_distance());
+		sbHtmlCarRefDistance.append(" km");
+		sbHtmlCarRefDistanceRate.append(took.getCar_ref_distance_rate());
+	}
+	
+	for (EstimateOkTO took : estimate_car_accident_selected) {
+		String car_ref_accident = took.getCar_ref_accident();
+		String car_ref_accident_name = "";
+		if (car_ref_accident.equals("1")) {
+			car_ref_accident_name = "무사고";
+		} else if (car_ref_accident.equals("2")) {
+			car_ref_accident_name = "경미";
+		} else if (car_ref_accident.equals("3")) {
+			car_ref_accident_name = "보통";
+		} else if (car_ref_accident.equals("4")) {
+			car_ref_accident_name = "심각";
+		}
+		sbHtmlCarRefAccident.append(car_ref_accident_name);
+		sbHtmlCarRefAccidentRate.append(took.getCar_ref_accident_rate());
+	}
+	
+/* 	sbHtmlCarPictureSelected.append("upload/car_default_image/Avante.jpg"); */
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,6 +128,11 @@
 
 <!-- 기타 css 설정 -->
 <link href="resources/css/estimate.css" rel="stylesheet">
+
+<!-- 최종 견적 창 grid 설정 -->
+<style>
+#estimate_result{display:flex; flex-direction:column;}
+</style>
 
 </head>
 
@@ -46,136 +156,75 @@
 			<li class="breadcrumb-item">차량 견적</li>
 		</ol>
 
-		<!-- 이미지 입력 부분 -->
-		<!-- Image Header -->
+	<!-- 이미지 입력 부분 -->
+	<!-- Image Header -->
+		<form method="get" action="chacarge_estimate_ok.do">
+			<div class="col-lg-12 mb-4">
+				<h2>차종 선택</h2>
+				<div class="grid-container">
+					<%=sbHtmlForSelectCarNameData %>
+				</div>
+			</div>
+			<hr/>
+			<div class="col-lg-12 mb-4">
+				<h2>차량 상태 선택</h2>
+				<div class="grid-container">
+					<li>
+						<select class="slct_detail" name="car_year_selected" title="연식">
+							<option value="" hidden>연식</option>
+							<%=sbHtmlForSelectCarYearData %>
+						</select>
+					</li>
+					<li>
+						<select class="slct_detail" name="car_accident_selected" title="사고이력">
+							<option value="" hidden>사고 이력</option>
+							<%=sbHtmlForSelectCarAccidentData %>
+						</select>
+					</li>
+					<li>
+						<select class="slct_detail" name="car_distance_selected" title="주행거리">
+							<option value="" hidden>주행 거리</option>
+							<%=sbHtmlForSelectCarDistanceData %>
+						</select>
+					</li>
+				</div>
+	   		</div>
 
-						<div class="grid-container">
-
-						<li><label><input type="checkbox"
-								class="segment segment_C" name="segment[]" id="" value="C"><span><a
-									href="#" class="eFincPopup" kind="dictionary" subject="용어 설명"
-									val="402" onclick="return false;">아반테</a></span></label></li>
-						<li><label><input type="checkbox"
-								class="segment segment_PC1" name="segment[]" id="" value="PC1"><span><a
-									href="#" class="eFincPopup" kind="dictionary" subject="용어 설명"
-									val="403" onclick="return false;">소나타</a></span></label></li>
-						<li><label><input type="checkbox"
-								class="segment segment_PC2" name="segment[]" id="" value="PC2"><span><a
-									href="#" class="eFincPopup" kind="dictionary" subject="용어 설명"
-									val="404" onclick="return false;">그랜져</a></span></label></li>
-						<li><label><input type="checkbox"
-								class="segment segment_PC3" name="segment[]" id="" value="PC3"><span><a
-									href="#" class="eFincPopup" kind="dictionary" subject="용어 설명"
-									val="405" onclick="return false;">벨로스터</a></span></label></li>
-						<li><label><input type="checkbox"
-								class="segment segment_PC4" name="segment[]" id="" value="PC4"><span><a
-									href="#" class="eFincPopup" kind="dictionary" subject="용어 설명"
-									val="406" onclick="return false;">베뉴</a></span></label></li>
-						<li><label><input type="checkbox"
-								class="segment segment_PC5" name="segment[]" id="" value="PC5"><span><a
-									href="#" class="eFincPopup" kind="dictionary" subject="용어 설명"
-									val="407" onclick="return false;">코나</a></span></label></li>
-						<li><label><input type="checkbox"
-								class="segment segment_PC5" name="segment[]" id="" value="PC6"><span><a
-									href="#" class="eFincPopup" kind="dictionary" subject="용어 설명"
-									val="407" onclick="return false;">투싼</a></span></label></li>
-						<li><label><input type="checkbox"
-								class="segment segment_PC2" name="segment[]" id="" value="PC7"><span><a
-									href="#" class="eFincPopup" kind="dictionary" subject="용어 설명"
-									val="404" onclick="return false;">싼타페</a></span></label></li>
-						<li><label><input type="checkbox"
-								class="segment segment_PC3" name="segment[]" id="" value="PC8"><span><a
-									href="#" class="eFincPopup" kind="dictionary" subject="용어 설명"
-									val="405" onclick="return false;">펠리세이드</a></span></label></li>
-						<li><label><input type="checkbox"
-								class="segment segment_PC4" name="segment[]" id="" value="PC9"><span><a
-									href="#" class="eFincPopup" kind="dictionary" subject="용어 설명"
-									val="406" onclick="return false;">스타렉스</a></span></label></li>
-						<li><label><input type="checkbox"
-								class="segment segment_PC5" name="segment[]" id="" value="PC10"><span><a
-									href="#" class="eFincPopup" kind="dictionary" subject="용어 설명"
-									val="407" onclick="return false;">i30</a></span></label></li>
-						<li><label><input type="checkbox"
-								class="segment segment_PC5" name="segment[]" id="" value="PC11"><span><a
-									href="#" class="eFincPopup" kind="dictionary" subject="용어 설명"
-									val="407" onclick="return false;">i40</a></span></label></li>
-						<li><label><input type="checkbox"
-								class="segment segment_PC2" name="segment[]" id="" value="PC12"><span><a
-									href="#" class="eFincPopup" kind="dictionary" subject="용어 설명"
-									val="404" onclick="return false;">제네시스 g70</a></span></label></li>
-						<li><label><input type="checkbox"
-								class="segment segment_PC3" name="segment[]" id="" value="PC13"><span><a
-									href="#" class="eFincPopup" kind="dictionary" subject="용어 설명"
-									val="405" onclick="return false;">제네시스 g80</a></span></label></li>
-						<li><label><input type="checkbox"
-								class="segment segment_PC4" name="segment[]" id="" value="PC14"><span><a
-									href="#" class="eFincPopup" kind="dictionary" subject="용어 설명"
-									val="406" onclick="return false;">제네시스 g90</a></span></label></li>
-
-</div>
-<div class="grid-container">
-
-		<li>
-			<select class="slct_detail" name="srchMaker" title="제조사 선택">
-				<option value="">연식</option>
-				<option value="3156">2020</option>
-				<option value="3132">2019</option>
-                <option value="3156">2018</option>
-				<option value="3132">2017</option>
-                <option value="3156">2016</option>
-				<option value="3132">2015</option>
-                <option value="3156">2014</option>
-				<option value="3132">2013</option>
-                <option value="3156">2012</option>
-				<option value="3132">2011</option>
-			</select>
-		</li>
-        
-		<li>
-			<select class="slct_detail" name="srchMaker" title="제조사 선택">
-				<option value="">사고이력</option>
-				<option value="3156">경미</option>
-				<option value="3132">보통</option>
-                <option value="3132">심각</option>
-                
-			</select>
-		</li>
-		<li>
-			<select class="slct_detail" name="srchMaker" title="제조사 선택">
-				<option value="">주행거리</option>
-				<option value="3156">10000km</option>
-				<option value="3132">20000km</option>
-                <option value="3156">30000km</option>
-				<option value="3132">40000km</option>
-                <option value="3156">50000km</option>
-				<option value="3132">60000km</option>
-                <option value="3156">70000km</option>
-				<option value="3132">80000km</option>
-                <option value="3156">90000km</option>
-				<option value="3132">100000km</option>
-                <option value="3156">110000km</option>
-				<option value="3132">120000km</option>
-                <option value="3132">130000km</option>
-                <option value="3156">140000km</option>
-				<option value="3132">150000km이상</option>
-                
-			</select>
-		</li>			
-</div>
-   			<img class="img-fluid rounded mb-4" src="http://autoimg.danawa.com/photo/3602/model_360.png" width="600" height="auto"
-			alt="">
-</div>
-
-</div>
-					<td id="Photo_2" code="" segment="" series="" useestm=""><div
-							class="buttonAddComp"></div></td>
-					<td id="Photo_3" code="" segment="" series="" useestm=""><div
-							class="buttonAddComp"></div></td>
-					<td id="Photo_4" code="" segment="" series="" useestm=""><div
-							class="buttonAddComp"></div></td>
-					<td id="Photo_5" code="" segment="" series="" useestm=""><div
-							class="buttonAddComp"></div></td>
-
+   		
+	   		<hr style="border:solid 5px;"/>
+	   		
+	   		<div class="row">
+		   		<div class="col">
+					<div style="text-align:center;">
+						<input type="submit" class="btn btn-secondary btn-block btn-lg" value="ChaCarGe.net 견적 검색"/>
+					</div>
+					<hr/>
+					<div class="row">
+						<div class="col-lg-6" >
+							<li>차종 : <%=sbHtmlCarNameSelected %></li>
+						</div>
+						<div class="col-lg-6" >
+							<li>연식 : <%=sbHtmlCarYearSelected %></li>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-6" >
+							<li>사고이력 : <%=sbHtmlCarRefAccident %></li>
+						</div>
+						<div class="col-lg-6" >
+							<li>주행거리 : <%=sbHtmlCarRefDistance %></li>
+						</div>
+					</div>
+					<hr/>
+					<div>
+						<li>가격 표시 부분</li>
+					</div>
+				</div>
+				<div class="col">
+		   			<img class="img-fluid rounded mb-4" src=<%=sbHtmlCarPictureSelected %> width="600" height="800" alt="">
+				</div>
+	   		</div>
+   		</form>
 	</div>
 	<!-- /.container -->
 
