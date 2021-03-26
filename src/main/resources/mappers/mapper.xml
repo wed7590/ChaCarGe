@@ -154,6 +154,7 @@
 	</select>
 	
 	<!-- board_list -->
+	<!-- select board.board_seq, board_subject, substring_index( board_content, "<br/>", 5 ), board_hit, date_format(board_wdate, '%Y-%m-%d') board_wdate, user_seq, board_pic_seq, u_pic_name -->
 	<select id="board_list" resultType="net.chacarge.model1.BoardTO">
 		select board.board_seq, board_subject, board_content, board_hit, date_format(board_wdate, '%Y-%m-%d') board_wdate, user_seq, board_pic_seq, u_pic_name
 		from board
@@ -181,5 +182,26 @@
 		select * 
 		from user
 		where user_seq = ${user_seq}
+	</select>
+	
+	<!-- board_view_hit -->
+	<update id="board_view_hit" parameterType="net.chacarge.model1.BoardTO" >
+		update board
+		set board_hit = board_hit+1
+		where board_seq = ${board_seq}
+	</update>
+	
+	<!-- board_view -->
+	<select id="board_view" parameterType="net.chacarge.model1.BoardTO" resultType="net.chacarge.model1.BoardTO">
+		select board_seq, board_subject, board_content, board_hit, date_format(board_wdate, '%Y-%m-%d') board_wdate, user_seq
+		from board
+		where board_seq = ${board_seq}
+	</select>
+	
+	<!-- board_view_pic -->
+	<select id="board_view_pic" parameterType="net.chacarge.model1.BoardTO" resultType="net.chacarge.model1.PictureTO">
+		select board_pic_seq, o_pic_name, u_pic_name, board_seq
+		from board_picture
+		where board_seq = ${board_seq}
 	</select>
 </mapper>

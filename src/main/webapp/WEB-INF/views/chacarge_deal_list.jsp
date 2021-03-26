@@ -9,11 +9,18 @@
 <%
 	List<BoardTO> lists = (List)request.getAttribute( "boardLists" );
 
+	int cpage = 1;
+
 	StringBuffer sbHtml = new StringBuffer();
 	for( BoardTO to : lists ) {
 		String board_seq = to.getBoard_seq();
 		String board_subject = to.getBoard_subject();
 		String board_content = to.getBoard_content();
+/* 		String scontent[] = content.split( "</p>" );
+		String board_content = "";
+		for( int i=0; i<5; i++ ) {
+			board_content += scontent[i] + "</p>";
+		} */
 		String board_hit = to.getBoard_hit();
 		String board_wdate = to.getBoard_wdate();
 		String board_pic_seq = to.getBoard_pic_seq();
@@ -21,11 +28,10 @@
 		
 		sbHtml.append( "<div class='col-lg-3 col-md-4 col-sm-6 portfolio-item'>" );
 		sbHtml.append( "	<div class='card h-100'>" );
-		sbHtml.append( "	<a href='chacarge_deal_view.do?seq=" + board_seq + "'><img class='card-img-top' src='http://localhost:8080/img/" + u_pic_name + "' alt=''></a>" );
-		//sbHtml.append( "	<a href='chacarge_deal_view.do?seq=" + board_seq + "'><img class='card-img-top' src='/resources/image/" + u_pic_name + "' alt=''></a>" );
+		sbHtml.append( "	<a href='chacarge_deal_view.do?cpage=" + cpage + "&seq=" + board_seq + "'><img class='card-img-top' src='http://localhost:8080/img/" + u_pic_name + "' alt=''></a>" );
 		sbHtml.append( "		<div class='card-body'>" );
 		sbHtml.append( "			<h4 class='card-title'>" );
-		sbHtml.append( "				<a href='chacarge_deal_view.do?seq=" + board_seq + "'>" + board_subject + "</a>" );
+		sbHtml.append( "				<a href='chacarge_deal_view.do?cpage=" + cpage + "&seq=" + board_seq + "'>" + board_subject + "</a>" );
 		sbHtml.append( "			</h4>" );
 		sbHtml.append( "			<p class='card-text'>" + board_content + "</p>" );
 		sbHtml.append( "		</div>" );
@@ -72,6 +78,7 @@
 		
 	<!-- 게시글 작성 버튼 -->
 		<div class="write">
+			<%-- <span>총 <%= totalRecord %> 건</span> --%>
 			<input type="button" value="매물등록" onclick="location.href='chacarge_deal_write.do'" />
 		</div>
 		

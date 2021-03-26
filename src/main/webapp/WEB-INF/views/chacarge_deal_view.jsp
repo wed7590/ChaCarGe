@@ -2,7 +2,33 @@
 <%@ page session="true"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="header.jsp" %>
+
+<%@ page import="net.chacarge.model1.BoardTO" %>
+<%@ page import="net.chacarge.model1.PictureTO" %>
+<%@ page import="java.util.List" %>
+
+<%
+	BoardTO bto = (BoardTO)request.getAttribute( "bto" );
+	List<PictureTO> pto = (List)request.getAttribute( "pto" );
+	
+	int cpage = 1;
+	
+	String board_subject = bto.getBoard_subject();
+	String board_content = bto.getBoard_content();
+	String board_hit = bto.getBoard_hit();
+	String board_wdate = bto.getBoard_wdate();
+	
+	StringBuffer sbHtml = new StringBuffer();
+	for( PictureTO to : pto ) {
+		String board_pic_seq = to.getBoard_pic_seq();
+		String o_pic_name = to.getO_pic_name();
+		String u_pic_name = to.getU_pic_name();	
+		
+		sbHtml.append( "<div class='car_pic'><img src='http://localhost:8080/img/" + u_pic_name + "' alt='' /></div> " );
+	}
+	
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,9 +47,23 @@
 <!-- Custom styles for this template -->
 <link href="resources/css/modern-business.css" rel="stylesheet">
 
-</head>
+<!-- bxslider -->
+<link rel="stylesheet" href="resources/css/jquery.bxslider.css">
 
-<body>
+<style>
+	img {
+		height: auto;
+		object-fit: cover;
+	}
+	
+	.car_pic {
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		max-height: 600px;
+	}
+</style>
 
 <%@ include file="header.jsp" %>
 
@@ -33,13 +73,13 @@
 
 	<!-- 페이지 제목 -->
 		<!-- Page Heading/Breadcrumbs -->
-		<h1 class="mt-4 mb-3">구현중</h1>
+		<h1 class="mt-4 mb-3"><%= board_subject %></h1>
 
 	<!-- 페이지 경로 표시 -->
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="chacarge_home.do">Home</a></li>
-			<li class="breadcrumb-item"><a href="chacarge_deal_list.do">차량 매물</a></li>
-			<li class="breadcrumb-item">현대 Tucson 2016</li>
+			<li class="breadcrumb-item"><a href="chacarge_deal_list.do?cpage=<%=cpage %>">차량 매물</a></li>
+			<li class="breadcrumb-item"><%= board_subject %></li>
 		</ol>
 
 	<!-- 매물 설명 부분 -->
@@ -47,19 +87,15 @@
 		<div class="row">
 
 		<!-- 사진 부분 -->
-			<div class="col-md-8"><img class="img-fluid" src="http://www.autoherald.co.kr/news/photo/201910/36137_59995_61.jpg" weight="300" height="400" alt=""></div>
+			<div class="col-md-8">
+				<div class="bxslider">
+					<%= sbHtml %>
+				</div>
+			</div>
 
 		<!-- 설명 부분 -->
 			<div class="col-md-4">
-				<h3 class="my-3">현대 Tucson 2016</h3>
-				<p>이 차는 영국에서 최초로 시작되어 일년에 한 바퀴 돌면서 받는 사람에게 행운을 주었고 지금은 당신에게로 옮겨진 이 차는 4일 안에 당신 곁을 떠나야 합니다. 이 차를 포함해서...(더보기)</p>
-				<h3 class="my-3">Project Details</h3>
-				<ul>
-					<li>Lorem Ipsum</li>
-					<li>Dolor Sit Amet</li>
-					<li>Consectetur</li>
-					<li>Adipiscing Elit</li>
-				</ul>
+				<%= board_content %>
 			</div>
 
 		</div>
@@ -90,9 +126,28 @@
 
 <%@ include file="footer.jsp" %>
 
-	<!-- Bootstrap core JavaScript -->
-	<script src="vendor/jquery/jquery.min.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script src="resources/vendor/jquery/jquery.min.js"></script>
+<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script src="resources/js/jquery.bxslider.js"></script>
+<script>
+	( function($) {
+		$('.bxslider').bxSlider({
+			auto: true,
+			speed: 500,
+			pause: 10000,
+			mode: 'horizontal',
+			autoControls: true,
+			pager: true,
+			captions: false,
+			autoHover: true,
+			controls: true,
+			adaptiveHeight: true
+		});
+	})( jQuery );
+	
+</script>
 
 </body>
 

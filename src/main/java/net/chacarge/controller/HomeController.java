@@ -208,8 +208,18 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/chacarge_deal_view.do", method = RequestMethod.GET)
-	public String chacarge_deal_view(Locale locale, Model model) {
-
+	public String chacarge_deal_view(HttpServletRequest request, Model model) {
+		BoardTO bto = new BoardTO();
+		
+		bto.setBoard_seq( request.getParameter( "seq" ) );
+		
+		bto = boardDAO.boardView( bto );
+		
+		List<PictureTO> pto = boardDAO.boardView_pic( bto );
+		
+		model.addAttribute( "bto", bto );
+		model.addAttribute( "pto", pto );
+		
 		return "chacarge_deal_view";
 	}
 	

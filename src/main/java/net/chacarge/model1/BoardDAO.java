@@ -33,4 +33,15 @@ public class BoardDAO {
 	public void boardUpload(PictureTO to) {
 		sqlSession.insert("board_write_pic", to );
 	}
+	
+	public BoardTO boardView(BoardTO to) {
+		sqlSession.update("board_view_hit", to );
+		BoardTO boardTO = sqlSession.selectOne("board_view", to );
+		return boardTO;
+	}
+	
+	public List<PictureTO> boardView_pic(BoardTO to) {
+		List<PictureTO> boardPicLists = sqlSession.selectList( "board_view_pic", to );
+		return boardPicLists;
+	}
 }

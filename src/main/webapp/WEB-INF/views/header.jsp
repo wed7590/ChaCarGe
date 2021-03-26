@@ -19,6 +19,8 @@
 }
 </style>  
 
+</head>
+
 <body>
 <!-- 최상단 Navigation 메뉴 부분  -  모든 페이지 공통 -->
 	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">

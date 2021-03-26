@@ -67,12 +67,19 @@
 				</div>
 			<!--게시판-->
 				<div class="content">
-					<textarea id="summernote" name="board_content"></textarea>
+					<textarea id="summernote" name="board_content">
+<p><b>차종 :</b></p>
+<p><b>출고 연도 :</b></p>
+<p><b>운행 거리 :</b></p>
+<p><b>사고 정도 :</b></p>
+<p><b>판매 가격 :</b></p><br>
+<p></p>
+					</textarea>
 				</div>
 				<div class="btn_area">
 					<input multiple="multiple" type="file" name="files" />
 					<div class="align_left">
-						<a href="chacarge_deal_list.do">	
+						<a href="chacarge_deal_list.do">
 						<input type="button" value="차량매물" class="btn_list btn_txt02" style="cursor: pointer;"  />
 						</a>
 					</div>
