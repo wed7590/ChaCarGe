@@ -1,7 +1,5 @@
 package net.chacarge.model1;
 
-import org.springframework.web.multipart.MultipartFile;
-
 public class PictureTO {
 	private String board_pic_seq;	// 파일 번호
 	private String o_pic_name;		// 원본 파일명

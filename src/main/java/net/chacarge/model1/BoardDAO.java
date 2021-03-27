@@ -20,7 +20,7 @@ public class BoardDAO {
 		return boardLists;
 	}
 	
-	// Write_ok
+	// write_ok
 	public int boardWriteOk(BoardTO to) {
 		int flag = 1;
 		int result = sqlSession.insert("board_write_ok", to);
@@ -34,14 +34,27 @@ public class BoardDAO {
 		sqlSession.insert("board_write_pic", to );
 	}
 	
-	public BoardTO boardView(BoardTO to) {
+	// view
+	public void boardView_hit(BoardTO to) {
 		sqlSession.update("board_view_hit", to );
-		BoardTO boardTO = sqlSession.selectOne("board_view", to );
-		return boardTO;
+	}
+	
+	public BoardTO boardView(BoardTO to) {
+		return sqlSession.selectOne("board_view", to );
 	}
 	
 	public List<PictureTO> boardView_pic(BoardTO to) {
-		List<PictureTO> boardPicLists = sqlSession.selectList( "board_view_pic", to );
-		return boardPicLists;
+		return sqlSession.selectList( "board_view_pic", to );
 	}
+	
+	// delete
+	public int boardDelete(BoardTO to) {
+		return sqlSession.delete( "board_delete", to);
+	}
+	
+	public int boardDelete_pic(BoardTO to) {
+		return sqlSession.delete("board_delete_pic", to);
+	}
+
+	
 }

@@ -203,4 +203,16 @@
 		from board_picture
 		where board_seq = ${board_seq}
 	</select>
+	
+	<!-- board_delete -->
+	<delete id="board_delete" parameterType="net.chacarge.model1.BoardTO" >
+		delete from board
+		where board_seq = ${board_seq}
+	</delete>
+	
+	<!-- board_delete_pic -->
+	<delete id="board_delete_pic" parameterType="net.chacarge.model1.BoardTO" >
+		delete from board_picture
+		where board_seq = ${board_seq}
+	</delete>
 </mapper>

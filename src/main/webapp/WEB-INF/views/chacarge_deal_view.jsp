@@ -13,6 +13,7 @@
 	
 	int cpage = 1;
 	
+	String board_seq = bto.getBoard_seq();
 	String board_subject = bto.getBoard_subject();
 	String board_content = bto.getBoard_content();
 	String board_hit = bto.getBoard_hit();
@@ -66,6 +67,12 @@
 	}
 </style>
 
+<script type="text/javascript">
+	window.onload = function() {
+		
+	};
+</script>
+
 <%@ include file="header.jsp" %>
 
 <!-- 페이지 내용 -->
@@ -103,9 +110,7 @@
 		<!-- /.row -->
 		
 		<div>
-			<c:if test="${login.user_seq == user_seq }">
-				<a href="chacarge_deal_delete.do"><button id="delete">글 삭제</button></a>
-			</c:if>
+			<a href="chacarge_deal_delete.do?seq=<%=board_seq %>&user_seq=${login.user_seq}"><button id="delete">글 삭제</button></a>
 		</div>
 
 
