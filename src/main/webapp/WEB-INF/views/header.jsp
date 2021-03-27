@@ -59,7 +59,7 @@
 						</c:when>
 						<c:otherwise>
 							<li class="nav-item"><a class="nav-link" href="chacarge_logout.do">로그아웃</a></li>
-							<li class="nav-item"><div id="profile">로그인 유저 : ${login.user_name}</div></li>
+							<li class="nav-item"><div id="profile">로그인 유저 : ${login.user_id}</div></li>
 						</c:otherwise>
 					</c:choose>
 				</ul>

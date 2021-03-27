@@ -2,6 +2,8 @@ Windows 환경
 	C:\\upload\ 폴더에 더미 이미지를 저장, 게시판 글 작성시 업로드 위치
 
 	Servers-Tomcat-server.xml 파일 맨 아래쪽에서 추가
-	<Context docBase="C:\upload" path="/img" reloadable="true"/>
+	<host> 안에 저장
+		<Context docBase="C:\upload" path="/img" reloadable="true"/>
+	</host>
 	
 리눅스 서버 환경에서는 경로를 변경해 줘야함

@@ -17,6 +17,7 @@
 	String board_content = bto.getBoard_content();
 	String board_hit = bto.getBoard_hit();
 	String board_wdate = bto.getBoard_wdate();
+	String user_seq = bto.getUser_seq();
 	
 	StringBuffer sbHtml = new StringBuffer();
 	for( PictureTO to : pto ) {
@@ -100,6 +101,12 @@
 
 		</div>
 		<!-- /.row -->
+		
+		<div>
+			<c:if test="${login.user_seq == user_seq }">
+				<a href="chacarge_deal_delete.do"><button id="delete">글 삭제</button></a>
+			</c:if>
+		</div>
 
 
 <!-- 관련 매물 표시 부분 -->

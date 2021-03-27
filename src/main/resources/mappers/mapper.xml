@@ -176,7 +176,6 @@
 		values( 0, "${o_pic_name}", "${u_pic_name}", (select max(board_seq) from board) )
 	</insert>
 	
-	
 	<!-- user_seq로 user 정보 가져오기 -->
 	<select id="id_check" resultType="net.chacarge.model1.UserTO" >
 		select * 

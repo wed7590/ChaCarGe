@@ -28,6 +28,7 @@ public class UserDAO {
 		sqlSession.insert("join_admin_ok", to);
 	}
 	
+	// id_check
 	public UserTO id_check(UserTO to) {
 		
 		return sqlSession.selectOne( "id_check", to );
