@@ -136,148 +136,127 @@ insert into visitor values (0, '2021-03-08', 4);
 insert into visitor values(0, DATE_FORMAT(now(), '%Y-%m-%d'), 5);
 
 -- board 테이블 dummy 데이터
-insert into board values (0, 'item1', 'item1 내용입니다.', 0, '2021-03-17', 1);
-insert into board values (0, 'item2', 'item2 내용입니다.', 0, '2021-03-17', 2);
-insert into board values (0, 'item3', 'item3 내용입니다.', 0, '2021-03-16', 3);
-insert into board values (0, 'item4', 'item4 내용입니다.', 0, '2021-03-16', 4);
-insert into board values (0, 'item5', 'item5 내용입니다.', 0, '2021-03-15', 1);
-insert into board values (0, 'item6', 'item6 내용입니다.', 0, '2021-03-15', 2);
-insert into board values (0, 'item7', 'item7 내용입니다.', 0, '2021-03-14', 3);
-insert into board values (0, 'item8', 'item8 내용입니다.', 0, '2021-03-14', 4);
-insert into board values (0, 'item9', 'item9 내용입니다.', 0, '2021-03-14', 1);
-insert into board values (0, 'item10', 'item10 내용입니다.', 0, '2021-03-13', 2);
-insert into board values (0, 'item11', 'item11 내용입니다.', 0, '2021-03-13', 3);
-insert into board values (0, 'item12', 'item12 내용입니다.', 0, '2021-03-12', 4);
-insert into board values (0, 'item13', 'item13 내용입니다.', 0, '2021-03-12', 1);
-insert into board values (0, 'item14', 'item14 내용입니다.', 0, '2021-03-11', 2);
-insert into board values (0, 'item15', 'item15 내용입니다.', 0, '2021-03-11', 3);
-insert into board values (0, 'item16', 'item16 내용입니다.', 0, '2021-03-11', 4);
-insert into board values (0, 'item17', 'item17 내용입니다.', 0, '2021-03-10', 1);
-insert into board values (0, 'item18', 'item18 내용입니다.', 0, '2021-03-09', 2);
-insert into board values (0, 'item19', 'item19 내용입니다.', 0, '2021-03-09', 3);
-insert into board values (0, 'item20', 'item20 내용입니다.', 0, '2021-03-09', 4);
+
+insert into board values (0, 'item1', '<p><b>차종 :현대 아반떼AD 1.6 모던</b></p> <p><b>출고 연도 :2018</b></p> <p><b>운행 거리 :33,945km</b></p>
+ </b></p> <p><b>사고 정도 :경미</b></p> <p><b>판매 가격 :1,440만원</b></p><br> <p></p> 지금 보시는 2018년식 아반떼AD 차량을 정직하게 소개해 드릴게요.
+이 차량은 A4 등급으로, 주행거리는 33,945Km로 최상의 운행 품질을 갖춘 차량이에요. ', 0, '2021-03-17', 1);
+
+insert into board values (0, 'item2', '<p><b>차종 :G70</b></p> <p><b>출고 연도  2019</b></p> --<p><b>운행 거리 :18,513Km</b></p> <p><b>사고 정도 :무사고
+</b></p> <p><b>판매 가격 :3,630만원</b></p> <p></p> 지금 보시는 2019년식 G70 차량을 정직하게 소개해 드릴게요.
+이 차량은 A2+ 등급, 주행거리는 18,513Km로 최상의 운행 품질을 갖춘 신차급 차량이에요.', 0, '2021-03-17', 2);
+
+insert into board values (0, 'item3', '<p><b>차종 :G80</b></p> <p><b>출고 연도 :2019</b></p> <p><b>운행 거리 :28,751Km</b></p> <p><b>사고 정도 :무사고
+</b></p> <p><b>판매 가격 :4,480만원</b></p> <p></p> 지금 보시는 2019년식 G80 차량을 정직하게 소개해 드릴게요.
+이 차량은 A3+ 등급, 주행거리는 28,751Km로 최상의 운행 품질을 갖춘 신차급 차량이에요.', 0, '2021-03-16', 3);
+
+insert into board values (0, 'item4', '<p><b>차종 :G90</b></p> <p><b>출고 연도 :2019</b></p> <p><b>운행 거리 :43,443Km</b></p> <p><b>사고 정도 :경미
+</b></p> <p><b>판매 가격 :7,760만원</b></p> <p></p> 금 보시는 2019년식 G90 차량을 정직하게 소개해 드릴게요.
+이 차량은 B5+ 등급으로, 주행거리는 43,443Km로 양호한 운행 품질을 갖춘 차량이에요.' , 0, '2021-03-16', 4);
+
+insert into board values (0, 'item5', '<p><b>차종 :더 뉴 그랜저</b></p> <p><b>출고 연도 :2020</b></p> <p><b>운행 거리 :5,740Km</b></p> <p><b>사고 정도 :무사고
+</b></p> <p><b>판매 가격 :3,630만원</b></p> <p></p> 지금 보시는 2020년식 더 뉴 그랜저 차량을 정직하게 소개해 드릴게요.
+이 차량은 A1+ 등급, 주행거리는 5,740Km로 최상의 운행 품질을 갖춘 신차급 차량이에요.
+주행 조향 보조시스템(LKAS), 블루링크, 스마트 크루즈 컨트롤, 메모리 시트 등의 옵션이 있습니다.', 0, '2021-03-15', 1);
+
+insert into board values (0, 'item6', '<p><b>차종 :i30</b></p> <p><b>출고 연도 :2015</b></p> <p><b>운행 거리 :6,818km</b></p> <p><b>사고 정도 :무사고
+</b></p> <p><b>판매 가격 :170만원</b></p><br> <p></p>
+현재 2021년 03월 27일 토요일 매장에 전시 되어있고 판매중인 차량이예요 주말 공휴일 상관없이 당일출고 및 당일이전 보험가입 가능한 차량이에요', 0, '2021-03-15', 2);
+
+insert into board values (0, 'item7', '<p><b>차종 :현대 더 뉴 i40</b></p> <p><b>출고 연도 :2018</b></p> <p><b>운행 거리 :	9,341km</b></p> <p><b>사고 정도 :무사고
+</b></p> <p><b>판매 가격 :200만원 </b></p><br> <p></p> 법인중고차안심센터상담)현대 더 뉴 i40 (15년~현재) 2.0 GDi PYL/18연식/200만', 0, '2021-03-14', 3);
+
+insert into board values (0, 'item8', '<p><b>차종 :코나</b></p> <p><b>출고 연도 :2018</b></p> <p><b>운행 거리 :36,884Km</b></p> <p><b>사고 정도 :무사고
+</b></p> <p><b>판매 가격 :1,480만원</b></p><br> <p></p> 지금 보시는 2018년식 코나 차량을 정직하게 소개해 드릴게요.
+이 차량은 A4 등급으로, 주행거리는 36,884Km로 최상의 운행 품질을 갖춘 차량이에요.', 0, '2021-03-14', 4);
+
+insert into board values (0, 'item9', '<p><b>차종 :palisade</b></p> <p><b>출고 연도 :2019</b></p> <p><b>운행 거리 :41,000km</b></p> <p><b>사고 정도 :무사고
+</b></p> <p><b>판매 가격 :3,409만원</b></p><br> <p></p> 직영성능거점검장에서 81가지 차량점검 완료', 0, '2021-03-14', 1);
+insert into board values (0, 'item10', '<p><b>차종 :싼타페TM</b></p> <p><b>출고 연도 :2020</b></p> <p><b>운행 거리 :14,856Km</b></p> <p><b>사고 정도 :무사고
+</b></p> <p><b>판매 가격 :2,770만원</b></p><br> <p></p> 지금 보시는 2020년식 싼타페TM 차량을 정직하게 소개해 드릴게요.
+이 차량은 A2+ 등급, 주행거리는 14,856Km로 최상의 운행 품질을 갖춘 신차급 차량이에요', 0, '2021-03-13', 2);
+
+insert into board values (0, 'item11', '<p><b>차종 :쏘나타(DN8)</b></p> <p><b>출고 연도 :2020</b></p> <p><b>운행 거리 :10,209Km</b></p> <p><b>사고 정도 :무사고
+</b></p> <p><b>판매 가격 :2,630만원</b></p><br> <p></p> 지금 보시는 2020년식 쏘나타(DN8) 차량을 정직하게 소개해 드릴게요.
+이 차량은 A2+ 등급, 주행거리는 10,209Km로 최상의 운행 품질을 갖춘 신차급 차량이에요.', 0, '2021-03-13', 3);
+
+insert into board values (0, 'item12', '<p><b>차종 :더 뉴 그랜드 스타렉스</b></p> <p><b>출고 연도 : 2019년</b></p> <p><b>운행 거리 : 5,234Km</b></p> <p><b>사고 정도 :무사고
+</b></p> <p><b>5,050만원</b></p><br> <p></p> 지금 보시는 2019년식 더 뉴 그랜드 스타렉스 차량을 정직하게 소개해 드릴게요.
+이 차량은 A1+ 등급, 주행거리는 5,234Km로 최상의 운행 품질을 갖춘 신차급 차량이에요.', 0, '2021-03-12', 4);
+
+insert into board values (0, 'item13', '<p><b>차종 :올 뉴 투싼</b></p> <p><b>출고 연도 :2021</b></p> <p><b>운행 거리 :70,981Km</b></p> <p><b>사고 정도 :무사고
+</b></p> <p><b>판매 가격 :1,840만원</b></p><br> <p></p> 지금 보시는 2017년식 올 뉴 투싼 차량을 정직하게 소개해 드릴게요.
+이 차량은 A8 등급으로, 주행거리는 70,981Km로 최상의 운행 품질을 갖춘 차량이에요.', 0, '2021-03-12', 1);
+
+insert into board values (0, 'item14', '<p><b>차종 :벨로스터 N r</b></p> <p><b>출고 연도 :2011</b></p> <p><b>운행 거리 :3,528Km</b></p> <p><b>사고 정도 :무사고
+</b></p> <p><b>판매 가격 :3,330만원</b></p><br> <p></p> 지금 보시는 2021년식 벨로스터 N 차량을 정직하게 소개해 드릴게요.
+이 차량은 A1+ 등급, 주행거리는 3,528Km로 최상의 운행 품질을 갖춘 신차급 차량이에요.', 0, '2021-03-11', 2);
+
+insert into board values (0, 'item15', '<p><b>차종 :베뉴</b></p> <p><b>출고 연도 :2020</b></p> <p><b>운행 거리 :8,732Km</b></p> <p><b>사고 정도 :무사고
+</b></p> <p><b>판매 가격 :1,750만원</b></p><br> <p></p> 지금 보시는 2020년식 베뉴 차량을 정직하게 소개해 드릴게요.
+이 차량은 A1+ 등급, 주행거리는 8,732Km로 최상의 운행 품질을 갖춘 신차급 차량이에요.', 0, '2021-03-11', 3);
 
 -- board 픽쳐 dummy 데이터
-insert into board_picture values( 0, 'kona_1.jpg', 'kona_1.jpg', 1 );
-insert into board_picture values( 0, 'kona_2.jpg', 'kona_2.jpg', 1 );
-insert into board_picture values( 0, 'kona_3.jpg', 'kona_3.jpg', 1 );
-insert into board_picture values( 0, 'kona_4.jpg', 'kona_4.jpg', 1 );
-insert into board_picture values( 0, 'kona_5.jpg', 'kona_5.jpg', 1 );
-insert into board_picture values( 0, 'venue_1.jpg', 'venue_1.jpg', 2 );
-insert into board_picture values( 0, 'venue_2.jpg', 'venue_2.jpg', 2 );
-insert into board_picture values( 0, 'venue_3.webp', 'venue_3.webp', 2 );
-insert into board_picture values( 0, 'venue_4.webp', 'venue_4.webp', 2 );
-insert into board_picture values( 0, 'venue_5.webp', 'venue_5.webp', 2 );
-insert into board_picture values( 0, 'venue_6.webp', 'venue_6.webp', 2 );
-insert into board_picture values( 0, 'venue_7.webp', 'venue_7.webp', 2 );
-insert into board_picture values( 0, 'venue_8.webp', 'venue_8.webp', 2 );
-insert into board_picture values( 0, 'venue_9.webp', 'venue_9.webp', 2 );
-insert into board_picture values( 0, 'venue_10.webp', 'venue_10.webp', 2 );
-insert into board_picture values( 0, 'venue_11.webp', 'venue_11.webp', 2 );
-insert into board_picture values( 0, 'venue_12.webp', 'venue_12.webp', 2 );
-insert into board_picture values( 0, 'venue_13.webp', 'venue_13.webp', 2 );
-insert into board_picture values( 0, 'genesis_g70_1.jpg', 'genesis_g70_1.jpg', 3 );
-insert into board_picture values( 0, 'genesis_g70_2.jpg', 'genesis_g70_2.jpg', 3 );
-insert into board_picture values( 0, 'genesis_g70_3.jpg', 'genesis_g70_3.jpg', 3 );
-insert into board_picture values( 0, 'genesis_g70_4.jpg', 'genesis_g70_4.jpg', 3 );
-insert into board_picture values( 0, 'genesis_g70_5.jpg', 'genesis_g70_5.jpg', 3 );
-insert into board_picture values( 0, 'genesis_g70_6.png', 'genesis_g70_6.png', 3 );
-insert into board_picture values( 0, 'genesis_g80_1.jpg', 'genesis_g80_1.jpg', 4 );
-insert into board_picture values( 0, 'genesis_g80_2.jpg', 'genesis_g80_2.jpg', 4 );
-insert into board_picture values( 0, 'genesis_g80_3.jpg', 'genesis_g80_3.jpg', 4 );
-insert into board_picture values( 0, 'genesis_g80_4.jpg', 'genesis_g80_4.jpg', 4 );
-insert into board_picture values( 0, 'genesis_g80_5.jpg', 'genesis_g80_5.jpg', 4 );
-insert into board_picture values( 0, 'genesis_g80_6.jpg', 'genesis_g80_6.jpg', 4 );
-insert into board_picture values( 0, 'genesis_g80_7.jpg', 'genesis_g80_7.jpg', 4 );
-insert into board_picture values( 0, 'genesis_g80_8.jpg', 'genesis_g80_8.jpg', 4 );
-insert into board_picture values( 0, 'genesis_g80_9.jpg', 'genesis_g80_9.jpg', 4 );
-insert into board_picture values( 0, 'genesis_g90_1.jpg', 'genesis_g90_1.jpg', 5 );
-insert into board_picture values( 0, 'genesis_g90_2.jpg', 'genesis_g90_2.jpg', 5 );
-insert into board_picture values( 0, 'genesis_g90_3.jpg', 'genesis_g90_3.jpg', 5 );
-insert into board_picture values( 0, 'genesis_g90_4.jpg', 'genesis_g90_4.jpg', 5 );
-insert into board_picture values( 0, 'genesis_g90_5.jpg', 'genesis_g90_5.jpg', 5 );
-insert into board_picture values( 0, 'genesis_g90_6.jpg', 'genesis_g90_6.jpg', 5 );
-insert into board_picture values( 0, 'genesis_g90_7.jpg', 'genesis_g90_7.jpg', 5 );
-insert into board_picture values( 0, 'genesis_g90_8.jpg', 'genesis_g90_8.jpg', 5 );
-insert into board_picture values( 0, 'genesis_g90_9.jpg', 'genesis_g90_9.jpg', 5 );
-insert into board_picture values( 0, 'i30_1.jpg', 'i30_1.jpg', 6 );
-insert into board_picture values( 0, 'i30_2.jpg', 'i30_2.jpg', 6 );
-insert into board_picture values( 0, 'i30_3.jpg', 'i30_3.jpg', 6 );
-insert into board_picture values( 0, 'i30_4.jpg', 'i30_4.jpg', 6 );
-insert into board_picture values( 0, 'i30_5.jpg', 'i30_5.jpg', 6 );
-insert into board_picture values( 0, 'i30_6.jpg', 'i30_6.jpg', 6 );
-insert into board_picture values( 0, 'i30_7.png', 'i30_7.png', 6 );
-insert into board_picture values( 0, 'i40_1.jpg', 'i40_1.jpg', 7 );
-insert into board_picture values( 0, 'i40_2.jpg', 'i40_2.jpg', 7 );
-insert into board_picture values( 0, 'i40_3.jpg', 'i40_3.jpg', 7 );
-insert into board_picture values( 0, 'i40_4.jpg', 'i40_4.jpg', 7 );
-insert into board_picture values( 0, 'i40_5.jpg', 'i40_5.jpg', 7 );
-insert into board_picture values( 0, 'i40_6.png', 'i40_6.png', 7 );
-insert into board_picture values( 0, 'avante_1.jpg', 'avante_1.jpg', 8 );
-insert into board_picture values( 0, 'avante_2.webp', 'avante_2.webp', 8 );
-insert into board_picture values( 0, 'avante_3.webp', 'avante_3.webp', 8 );
-insert into board_picture values( 0, 'avante_4.webp', 'avante_4.webp', 8 );
-insert into board_picture values( 0, 'avante_5.webp', 'avante_5.webp', 8 );
-insert into board_picture values( 0, 'avante_6.webp', 'avante_6.webp', 8 );
-insert into board_picture values( 0, 'avante_7.webp', 'avante_7.webp', 8 );
-insert into board_picture values( 0, 'grandeur_1.jpg', 'grandeur_1.jpg', 9 );
-insert into board_picture values( 0, 'grandeur_2.jpg', 'grandeur_2.jpg', 9 );
-insert into board_picture values( 0, 'grandeur_3.jpg', 'grandeur_3.jpg', 9 );
-insert into board_picture values( 0, 'grandeur_4.jpg', 'grandeur_4.jpg', 9 );
-insert into board_picture values( 0, 'grandeur_5.jpg', 'grandeur_5.jpg', 9 );
-insert into board_picture values( 0, 'grandeur_6.webp', 'grandeur_6.webp', 9 );
-insert into board_picture values( 0, 'grandeur_7.webp', 'grandeur_7.webp', 9 );
-insert into board_picture values( 0, 'grandeur_8.webp', 'grandeur_8.webp', 9 );
-insert into board_picture values( 0, 'grandeur_9.webp', 'grandeur_9.webp', 9 );
-insert into board_picture values( 0, 'palisade_1.webp', 'palisade_1.webp', 10 );
-insert into board_picture values( 0, 'palisade_2.webp', 'palisade_2.webp', 10 );
-insert into board_picture values( 0, 'palisade_3.webp', 'palisade_3.webp', 10 );
-insert into board_picture values( 0, 'palisade_4.webp', 'palisade_4.webp', 10 );
-insert into board_picture values( 0, 'palisade_5.webp', 'palisade_5.webp', 10 );
-insert into board_picture values( 0, 'palisade_6.webp', 'palisade_6.webp', 10 );
-insert into board_picture values( 0, 'palisade_7.webp', 'palisade_7.webp', 10 );
-insert into board_picture values( 0, 'santafe_1.jpg', 'santafe_1.jpg', 11 );
-insert into board_picture values( 0, 'santafe_2.webp', 'santafe_2.webp', 11 );
-insert into board_picture values( 0, 'santafe_3.webp', 'santafe_3.webp', 11 );
-insert into board_picture values( 0, 'santafe_4.webp', 'santafe_4.webp', 11 );
-insert into board_picture values( 0, 'santafe_5.webp', 'santafe_5.webp', 11 );
-insert into board_picture values( 0, 'santafe_6.webp', 'santafe_6.webp', 11 );
-insert into board_picture values( 0, 'santafe_7.webp', 'santafe_7.webp', 11 );
-insert into board_picture values( 0, 'santafe_8.webp', 'santafe_8.webp', 11 );
-insert into board_picture values( 0, 'santafe_9.webp', 'santafe_9.webp', 11 );
-insert into board_picture values( 0, 'sonata_1.jpg', 'sonata_1.jpg', 12 );
-insert into board_picture values( 0, 'sonata_2.webp', 'sonata_2.webp', 12 );
-insert into board_picture values( 0, 'sonata_3.webp', 'sonata_3.webp', 12 );
-insert into board_picture values( 0, 'sonata_4.webp', 'sonata_4.webp', 12 );
-insert into board_picture values( 0, 'sonata_5.webp', 'sonata_5.webp', 12 );
-insert into board_picture values( 0, 'sonata_6.webp', 'sonata_6.webp', 12 );
-insert into board_picture values( 0, 'sonata_7.webp', 'sonata_7.webp', 12 );
-insert into board_picture values( 0, 'starex_1.webp', 'starex_1.webp', 13 );
-insert into board_picture values( 0, 'starex_2.webp', 'starex_2.webp', 13 );
-insert into board_picture values( 0, 'starex_3.webp', 'starex_3.webp', 13 );
-insert into board_picture values( 0, 'starex_4.webp', 'starex_4.webp', 13 );
-insert into board_picture values( 0, 'starex_5.webp', 'starex_5.webp', 13 );
-insert into board_picture values( 0, 'starex_6.webp', 'starex_6.webp', 13 );
-insert into board_picture values( 0, 'tucson_1.webp', 'tucson_1.webp', 14 );
-insert into board_picture values( 0, 'tucson_2.webp', 'tucson_2.webp', 14 );
-insert into board_picture values( 0, 'tucson_3.webp', 'tucson_3.webp', 14 );
-insert into board_picture values( 0, 'tucson_4.webp', 'tucson_4.webp', 14 );
-insert into board_picture values( 0, 'tucson_5.webp', 'tucson_5.webp', 14 );
-insert into board_picture values( 0, 'tucson_6.webp', 'tucson_6.webp', 14 );
-insert into board_picture values( 0, 'tucson_7.webp', 'tucson_7.webp', 14 );
-insert into board_picture values( 0, 'tucson_8.webp', 'tucson_8.webp', 14 );
-insert into board_picture values( 0, 'tucson_9.webp', 'tucson_9.webp', 14 );
-insert into board_picture values( 0, 'veloster_1.jpg', 'veloster_1.jpg', 15 );
-insert into board_picture values( 0, 'veloster_2.webp', 'veloster_2.webp', 15 );
-insert into board_picture values( 0, 'veloster_3.webp', 'veloster_3.webp', 15 );
-insert into board_picture values( 0, 'veloster_4.webp', 'veloster_4.webp', 15 );
-insert into board_picture values( 0, 'veloster_5.webp', 'veloster_5.webp', 15 );
-insert into board_picture values( 0, 'veloster_6.webp', 'veloster_6.webp', 15 );
-insert into board_picture values( 0, 'veloster_6.webp', 'veloster_6.webp', 16 );
-insert into board_picture values( 0, 'veloster_5.webp', 'veloster_5.webp', 17 );
-insert into board_picture values( 0, 'veloster_4.webp', 'veloster_4.webp', 18 );
-insert into board_picture values( 0, 'veloster_3.webp', 'veloster_3.webp', 19 );
-insert into board_picture values( 0, 'veloster_2.webp', 'veloster_2.webp', 20 );
+
+insert into board_picture values( 0, 'avantee_1.jpg', 'avantee_1.jpg', 1 );
+insert into board_picture values( 0, 'avante_2.jpg', 'avante_2.jpg', 1 );
+insert into board_picture values( 0, 'avante_3.jpg', 'avante_3.jpg', 1 );
+insert into board_picture values( 0, 'avante_4.jpg', 'avante_4.jpg', 1 );
+insert into board_picture values( 0, 'g70_1.jpg', 'g70_1.jpg', 2 );
+insert into board_picture values( 0, 'g70_2.jpg', 'g70_2.jpg', 2 );
+insert into board_picture values( 0, 'g70_3.jpg', 'g70_3.jpg', 2 );
+insert into board_picture values( 0, 'g70_4.jpg', 'g70_4.jpg', 2 );
+insert into board_picture values( 0, 'g80_1.jpg', 'g80_1.jpg', 3 );
+insert into board_picture values( 0, 'g80_2.jpg', 'g80_2.jpg', 3 );
+insert into board_picture values( 0, 'g80_3.jpg', 'g80_3.jpg',3 );
+insert into board_picture values( 0, 'g80_4.jpg', 'g80_4.jpg', 3 );
+insert into board_picture values( 0, 'g90_1.jpg', 'g90_1.jpg', 4 );
+insert into board_picture values( 0, 'g90_2.jpg', 'g90_2.jpg', 4 );
+insert into board_picture values( 0, 'g90_3.jpg', 'g90_3.jpg', 4 );
+insert into board_picture values( 0, 'g90_4.jpg', 'g90_4.jpg', 4 );
+insert into board_picture values( 0, 'grandeurr_1.jpg', 'grandeurr_1.jpg', 5 );
+insert into board_picture values( 0, 'grandeur_2.jpg', 'grandeur_2.jpg', 5 );
+insert into board_picture values( 0, 'grandeur_3.jpg', 'grandeur_3.jpg', 5 );
+insert into board_picture values( 0, 'grandeur_4.jpg', 'grandeur_4.jpg', 5 );
+insert into board_picture values( 0, 'i30_1.png', 'i30_1.png', 6 );
+insert into board_picture values( 0, 'i30_2.png', 'i30_2.png', 6 );
+insert into board_picture values( 0, 'i30_3.png', 'i30_3.png', 6 );
+insert into board_picture values( 0, 'i30_4.png', 'i30_4.png', 6 );
+insert into board_picture values( 0, 'i40_1.png', 'i40_1.png', 7 );
+insert into board_picture values( 0, 'i40_2.png', 'i40_2.png', 7 );
+insert into board_picture values( 0, 'i40_3.png', 'i40_3.png', 7 );
+insert into board_picture values( 0, 'i40_4.png', 'i40_4.png', 7 );
+insert into board_picture values( 0, 'kona_1.jpg', 'kona_1.jpg', 8 );
+insert into board_picture values( 0, 'kona_2.jpg', 'kona_2.jpg', 8 );
+insert into board_picture values( 0, 'kona_3.jpg', 'kona_3.jpg', 8 );
+insert into board_picture values( 0, 'kona_4.jpg', 'kona_4.jpg', 8 );
+insert into board_picture values( 0, 'palisade_1.jpg', 'palisade_1.jpg', 9 );
+insert into board_picture values( 0, 'palisade_2.jpg', 'palisade_2.jpg', 9 );
+insert into board_picture values( 0, 'palisade_3.jpg', 'palisade_3.jpg', 9 );
+insert into board_picture values( 0, 'palisade_4.jpg', 'palisade_4.jpg', 9 );
+insert into board_picture values( 0, 'santafee_1.jpg', 'santafee_1.jpg', 10 );
+insert into board_picture values( 0, 'santafee_2.jpp', 'santafee_2.jpp', 10 );
+insert into board_picture values( 0, 'santafee_3.jpp', 'santafee_3.jpp', 10 );
+insert into board_picture values( 0, 'santafee_4.jpp', 'santafee_4.jpg', 10 );
+insert into board_picture values( 0, 'sonataa_1.jpg', 'sonataa_1.jpg', 11 );
+insert into board_picture values( 0, 'sonata_2.jpg', 'sonata_2.jpg', 11 );
+insert into board_picture values( 0, 'sonata_3.jpg', 'sonata_3.jpg', 11 );
+insert into board_picture values( 0, 'sonata_4.jpg', 'sonata_4.jpg', 11 );
+insert into board_picture values( 0, 'starex_1.jpg', 'starex_1.jpg', 12 );
+insert into board_picture values( 0, 'starex_2.jpg', 'starex_2.jpg', 12 );
+insert into board_picture values( 0, 'starex_3.jpg', 'starex_3.jpg', 12 );
+insert into board_picture values( 0, 'starex_4.jpg', 'starex_4.jpg', 12 );
+insert into board_picture values( 0, 'tucson_1.jpg', 'tucson_1.jpg', 13 );
+insert into board_picture values( 0, 'tucson_2.jpg', 'tucson_2.jpg', 13 );
+insert into board_picture values( 0, 'tucson_3.jpg', 'tucson_3.jpg', 13 );
+insert into board_picture values( 0, 'tucson_4.jpg', 'tucson_4.jpg', 13 );
+insert into board_picture values( 0, 'velosterr_1.jpg', 'velosterr_1.jpg', 14 );
+insert into board_picture values( 0, 'veloster_2.jpg', 'veloster_2.jpg', 14 );
+insert into board_picture values( 0, 'veloster_3.jpg', 'veloster_3.jpg', 14 );
+insert into board_picture values( 0, 'veloster_4.jpg', 'veloster_4.jpg', 14 );
+insert into board_picture values( 0, 'venuee_1.jpg', 'venuee_1.jpg', 15 );
+insert into board_picture values( 0, 'venue_2.jpg', 'venue_2.jpg', 15 );
+insert into board_picture values( 0, 'venue_3.jpg', 'venue_3.jpg', 15 );
+insert into board_picture values( 0, 'venue_4.jpg', 'venue_4.jpg', 15 );
 
 -- estimate 페이지 car_data 테이블 dummy 데이터
 insert into car_data values (0, "아반테", "18500000", "2021", "Avante.jpg");
