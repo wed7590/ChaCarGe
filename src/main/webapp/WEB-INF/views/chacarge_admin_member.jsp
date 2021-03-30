@@ -25,17 +25,13 @@
 		String visit_date = to.getVisit_date();
 		
 		sbHtmlManagement.append("<tr>");
-		sbHtmlManagement.append("	<td width='8%'>" + user_seq + "</td>");
+		sbHtmlManagement.append("	<td width='12%'>" + user_seq + "</td>");
 		sbHtmlManagement.append("	<td width='12%'>" + user_id + "</td>");
-/* 		sbHtmlManagement.append("	<td width='12%'>" + user_token + "</td>"); */
-		sbHtmlManagement.append("	<td width='8%'>" + user_name + "</td>");
+		sbHtmlManagement.append("	<td width='12%'>" + user_name + "</td>");
 		sbHtmlManagement.append("	<td width='28%'>" + user_email + "</td>");
 		sbHtmlManagement.append("	<td width='12%'>" + user_join_date.substring(0, 10) + "</td>");
-		sbHtmlManagement.append("	<td width='8%'>" + user_grade + "</td>");
+		sbHtmlManagement.append("	<td width='12%'>" + user_grade + "</td>");
 		sbHtmlManagement.append("	<td width='12%'>" + visit_date.substring(0, 10) + "</td>");
-		sbHtmlManagement.append("	<td width='12%'>");
-		sbHtmlManagement.append("		<input type='button' value='삭제' id='" + user_seq + "' onclick='button_delete()'>");
-		sbHtmlManagement.append("	</td>");
 		sbHtmlManagement.append("</tr>");
 	}
 
@@ -72,6 +68,13 @@
 <!-- board_admin_table CSS - 표 양식 부분 -->
 <link href="resources/css/admin_table.css" rel="stylesheet">
 
+<!-- 회원 탈퇴용 테마 -->
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> -->
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <style>
 .board_input {border:1px solid #cecece; height:24px; width:160px;}
 .clickable {cursor:pointer;}
@@ -88,19 +91,16 @@
 
 <!-- 삭제용 확인창 부분 -->
 <script type="text/javascript">
-	function button_delete(){
-		if (confirm("정말 삭제하시겠습니까?")==true) {
-			// 확인
-			document.form.submit();
-		} else {
-			// 취소
-			return;
-		}
-	}
-	
-	
-	
-	
+	$(document).ready(function(){
+		// 제출시
+		$("#submit").on("click", function(){
+			if(confirm("정말 탈퇴시키겠습니까?") == true) {
+				document.dfrm.submit();
+			} else {
+				return false;
+			}
+		});
+	})
 </script>
 
 </head>
@@ -150,20 +150,32 @@
 										<table class="table paginated">
 											<thead>
 												<tr>
-	 												<th width="8%">번호</th>
+	 												<th width="12%">번호</th>
 													<th width="12%">ID</th>
-													<th width="8%">이름</th>
+													<th width="12%">이름</th>
 													<th width="28%">이메일</th>
 													<th width="12%">가입일</th>
-													<th width="8%">등급</th>
+													<th width="12%">등급</th>
 													<th width="12%">최종방문일</th>
-													<th width="12%"></th>
 												</tr>
 											</thead>
 											<tbody>
 												<%=sbHtmlManagement %>
 											</tbody>
 										</table>
+									</div>
+									<hr/>
+									<h4 class="section-heading">회원 강제 탈퇴</h4>
+									<div class="board">
+										<form action="chacarge_admin_member_delete.do" method="get" name="dfrm">
+											<div class="form-group has-feedback">
+												<label class="control-label" for="userId">아이디</label>
+												<input class="form-control" type="text" id="user_id" name="user_id" placeholder="탈퇴시킬 회원 ID" />
+											</div>
+											<div class="form-group has-feedback">
+												<button class="btn btn-success" type="submit" id="submit">회원탈퇴</button>
+											</div>
+										</form>
 									</div>
 									<hr/>
 									<h4 class="section-heading">현재 회원 수</h4>

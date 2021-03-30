@@ -8,26 +8,7 @@
 <%@ include file="header.jsp" %>
 
 <%
-	ArrayList<AdminTO> deal_management = (ArrayList)request.getAttribute("deal_management");
-	
-	// sbHtmlManagement 안에 회원 목록 데이터 담아서 html 양식으로 출력
-	StringBuffer sbHtmlManagement = new StringBuffer();
-	
-	for (AdminTO to : deal_management) {
-		int board_seq = to.getBoard_seq();
-		String board_subject = to.getBoard_subject();
-		String user_id = to.getUser_id();
-		int board_hit = to.getBoard_hit();
-		String board_wdate = to.getBoard_wdate();
-		
-		sbHtmlManagement.append("<tr>");
-		sbHtmlManagement.append("	<td width='12%'>" + board_seq + "</td>");
-		sbHtmlManagement.append("	<td width='52%'>" + board_subject + "</td>");
-		sbHtmlManagement.append("	<td width='12%'>" + user_id + "</td>");
-		sbHtmlManagement.append("	<td width='12%'>" + board_hit + "</td>");
-		sbHtmlManagement.append("	<td width='12%'>" + board_wdate.substring(0, 10) + "</td>");
-		sbHtmlManagement.append("</tr>");
-	}
+
 %>
 
 <!DOCTYPE html>
@@ -40,7 +21,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>ChaCarGe - 차카게 관리자 페이지</title>
+<title>ChaCarGe - 차카게 마이 페이지</title>
 
 <!-- Bootstrap core CSS -->
 <link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -50,6 +31,13 @@
 
 <!-- board_admin_table CSS - 표 양식 부분 -->
 <link href="resources/css/admin_table.css" rel="stylesheet">
+
+<!-- 회원 탈퇴용 테마 -->
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> -->
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <style>
 .board_input {border:1px solid #cecece; height:24px; width:160px;}
@@ -65,6 +53,20 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="resources/js/board_paging.js"></script>
 
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		// 제출시
+		$("#submit").on("click", function(){
+			if(confirm("정말 탈퇴하시겠습니까?") == true) {
+				document.dfrm.submit();
+			} else {
+				return false;
+			}
+		});
+	})
+</script>
+
 </head>
 
 <body>
@@ -77,52 +79,47 @@
 
 	<!-- 페이지 제목 -->
 		<!-- Page Heading/Breadcrumbs -->
-		<h1 class="mt-4 mb-3">관리자 페이지</h1>
+		<h1 class="mt-4 mb-3">마이 페이지</h1>
 
 	<!-- 페이지 경로 표시 -->
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="chacarge_home.do">Home</a></li>
-			<li class="breadcrumb-item"><a>관리자 페이지</a></li>
-			<li class="breadcrumb-item">매물 게시판 관리</li>
+			<li class="breadcrumb-item"><a>마이 페이지</a></li>
+			<li class="breadcrumb-item">회원 탈퇴</li>
 		</ol>
 
-<%@ include file="header_admin_side.jsp" %>
+<%@ include file="header_mypage_side.jsp" %>
 
 		<!-- 내용 설정 -->
 			<!-- Content Column -->
 			<div class="col-lg-9 mb-4">
-				<h2>매물 게시판 관리</h2>
-				<p>ChaCarGe.net 의 매물을 관리할 수 있습니다.</p>
+				<h2>회원 탈퇴</h2>
 				<hr/>
 			    <div class="docs-wrapper">
 				    <div class="docs-content">
 					    <div class="container">
 						    <article class="docs-article" id="section-1">
 								<section class="docs-section" id="item-1-1">
-									<span id="list_modal">
-										<h4 class="section-heading">매물 게시판 목록</h4>
-									</span>
-									<span id="setting_modal">
-										<form action="chacarge_admin_deal.do" method="get">
-											<input type="text" name="board_search" id="board_search" placeholder="게시물 제목 검색" value="${board_search }"/>
-											<button type="submit">검색</button>
-										</form>
-									</span>
 									<div class="board">
-										<table class="table paginated">
-											<thead>
-												<tr>
-													<th width="12%">글번호</th>
-													<th width="52%">글제목</th>
-													<th width="12%">작성자 ID</th>
-													<th width="12%">조회 수</th>
-													<th width="12%">올린 날짜</th>
-												</tr>
-											</thead>
-											<tbody>
-												<%=sbHtmlManagement %>
-											</tbody>	
-										</table>
+										<section id="container">
+											<form action="chacarge_mypage_withdrawal_ok.do?user_seq=${login.user_seq}" method="get" name="dfrm">
+												<div class="form-group has-feedback">
+													<label class="control-label" for="userId">아이디</label>
+													<input class="form-control" type="text" id="user_id" name="user_id" value="${login.user_id}" readonly="readonly"/>
+												</div>
+<!-- 												<div class="form-group has-feedback">
+													<label class="control-label" for="userPass">패스워드</label>
+													<input class="form-control" type="password" id="user_password" name="user_password" />
+												</div> -->
+												<div class="form-group has-feedback">
+													<label class="control-label" for="userName">성명</label>
+													<input class="form-control" type="text" id="user_name" name="user_name" value="${login.user_name}" readonly="readonly"/>
+												</div>
+												<div class="form-group has-feedback">
+													<button class="btn btn-success" type="submit" id="submit">회원탈퇴</button>
+												</div>
+											</form>
+										</section>
 									</div>
 								</section>
 							</article>

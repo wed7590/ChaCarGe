@@ -8,25 +8,24 @@
 <%@ include file="header.jsp" %>
 
 <%
-	ArrayList<AdminTO> deal_management = (ArrayList)request.getAttribute("deal_management");
+	ArrayList<AdminTO> deal_list = (ArrayList)request.getAttribute("deal_list");
 	
-	// sbHtmlManagement 안에 회원 목록 데이터 담아서 html 양식으로 출력
-	StringBuffer sbHtmlManagement = new StringBuffer();
+	StringBuffer sbHtmlDeal = new StringBuffer();
 	
-	for (AdminTO to : deal_management) {
+	for (AdminTO to : deal_list) {
 		int board_seq = to.getBoard_seq();
 		String board_subject = to.getBoard_subject();
 		String user_id = to.getUser_id();
 		int board_hit = to.getBoard_hit();
 		String board_wdate = to.getBoard_wdate();
 		
-		sbHtmlManagement.append("<tr>");
-		sbHtmlManagement.append("	<td width='12%'>" + board_seq + "</td>");
-		sbHtmlManagement.append("	<td width='52%'>" + board_subject + "</td>");
-		sbHtmlManagement.append("	<td width='12%'>" + user_id + "</td>");
-		sbHtmlManagement.append("	<td width='12%'>" + board_hit + "</td>");
-		sbHtmlManagement.append("	<td width='12%'>" + board_wdate.substring(0, 10) + "</td>");
-		sbHtmlManagement.append("</tr>");
+		sbHtmlDeal.append("<tr>");
+		sbHtmlDeal.append("	<td width='12%'>" + board_seq + "</td>");
+		sbHtmlDeal.append("	<td width='52%'>" + board_subject + "</td>");
+		sbHtmlDeal.append("	<td width='12%'>" + user_id + "</td>");
+		sbHtmlDeal.append("	<td width='12%'>" + board_hit + "</td>");
+		sbHtmlDeal.append("	<td width='12%'>" + board_wdate.substring(0, 10) + "</td>");
+		sbHtmlDeal.append("</tr>");
 	}
 %>
 
@@ -40,7 +39,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>ChaCarGe - 차카게 관리자 페이지</title>
+<title>ChaCarGe - 차카게 마이 페이지</title>
 
 <!-- Bootstrap core CSS -->
 <link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -77,37 +76,27 @@
 
 	<!-- 페이지 제목 -->
 		<!-- Page Heading/Breadcrumbs -->
-		<h1 class="mt-4 mb-3">관리자 페이지</h1>
+		<h1 class="mt-4 mb-3">마이 페이지</h1>
 
 	<!-- 페이지 경로 표시 -->
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="chacarge_home.do">Home</a></li>
-			<li class="breadcrumb-item"><a>관리자 페이지</a></li>
-			<li class="breadcrumb-item">매물 게시판 관리</li>
+			<li class="breadcrumb-item"><a>마이 페이지</a></li>
+			<li class="breadcrumb-item">내 활동 보기</li>
 		</ol>
 
-<%@ include file="header_admin_side.jsp" %>
+<%@ include file="header_mypage_side.jsp" %>
 
 		<!-- 내용 설정 -->
 			<!-- Content Column -->
 			<div class="col-lg-9 mb-4">
-				<h2>매물 게시판 관리</h2>
-				<p>ChaCarGe.net 의 매물을 관리할 수 있습니다.</p>
+				<h2>내 활동 보기</h2>
 				<hr/>
 			    <div class="docs-wrapper">
 				    <div class="docs-content">
 					    <div class="container">
 						    <article class="docs-article" id="section-1">
 								<section class="docs-section" id="item-1-1">
-									<span id="list_modal">
-										<h4 class="section-heading">매물 게시판 목록</h4>
-									</span>
-									<span id="setting_modal">
-										<form action="chacarge_admin_deal.do" method="get">
-											<input type="text" name="board_search" id="board_search" placeholder="게시물 제목 검색" value="${board_search }"/>
-											<button type="submit">검색</button>
-										</form>
-									</span>
 									<div class="board">
 										<table class="table paginated">
 											<thead>
@@ -120,8 +109,8 @@
 												</tr>
 											</thead>
 											<tbody>
-												<%=sbHtmlManagement %>
-											</tbody>	
+												<%=sbHtmlDeal %>
+											</tbody>
 										</table>
 									</div>
 								</section>

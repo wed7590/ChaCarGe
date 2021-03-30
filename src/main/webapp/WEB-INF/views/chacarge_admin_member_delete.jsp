@@ -1,16 +1,16 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="true"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<input type="text" id="popupInput">
-	<input type="button" value="창닫기" onclick="window.close()">
-</body>
-</html>
+<%
+	int flag = (Integer)request.getAttribute( "flag" );
+		
+	out.println( "<script type='text/javascript'>" );
+	if( flag == 1 ) {
+		out.println( "alert( '회원 삭제에 성공했습니다.' );" );
+		out.println( "location.href='chacarge_admin_member.do';" );
+	} else {
+		out.println( "alert( '회원 삭제에 실패했습니다.' );");
+		out.println( "history.back();" );
+	}
+	out.println( "</script>" );
+%>

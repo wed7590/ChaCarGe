@@ -22,17 +22,17 @@
 	
 	
 	<!-- estimate 페이지에서 car_data 테이블의 car_name 데이터 가져오기 -->
-	<select id="estimate_forSelect_carNameData" parameterType="net.chacarge.model1.EstimateTO" resultType="net.chacarge.model1.EstimateTO">
+	<select id="estimate_forSelect_carNameData" resultType="net.chacarge.model1.EstimateTO">
 		select distinct car_name
 		from car_data
 		order by car_name asc
 	</select>
-	<select id="estimate_forSelect_carYearData" parameterType="net.chacarge.model1.EstimateTO" resultType="net.chacarge.model1.EstimateTO">
-		select distinct car_year
-		from car_data
-		order by cast(car_year as int) asc
+	<select id="estimate_forSelect_carYearData" resultType="net.chacarge.model1.EstimateTO">
+		select distinct car_ref_year
+		from car_reference_year
+		order by cast(car_ref_year as int) asc
 	</select>
-	<select id="estimate_forSelect_carAccidentData" parameterType="net.chacarge.model1.EstimateTO" resultType="net.chacarge.model1.EstimateTO">
+	<select id="estimate_forSelect_carAccidentData" resultType="net.chacarge.model1.EstimateTO">
 		select distinct car_ref_accident
 		from car_reference_accident
 		order by cast(car_ref_accident as int) asc
@@ -45,11 +45,17 @@
 	
 	
 	<!-- estimate 페이지에서 select 된 값에 대한 데이터 가져오기 -->
-	<select id="car_data_selected" parameterType="net.chacarge.model1.EstimateTO" resultType="net.chacarge.model1.EstimateTO">
-		select car_name, car_price, car_year, car_picture
+	<select id="car_name_selected" parameterType="net.chacarge.model1.EstimateTO" resultType="net.chacarge.model1.EstimateTO">
+		select car_name, car_price, car_picture
 		from car_data
 		where car_name = #{car_name}
-		and car_year = #{car_year}
+	</select>
+	<select id="car_year_selected" parameterType="net.chacarge.model1.EstimateTO" resultType="net.chacarge.model1.EstimateTO">
+		select car_ref_year, car_ref_year_rate
+		from car_reference_year
+		where car_ref_year = #{car_ref_year}
+		group by car_name
+		having car_name = #{car_name}
 	</select>
 	<select id="car_distance_selected" parameterType="net.chacarge.model1.EstimateTO" resultType="net.chacarge.model1.EstimateTO">
 		select car_ref_distance, car_ref_distance_rate
@@ -63,27 +69,8 @@
 	</select>
 	
 	
-	<!-- estimate 페이지에서 select 된 값에 대한 데이터 가져오기 -->
-	<select id="car_data_selected_ok" parameterType="net.chacarge.model1.EstimateOkTO" resultType="net.chacarge.model1.EstimateOkTO">
-		select car_name, car_price, car_year, car_picture
-		from car_data
-		where car_name = #{car_name}
-		and car_year = #{car_year}
-	</select>
-	<select id="car_distance_selected_ok" parameterType="net.chacarge.model1.EstimateOkTO" resultType="net.chacarge.model1.EstimateOkTO">
-		select car_ref_distance, car_ref_distance_rate
-		from car_reference_distance
-		where car_ref_distance = #{car_ref_distance}
-	</select>
-	<select id="car_accident_selected_ok" parameterType="net.chacarge.model1.EstimateOkTO" resultType="net.chacarge.model1.EstimateOkTO">
-		select car_ref_accident, car_ref_accident_rate
-		from car_reference_accident
-		where car_ref_accident = #{car_ref_accident}
-	</select>
-	
-	
 	<!-- admin_member_management -->
-	<select id="member_management" parameterType="net.chacarge.model1.AdminTO" resultType="net.chacarge.model1.AdminTO">
+	<select id="member_management" resultType="net.chacarge.model1.AdminTO">
 		select user.user_seq, user_id, user_token, user_name, user_email, user_join_date, user_grade, visitor.visit_date
 		from user
 		join visitor
@@ -108,6 +95,11 @@
 		select count(user_seq) user_count
 		from user
 	</select>
+	<!-- admin_member_delete -->
+	<delete id="member_delete" parameterType="net.chacarge.model1.AdminTO" >
+		delete from user
+		where user_id = #{user_id}
+	</delete>
 	
 	
 	<!-- admin_deal_management -->
@@ -136,7 +128,6 @@
 		group by visitor.visit_date
 		order by visit_date desc
 	</select>
-	
 	<!-- admin_statistics_member -->
 	<select id="statistics_member" parameterType="net.chacarge.model1.AdminTO" resultType="net.chacarge.model1.AdminTO"> 
 		select user_join_date, count(user_seq) user_count, sum(count(user_seq)) over(order by user_join_date) user_sum_count
@@ -144,7 +135,6 @@
 		group by user_join_date
 		order by user_join_date desc
 	</select>
-	
 	<!-- admin_statistics_deal -->
 	<select id="statistics_deal" parameterType="net.chacarge.model1.AdminTO" resultType="net.chacarge.model1.AdminTO"> 
 		select board_wdate, count(board_seq) board_count, sum(count(board_seq)) over(order by board_wdate) board_sum_count
@@ -152,6 +142,7 @@
 		group by board_wdate
 		order by board_wdate desc
 	</select>
+	
 	
 	<!-- board_list -->
 	<!-- select board.board_seq, board_subject, substring_index( board_content, "<br/>", 5 ), board_hit, date_format(board_wdate, '%Y-%m-%d') board_wdate, user_seq, board_pic_seq, u_pic_name -->
@@ -214,5 +205,28 @@
 	<delete id="board_delete_pic" parameterType="net.chacarge.model1.BoardTO" >
 		delete from board_picture
 		where board_seq = ${board_seq}
+	</delete>
+	
+	
+	<!-- mypage 회원 정보 수정 -->
+	<update id="mypage_modify" parameterType="net.chacarge.model1.AdminTO">
+		update
+		user
+		set user_name = #{user_name}, user_email = #{user_email}
+		where user_id = #{user_id}
+	</update>
+	<!-- mypage 회원 활동 -->
+	<select id="mypage_deal_list" resultType="net.chacarge.model1.AdminTO">
+		select board_seq, board_subject, board_content, board_hit, board_wdate, user.user_id
+		from board
+		join user
+		where board.user_seq = ${user_seq}
+		and board.user_seq = user.user_seq
+	</select>
+	<!-- mypage 회원 탈퇴 -->
+	<delete id="mypage_withdrawal" parameterType="net.chacarge.model1.AdminTO">
+		delete
+		from user
+		where user_id = #{user_id}
 	</delete>
 </mapper>

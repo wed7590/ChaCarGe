@@ -41,60 +41,62 @@ public class EstimateDAO {
 	
 	// estimate 페이지에서 select 된 값에 대한 데이터 확인
 	// estimate_car_data_selected_ok
-	public int estimate_car_data_selected_ok(EstimateTO to) {
+	public List<EstimateTO> estimate_car_name_selected_ok(EstimateTO to) {
 		
-		int flag_data = 2;
-		List<EstimateTO> car_data_selected_ok = sqlSession.selectList("car_data_selected", to);
-		if (car_data_selected_ok.size() == 0) {
-			flag_data = 1;
-		} else {
-			flag_data = 0;
-		}
-		return flag_data;
+		List<EstimateTO> car_name_selected_ok = sqlSession.selectList("car_name_selected", to);
+		return car_name_selected_ok;
+	}
+	// estimate_car_year_selected_ok
+	public List<EstimateTO> estimate_car_year_selected_ok(EstimateTO to) {
+		
+		List<EstimateTO> car_year_selected_ok = sqlSession.selectList("car_year_selected", to);
+		return car_year_selected_ok;
 	}
 	// estimate_car_distance_selected_ok
-	public int estimate_car_distance_selected_ok(EstimateTO to) {
-			
-		int flag_distance = 2;
+	public List<EstimateTO> estimate_car_distance_selected_ok(EstimateTO to) {
+		
 		List<EstimateTO> car_distance_selected_ok = sqlSession.selectList("car_distance_selected", to);
-		if (car_distance_selected_ok.size() == 0) {
-			flag_distance = 1;
-		} else {
-			flag_distance = 0;
-		}
-		return flag_distance;
+		return car_distance_selected_ok;
 	}
 	// estimate_car_accident_selected_ok
-	public int estimate_car_accident_selected_ok(EstimateTO to) {
+	public List<EstimateTO> estimate_car_accident_selected_ok(EstimateTO to) {
 		
-		int flag_accident = 2;
 		List<EstimateTO> car_accident_selected_ok = sqlSession.selectList("car_accident_selected", to);
-		if (car_accident_selected_ok.size() == 0) {
-			flag_accident = 1;
-		} else {
-			flag_accident = 0;
-		}
-		return flag_accident;
+		return car_accident_selected_ok;
 	}
 	
 	
-	// estimate 페이지에서 select 된 값에 대한 데이터 가져오기
-	// estimate_car_data_selected
-	public List<EstimateOkTO> estimate_car_data_selected(EstimateOkTO took) {
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 		
-		List<EstimateOkTO> estimate_car_data_selected = sqlSession.selectList("car_data_selected_ok", took);
-		return estimate_car_data_selected;
-	}
-	// estimate_car_data_selected
-	public List<EstimateOkTO> estimate_car_distance_selected(EstimateOkTO took) {
-		
-		List<EstimateOkTO> estimate_car_distance_selected = sqlSession.selectList("car_distance_selected_ok", took);
-		return estimate_car_distance_selected;
-	}
-	// estimate_car_data_selected
-	public List<EstimateOkTO> estimate_car_accident_selected(EstimateOkTO took) {
-		
-		List<EstimateOkTO> estimate_car_accident_selected = sqlSession.selectList("car_accident_selected_ok", took);
-		return estimate_car_accident_selected;
-	}
+	
+		/*
+		 * // estimate 페이지에서 select 된 값에 대한 데이터 확인 // estimate_car_data_selected public
+		 * EstimateTO estimate_car_name_selected(EstimateTO to) {
+		 * 
+		 * EstimateTO car_name_selected_ok = sqlSession.selectOne("car_name_selected",
+		 * to); return car_name_selected_ok; } // estimate_car_year_selected public
+		 * EstimateTO estimate_car_year_selected(EstimateTO to) {
+		 * 
+		 * EstimateTO car_year_selected_ok = sqlSession.selectOne("car_year_selected",
+		 * to); return car_year_selected_ok; } // estimate_car_distance_selected public
+		 * EstimateTO estimate_car_distance_selected(EstimateTO to) {
+		 * 
+		 * EstimateTO car_distance_selected_ok =
+		 * sqlSession.selectOne("car_distance_selected", to); return
+		 * car_distance_selected_ok; } // estimate_car_accident_selected public
+		 * EstimateTO estimate_car_accident_selected(EstimateTO to) {
+		 * 
+		 * EstimateTO car_accident_selected_ok =
+		 * sqlSession.selectOne("car_accident_selected", to); return
+		 * car_accident_selected_ok; }
+		 */
 }

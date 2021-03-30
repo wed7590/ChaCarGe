@@ -3,6 +3,7 @@ package net.chacarge.controller;
 import java.util.List;
 import java.util.Locale;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,17 +15,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import net.chacarge.model1.AdminDAO;
 import net.chacarge.model1.AdminTO;
+import net.chacarge.service.AdminService;
 
 @Controller
 public class AdminController {
 	@Autowired
 	private AdminDAO adminDAO;
+
+	private final AdminService adminService;
+	
+	@Inject
+	public AdminController(AdminService adminService) {
+		this.adminService = adminService;
+	}
 	
 	@RequestMapping(value = "/chacarge_admin_member.do", method = RequestMethod.GET)
-	public String chacarge_admin_member(HttpServletRequest request, HttpServletResponse response, Locale locale, Model model) {
+	public String chacarge_admin_member(HttpServletRequest request, Locale locale, Model model) {
 		
-		AdminTO to  = new AdminTO();
-		to.setUser_search(request.getParameter("user_search"));
+		AdminTO adminTO  = new AdminTO();
+		adminTO.setUser_search(request.getParameter("user_search"));
 		
 		// 회원 목록 데이터 받기
 		if (request.getParameter("user_search")==null || request.getParameter("user_search").contentEquals("")) {
@@ -33,10 +42,10 @@ public class AdminController {
 			model.addAttribute("member_management", member_management);
 		} else {
 			// 회원 목록 검색 O 경우
-			List<AdminTO> member_management_search = adminDAO.member_management_search(to.getUser_search());
+			List<AdminTO> member_management_search = adminDAO.member_management_search(adminTO.getUser_search());
 			model.addAttribute("member_management", member_management_search);
 		}
-				
+
 		// 현재 회원수 데이터 받기
 		List<AdminTO> member_count = adminDAO.member_count();
 		model.addAttribute("member_count", member_count);
@@ -44,6 +53,17 @@ public class AdminController {
 		return "chacarge_admin_member";
 	}
 
+	@RequestMapping(value = "/chacarge_admin_member_delete.do", method = RequestMethod.GET)
+	public String chacarge_admin_member_delete(HttpServletRequest request, Locale locale, Model model) throws Exception {
+
+		AdminTO adminTO = new AdminTO();
+		adminTO.setUser_id(request.getParameter("user_id"));
+		
+		int flag = adminService.member_delete(adminTO);
+		model.addAttribute("flag", flag);
+		
+		return "chacarge_admin_member_delete";
+	}
 	
 	@RequestMapping(value = "/chacarge_admin_deal.do", method = RequestMethod.GET)
 	public String chacarge_admin_deal(HttpServletRequest request, HttpServletResponse response, Locale locale, Model model) {
@@ -59,6 +79,7 @@ public class AdminController {
 			List<AdminTO> deal_management_search = adminDAO.deal_management_search(to.getBoard_search());
 			model.addAttribute("deal_management", deal_management_search);
 		}
+		
 		return "chacarge_admin_deal";
 	}
 	

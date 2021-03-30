@@ -1,10 +1,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page session="true"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <%@ page import="net.chacarge.model1.EstimateTO" %>
-<%@ page import="net.chacarge.model1.EstimateOkTO" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ include file="header.jsp" %>
 
@@ -32,8 +32,8 @@
 	}
 
 	for (EstimateTO to : estimate_forSelect_carYearData) {
-		String car_year = to.getCar_year();
-		sbHtmlForSelectCarYearData.append("<option value='" + car_year +"'>" + car_year + "</option>");
+		String car_ref_year = to.getCar_ref_year();
+		sbHtmlForSelectCarYearData.append("<option value='" + car_ref_year +"'>" + car_ref_year + "</option>");
 	}
 	
 	for (EstimateTO to : estimate_forSelect_carAccidentData) {
@@ -62,35 +62,42 @@
 /* 	ArrayList<EstimateTO> estimate_carImage = (ArrayList)request.getAttribute("estimate_carImage");
 	StringBuffer carImage = new StringBuffer(); */
 	
-	ArrayList<EstimateOkTO> estimate_car_data_selected  = (ArrayList)request.getAttribute("estimate_car_data_selected");
-	ArrayList<EstimateOkTO> estimate_car_distance_selected  = (ArrayList)request.getAttribute("estimate_car_distance_selected");
-	ArrayList<EstimateOkTO> estimate_car_accident_selected  = (ArrayList)request.getAttribute("estimate_car_accident_selected");
+	ArrayList<EstimateTO> estimate_car_name_selected  = (ArrayList)request.getAttribute("estimate_car_name_selected");
+	ArrayList<EstimateTO> estimate_car_year_selected  = (ArrayList)request.getAttribute("estimate_car_year_selected");
+	ArrayList<EstimateTO> estimate_car_distance_selected  = (ArrayList)request.getAttribute("estimate_car_distance_selected");
+	ArrayList<EstimateTO> estimate_car_accident_selected  = (ArrayList)request.getAttribute("estimate_car_accident_selected");
 
 	StringBuffer sbHtmlCarNameSelected = new StringBuffer();
-	StringBuffer sbHtmlCarYearSelected = new StringBuffer();
 	StringBuffer sbHtmlCarPictureSelected = new StringBuffer();
+	StringBuffer sbHtmlCarPrice = new StringBuffer();
+	StringBuffer sbHtmlCarRefYear = new StringBuffer();
+	StringBuffer sbHtmlCarRefYearRate = new StringBuffer();
 	StringBuffer sbHtmlCarRefDistance = new StringBuffer();
 	StringBuffer sbHtmlCarRefDistanceRate = new StringBuffer();
 	StringBuffer sbHtmlCarRefAccident = new StringBuffer();
 	StringBuffer sbHtmlCarRefAccidentRate = new StringBuffer();
 	
-	
-	for (EstimateOkTO took : estimate_car_data_selected) {
-		sbHtmlCarNameSelected.append(took.getCar_name());
-		sbHtmlCarYearSelected.append(took.getCar_year());
-		sbHtmlCarYearSelected.append(" 년");
+	for (EstimateTO to : estimate_car_name_selected) {
+		sbHtmlCarNameSelected.append(to.getCar_name());
 		sbHtmlCarPictureSelected.append("upload/car_default_image/");
-		sbHtmlCarPictureSelected.append(took.getCar_picture());
+		sbHtmlCarPictureSelected.append(to.getCar_picture());
+		sbHtmlCarPrice.append(to.getCar_price());
 	}
 	
-	for (EstimateOkTO took : estimate_car_distance_selected) {
-		sbHtmlCarRefDistance.append(took.getCar_ref_distance());
+	for (EstimateTO to : estimate_car_year_selected) {
+		sbHtmlCarRefYear.append(to.getCar_ref_year());
+		sbHtmlCarRefYear.append(" 년");
+		sbHtmlCarRefYearRate.append(to.getCar_ref_year_rate());
+	}
+		
+	for (EstimateTO to : estimate_car_distance_selected) {
+		sbHtmlCarRefDistance.append(to.getCar_ref_distance());
 		sbHtmlCarRefDistance.append(" km");
-		sbHtmlCarRefDistanceRate.append(took.getCar_ref_distance_rate());
+		sbHtmlCarRefDistanceRate.append(to.getCar_ref_distance_rate());
 	}
 	
-	for (EstimateOkTO took : estimate_car_accident_selected) {
-		String car_ref_accident = took.getCar_ref_accident();
+	for (EstimateTO to : estimate_car_accident_selected) {
+		String car_ref_accident = to.getCar_ref_accident();
 		String car_ref_accident_name = "";
 		if (car_ref_accident.equals("1")) {
 			car_ref_accident_name = "무사고";
@@ -102,10 +109,25 @@
 			car_ref_accident_name = "심각";
 		}
 		sbHtmlCarRefAccident.append(car_ref_accident_name);
-		sbHtmlCarRefAccidentRate.append(took.getCar_ref_accident_rate());
+		sbHtmlCarRefAccidentRate.append(to.getCar_ref_accident_rate());
 	}
 	
-/* 	sbHtmlCarPictureSelected.append("upload/car_default_image/Avante.jpg"); */
+ 	String car_price = sbHtmlCarPrice.toString();
+	String car_year_rate = sbHtmlCarRefYearRate.toString();
+	String car_distance_rate = sbHtmlCarRefDistanceRate.toString();
+	String car_accident_rate = sbHtmlCarRefAccidentRate.toString();
+	
+	int price_result = 0;
+	
+	try {
+		double price = Double.valueOf(car_price).doubleValue();
+		double year_rate = Double.valueOf(car_year_rate).doubleValue();
+		double distance_rate = Double.valueOf(car_distance_rate).doubleValue();
+		double accident_rate = Double.valueOf(car_accident_rate).doubleValue();	
+		price_result = (int) Math.round(price * year_rate * accident_rate - distance_rate);
+	} catch (NumberFormatException e) {
+		System.out.println("[에러]");
+	}
 %>
 
 <!DOCTYPE html>
@@ -204,7 +226,7 @@
 							<li>차종 : <%=sbHtmlCarNameSelected %></li>
 						</div>
 						<div class="col-lg-6" >
-							<li>연식 : <%=sbHtmlCarYearSelected %></li>
+							<li>연식 : <%=sbHtmlCarRefYear %></li>
 						</div>
 					</div>
 					<div class="row">
@@ -216,8 +238,8 @@
 						</div>
 					</div>
 					<hr/>
-					<div>
-						<li>가격 표시 부분</li>
+					<div align="center">
+						<h1><fmt:formatNumber value="<%=price_result %>" pattern="#,###"/> 원</h1>
 					</div>
 				</div>
 				<div class="col">

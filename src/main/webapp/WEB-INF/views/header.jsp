@@ -59,7 +59,7 @@
 						</c:when>
 						<c:otherwise>
 							<li class="nav-item"><a class="nav-link" href="chacarge_logout.do">로그아웃</a></li>
-							<li class="nav-item"><div id="profile">로그인 유저 : ${login.user_id}</div></li>
+							<li class="nav-item"><div id="profile" onclick="location.href='chacarge_mypage_privacy.do?user_seq=${login.user_seq}'" style="cursor:pointer;">&nbsp;&nbsp;로그인 유저 : ${login.user_id}&nbsp;&nbsp;</div></li>
 						</c:otherwise>
 					</c:choose>
 				</ul>
