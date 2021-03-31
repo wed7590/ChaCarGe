@@ -6,7 +6,7 @@
 		
 	out.println( "<script type='text/javascript'>" );
 	if( flag == 2 ) {
-		out.println( "alert( '작성자만 삭제할 수 있습니다.' );" );
+		out.println( "alert( '작성자만 접근할 수 있습니다.' );" );
 		out.println( "history.back();" );
 	}
 	else if( flag == 1 ) {

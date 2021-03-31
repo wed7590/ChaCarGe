@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ import com.google.gson.JsonObject;
 
 import net.chacarge.model1.BoardDAO;
 import net.chacarge.model1.BoardTO;
+import net.chacarge.model1.CommentTO;
 import net.chacarge.model1.PictureTO;
 import net.chacarge.model1.UserDAO;
 import net.chacarge.model1.UserTO;
@@ -48,7 +50,7 @@ public class BoardController {
 	@RequestMapping(value = "/chacarge_deal_list.do", method = RequestMethod.GET)
 	public String chacarge_deal_list(Locale locale, Model model) {
 
-		List<BoardTO> boardLists = boardDAO.boardList();
+		List<BoardTO> boardLists = boardDAO.board_list();
 		
 		model.addAttribute( "boardLists", boardLists );
 		return "chacarge_deal_list";
@@ -64,95 +66,25 @@ public class BoardController {
 	public String chacarge_deal_write_ok(MultipartHttpServletRequest request, HttpServletResponse response, Model model, @RequestParam("files") List<MultipartFile> fileList ) throws Exception {
 		
 		// board 정보 
-		BoardTO boardTO = new BoardTO();
-		boardTO.setBoard_subject( request.getParameter( "board_subject" ) );
-		boardTO.setBoard_content( request.getParameter( "board_content" ) );
+		BoardTO bto = new BoardTO();
+		bto.setBoard_subject( request.getParameter( "board_subject" ) );
+		bto.setBoard_content( request.getParameter( "board_content" ) );
 
-		UserTO userTO = new UserTO();
-		userTO.setUser_seq( request.getParameter( "user_seq" ) );
-		userTO = userDAO.id_check( userTO );
+		UserTO uto = new UserTO();
+		uto.setUser_seq( request.getParameter( "user_seq" ) );
+		uto = userDAO.id_check( uto );
 		
-		boardTO.setUser_seq( userTO.getUser_seq() );
+		bto.setUser_seq( uto.getUser_seq() );
 		
-		int flag = boardDAO.boardWriteOk(boardTO) ;
+		// 글쓰기
+		int flag = boardDAO.board_write_ok(bto) ;
+		
+		// 파일 업로드
+		boardService.board_write(fileList);
 		
 		model.addAttribute( "flag", flag );
 		
-		PictureTO pictureTO = new PictureTO();
-		
-		// 업로드한 파일이 없으면 실행되지 않음
-		if(fileList != null){
-			// 파일이 저장될 경로 설정
-			// resources/image/ 에 저장하고 싶음
-			//String path = request.getSession().getServletContext().getRealPath( "/resource/image/" );
-			String path = "C://upload/";
-			System.out.println( path );
-			File dir = new File(path);
-			if(!dir.isDirectory()){
-				dir.mkdirs();
-			}
-		
-			if(!fileList.isEmpty()){
-			//넘어온 파일을 리스트로 저장
-				for( int i = 1; i < fileList.size() ; i++ ) {
-					//파일 중복명 처리
-					String random = UUID.randomUUID().toString();
-					//원래 파일명
-					String originalfilename = fileList.get(i).getOriginalFilename();
-					//저장되는 파일이름
-					String saveFileName = random + "_"+ originalfilename;
-					//저장될 파일 경로
-					String savePath = path + saveFileName;
-					//파일사이즈
-					int fileSize = (int) fileList.get(i).getSize();
-					//파일 저장
-					fileList.get(i).transferTo(new File(savePath));
-				
-					pictureTO.setO_pic_name( originalfilename );
-					pictureTO.setU_pic_name( saveFileName );
-					
-					boardDAO.boardUpload( pictureTO );
-				}
-				
-				model.addAttribute( "pictureTO", pictureTO );
-			}
-			
-		}
-		
 		return "chacarge_deal_write_ok";
-	}
-	
-	@RequestMapping(value="/uploadSummernoteImageFile.do", produces = "application/json; charset=utf8")
-	@ResponseBody
-	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request )  {
-		JsonObject jsonObject = new JsonObject();
-		
-		/*
-		 * String fileRoot = "C:\\summernote_image\\"; // 외부경로로 저장을 희망할때.
-		 */
-		
-		// 내부경로로 저장
-		String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
-		String fileRoot = contextRoot+"resources/image/";
-		
-		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
-		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
-		String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
-		
-		File targetFile = new File(fileRoot + savedFileName);	
-		try {
-			InputStream fileStream = multipartFile.getInputStream();
-			FileUtils.copyInputStreamToFile(fileStream, targetFile);	//파일 저장
-			jsonObject.addProperty("url", "/resources/image/"+savedFileName); // contextroot + resources + 저장할 내부 폴더명
-			jsonObject.addProperty("responseCode", "success");
-				
-		} catch (IOException e) {
-			FileUtils.deleteQuietly(targetFile);	//저장된 파일 삭제
-			jsonObject.addProperty("responseCode", "error");
-				e.printStackTrace();
-		}
-		String a = jsonObject.toString();
-		return a;
 	}
 	
 	@RequestMapping(value = "/chacarge_deal_view.do", method = RequestMethod.GET)
@@ -160,16 +92,57 @@ public class BoardController {
 		BoardTO bto = new BoardTO();
 		
 		bto.setBoard_seq( request.getParameter( "seq" ) );
+
+		boardDAO.board_view_hit(bto);
+		bto = boardDAO.board_view( bto );
 		
-		boardDAO.boardView_hit(bto);
-		bto = boardDAO.boardView( bto );
-		
-		List<PictureTO> pto = boardDAO.boardView_pic( bto );
+		List<CommentTO> lcto = boardService.board_view_com( bto );
+		List<PictureTO> lpto = boardDAO.board_view_pic( bto );
 		
 		model.addAttribute( "bto", bto );
-		model.addAttribute( "pto", pto );
+		model.addAttribute( "lpto", lpto );
+		model.addAttribute( "lcto", lcto );
 		
 		return "chacarge_deal_view";
+	}
+	
+	@RequestMapping(value = "/chacarge_deal_comment_write.do", method = RequestMethod.POST)
+	public String chacarge_deal_comment_write(HttpServletRequest request, Model model) {
+		CommentTO cto = new CommentTO();
+		
+		cto.setBoard_seq( request.getParameter( "board_seq" ) );
+		String board_seq = cto.getBoard_seq();
+		cto.setComment_content( request.getParameter( "ccontent" ) );
+		cto.setUser_seq( request.getParameter( "user_seq" ) );
+		
+		int flag = boardDAO.board_comment_write( cto );
+		
+		model.addAttribute( "seq", board_seq );
+		model.addAttribute( "flag", flag );
+		
+		return "chacarge_deal_comment_write";
+	}
+	
+	@RequestMapping(value = "/chacarge_deal_comment_delete.do", method = RequestMethod.POST)
+	public String chacarge_deal_comment_delete(HttpServletRequest request, Model model, HttpSession httpSession) {
+		CommentTO cto = new CommentTO();
+		cto.setComment_seq( request.getParameter( "comment_seq" ) );
+		cto = boardDAO.board_comment_id_check(cto);
+		
+		Object object = httpSession.getAttribute( "login" );
+		UserTO userTO = (UserTO) object;
+		String login_seq = userTO.getUser_seq();
+		
+		int flag = 0;
+		// 작성자 체크( 댓글 작성자 seq == 로그인 seq)
+		if( boardDAO.board_comment_id_check(cto).getUser_seq().equals(login_seq) ) {
+			flag = boardDAO.board_comment_delete( cto );
+		}
+		
+		model.addAttribute( "seq", cto.getBoard_seq() );
+		model.addAttribute( "flag", flag );
+		
+		return "chacarge_deal_comment_delete";
 	}
 	
 	@RequestMapping(value = "/chacarge_deal_delete.do", method = RequestMethod.GET)
@@ -180,20 +153,70 @@ public class BoardController {
 		BoardTO bto = new BoardTO();
 		bto.setBoard_seq( request.getParameter( "seq" ) );
 
-		List<PictureTO> pto = boardDAO.boardView_pic( bto );
+		List<PictureTO> pto = boardDAO.board_view_pic( bto );
 		
-		bto = boardDAO.boardView(bto);
+		bto = boardDAO.board_view(bto);
 		
 		int flag = 2;
 		if( bto.getUser_seq().equals( uto.getUser_seq() ) ) {
-			boardService.boardDelete_pic( bto );
-			boardService.boardRealDelete_pic( pto );
-			boardService.boardDelete( bto );
-			
-			flag = 1;
+			boardService.board_delete_pic( bto );
+			boardService.board_real_delete_pic( pto );
+			flag = boardService.board_delete( bto );
 		}
 		
 		model.addAttribute( "flag", flag );
 		return "chacarge_deal_delete_ok";
+	}
+	
+	@RequestMapping(value = "/chacarge_deal_modify.do", method = RequestMethod.GET)
+	public String chacarge_deal_modify(HttpServletRequest request, HttpServletResponse response, Model model ) throws Exception {
+		
+		int flag = 2;
+
+		model.addAttribute( "flag", flag );
+		UserTO uto = new UserTO();
+		if( request.getParameter( "user_seq" ) == null || request.getParameter( "user_seq" ).equals( "" ) ) {
+			// 로그인 안했을시
+			return "chacarge_deal_delete_ok";
+		}
+		
+		uto.setUser_seq( request.getParameter( "user_seq" ) );
+		
+		BoardTO bto = new BoardTO();
+		bto.setBoard_seq( request.getParameter( "seq" ) );
+
+		List<PictureTO> lpto = boardDAO.board_view_pic( bto );
+		
+		bto = boardDAO.board_view(bto);
+		
+		if( bto.getUser_seq().equals( uto.getUser_seq() ) ) {
+			// 로그인 아이디가 작성자 일때
+			bto = boardDAO.board_view( bto );
+			lpto = boardDAO.board_view_pic( bto );
+			flag = 1;
+		}
+		
+		model.addAttribute( "bto", bto );
+		model.addAttribute( "lpto", lpto );
+		model.addAttribute( "flag", flag );
+		
+		return "chacarge_deal_modify";
+	}
+	
+	@RequestMapping(value = "/chacarge_deal_modify_ok.do", method = RequestMethod.POST)
+	public String chacarge_deal_modify_ok(MultipartHttpServletRequest request, HttpServletResponse response, Model model, @RequestParam("files") List<MultipartFile> fileList ) throws Exception {
+		
+		// board 정보 
+		BoardTO bto = new BoardTO();
+		bto.setBoard_seq( request.getParameter( "board_seq" ) );
+		bto.setBoard_subject( request.getParameter( "board_subject" ) );
+		bto.setBoard_content( request.getParameter( "board_content" ) );
+		
+		int flag = boardService.board_modify( fileList, bto );
+
+		model.addAttribute( "flag", flag );
+		model.addAttribute( "bto", bto );
+
+		return "chacarge_deal_modify_ok";
 	}
 }

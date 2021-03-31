@@ -35,6 +35,7 @@
 		sbHtml.append( "			</h4>" );
 		sbHtml.append( "			<p class='card-text'>" + board_content + "</p>" );
 		sbHtml.append( "		</div>" );
+		sbHtml.append( "		<span>조회수" + board_hit + "</span>" );
 		sbHtml.append( "	</div>" );
 		sbHtml.append( "</div>" );
 		

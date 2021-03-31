@@ -362,7 +362,7 @@ input {
 </head>
 
 <body translate="no">
-	<p class="tip">Click on button in image container</p>
+	<p class="tip"></p>
 	<div class="cont">
 		<div class="form sign-in">
 			<h2>Welcome back,</h2>

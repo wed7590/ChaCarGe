@@ -102,18 +102,8 @@ REFERENCES `board` (
  `board_seq`
 );
 
-ALTER TABLE `car_picture` ADD CONSTRAINT `FK_car_data_TO_car_picture_1` FOREIGN KEY (
- `car_seq`
-)
-REFERENCES `car_data` (
- `car_seq`
-);
-
--- user 테이블 - 회원가입으로 생성
--- admin => AdminCar 로 시작하는 id로 만들면 grade = 2인 관리자 계정
 -- windows의 mariadb는 대소문자 구분 안해서 만들때 유의
 -- linux의 mariadb에서는 대소문자를 구분 할 것이므로 sql문 작성할때 대소문자 구분 잘하기
--- 나머지 일반적인 회원가입은 grade = 1인 일반 계정 생성
 
 -- visitor 테이블 dummy 데이터
 insert into visitor values (0, '2021-03-17', 1);
@@ -156,7 +146,7 @@ insert into visitor values(0, DATE_FORMAT(now(), '%Y-%m-%d'), 23);
 insert into board values (0, 'item1', '<p><b>차종 :현대 아반떼AD 1.6 모던</b></p> <p><b>출고 연도 :2018</b></p> <p><b>운행 거리 :33,945km</b></p>
  </b></p> <p><b>사고 정도 :경미</b></p> <p><b>판매 가격 :1,440만원</b></p><br> <p></p> 지금 보시는 2018년식 아반떼AD 차량을 정직하게 소개해 드릴게요.
 이 차량은 A4 등급으로, 주행거리는 33,945Km로 최상의 운행 품질을 갖춘 차량이에요. ', 0, '2021-03-17', 1);
-insert into board values (0, 'item2', '<p><b>차종 :G70</b></p> <p><b>출고 연도  2019</b></p> --<p><b>운행 거리 :18,513Km</b></p> <p><b>사고 정도 :무사고
+insert into board values (0, 'item2', '<p><b>차종 :G70</b></p> <p><b>출고 연도  2019</b></p> <p><b>운행 거리 :18,513Km</b></p> <p><b>사고 정도 :무사고
 </b></p> <p><b>판매 가격 :3,630만원</b></p> <p></p> 지금 보시는 2019년식 G70 차량을 정직하게 소개해 드릴게요.
 이 차량은 A2+ 등급, 주행거리는 18,513Km로 최상의 운행 품질을 갖춘 신차급 차량이에요.', 0, '2021-03-17', 2);
 insert into board values (0, 'item3', '<p><b>차종 :G80</b></p> <p><b>출고 연도 :2019</b></p> <p><b>운행 거리 :28,751Km</b></p> <p><b>사고 정도 :무사고
@@ -259,6 +249,10 @@ insert into board_picture values( 0, 'venuee_1.jpg', 'venuee_1.jpg', 15 );
 insert into board_picture values( 0, 'venue_2.jpg', 'venue_2.jpg', 15 );
 insert into board_picture values( 0, 'venue_3.jpg', 'venue_3.jpg', 15 );
 insert into board_picture values( 0, 'venue_4.jpg', 'venue_4.jpg', 15 );
+
+-- board_comment 테이블 dummy 데이터
+insert into board_comment values( 0, '123', now(), 1, 1 );
+insert into board_comment values( 0, '456', now(), 1, 1 );
 
 -- estimate 페이지 car_data 테이블 dummy 데이터
 insert into car_data values (0, "아반테", "18500000", "Avante.jpg");

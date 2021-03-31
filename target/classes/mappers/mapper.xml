@@ -195,6 +195,39 @@
 		where board_seq = ${board_seq}
 	</select>
 	
+	<!-- board_view_com -->
+	<select id="board_view_com" parameterType="net.chacarge.model1.BoardTO" resultType="net.chacarge.model1.CommentTO">
+		select comment_seq, comment_content, comment_wdate, user_seq, board_seq
+		from board_comment 
+		where board_seq = ${board_seq}
+	</select>
+	
+	<!-- select_user_id -->
+	<select id="select_user_id" parameterType="net.chacarge.model1.CommentTO" resultType="net.chacarge.model1.CommentTO" >
+		select * 
+		from user
+		where user_seq = ${user_seq}
+	</select>
+	
+	<!-- board_comment_write -->
+	<insert id="board_comment_write" parameterType="net.chacarge.model1.BoardTO" >
+		insert into board_comment( comment_seq, comment_content, comment_wdate, user_seq, board_seq )
+		values( 0, ${comment_content}, now(), ${user_seq}, ${board_seq} )
+	</insert>
+	
+	<!-- board_comment_delete -->
+	<delete id="board_comment_delete" parameterType="net.chacarge.model1.CommentTO" >
+		delete from board_comment
+		where comment_seq = ${comment_seq}
+	</delete>
+	
+	<!-- board_comment_id_check -->
+	<select id="board_comment_id_check" parameterType="net.chacarge.model1.CommentTO" resultType="net.chacarge.model1.CommentTO" >
+		select * 
+		from board_comment
+		where comment_seq = ${comment_seq}
+	</select>
+	
 	<!-- board_delete -->
 	<delete id="board_delete" parameterType="net.chacarge.model1.BoardTO" >
 		delete from board
@@ -206,6 +239,13 @@
 		delete from board_picture
 		where board_seq = ${board_seq}
 	</delete>
+	
+	<!-- board_modify_ok -->
+	<update id="board_modify_ok" parameterType="net.chacarge.model1.BoardTO" >
+		update board
+		set board_subject = "${board_subject}", board_content = "${board_content}"
+		where board_seq = ${board_seq}	
+	</update>
 	
 	
 	<!-- mypage 회원 정보 수정 -->

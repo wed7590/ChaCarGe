@@ -38,6 +38,14 @@
 			<mapping path="/chacarge_deal_write.do" />
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
+		<interceptor>
+			<mapping path="/chacarge_deal_comment_write.do" />
+			<beans:ref bean="authInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/chacarge_deal_comment_delete.do" />
+			<beans:ref bean="authInterceptor"/>
+		</interceptor>
 	</interceptors>
 	
 	<!-- 스프링에서 기본으로 제공하는 multipartResolver는 CommonsMultipartResolver 이므로, 
