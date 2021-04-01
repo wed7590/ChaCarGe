@@ -64,39 +64,4 @@ public class EstimateDAO {
 		List<EstimateTO> car_accident_selected_ok = sqlSession.selectList("car_accident_selected", to);
 		return car_accident_selected_ok;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-		
-	
-		/*
-		 * // estimate 페이지에서 select 된 값에 대한 데이터 확인 // estimate_car_data_selected public
-		 * EstimateTO estimate_car_name_selected(EstimateTO to) {
-		 * 
-		 * EstimateTO car_name_selected_ok = sqlSession.selectOne("car_name_selected",
-		 * to); return car_name_selected_ok; } // estimate_car_year_selected public
-		 * EstimateTO estimate_car_year_selected(EstimateTO to) {
-		 * 
-		 * EstimateTO car_year_selected_ok = sqlSession.selectOne("car_year_selected",
-		 * to); return car_year_selected_ok; } // estimate_car_distance_selected public
-		 * EstimateTO estimate_car_distance_selected(EstimateTO to) {
-		 * 
-		 * EstimateTO car_distance_selected_ok =
-		 * sqlSession.selectOne("car_distance_selected", to); return
-		 * car_distance_selected_ok; } // estimate_car_accident_selected public
-		 * EstimateTO estimate_car_accident_selected(EstimateTO to) {
-		 * 
-		 * EstimateTO car_accident_selected_ok =
-		 * sqlSession.selectOne("car_accident_selected", to); return
-		 * car_accident_selected_ok; }
-		 */
 }

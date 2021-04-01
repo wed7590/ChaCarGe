@@ -126,7 +126,6 @@
 		double accident_rate = Double.valueOf(car_accident_rate).doubleValue();	
 		price_result = (int) Math.round(price * year_rate * accident_rate - distance_rate);
 	} catch (NumberFormatException e) {
-		System.out.println("[에러]");
 	}
 %>
 

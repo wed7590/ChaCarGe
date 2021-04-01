@@ -1,0 +1,20 @@
+DB 대소문자 구별 방향 정하기
+리눅스는 대소문자를 구별함
+
+show variables like 'lower_case_table_names';
++------------------------+-------+
+| Variable_name          | Value |
++------------------------+-------+
+| lower_case_table_names | 1     |
++------------------------+-------+
+value = 2 : CREATE TABLE 이나 CREATE DATABASE 실행시 디스크에 저장되는 테이블과 데이타베이스의 이름을 대소문자를 구분해서 생성한다.
+			참조시에는 소문자로 변경한다. 대소문자를 구분하지 않는 파일 시스템을 가진 OS(Mac OS X) 에서만 동작한다.
+value = 1 : 테이블과 DB 이름을 소문자로 생성하며 참조시에는 소문자로 변경하여 처리한다. 기존에 대문자가 포함되어 생성한 테이블과 DB 는 문제가 될 수 있다.
+value = 0 : CREATE TABLE 이나 CREATE DATABASE 실행시 디스크에 저장되는 테이블과 데이타베이스의 이름을 대소문자를 구분해서 생성한다.
+			SELECT 나 Insert 사용시에도 대소문자를 구분해서 사용해야 한다. 대소문자를 구별하는 OS 에서만 의미가 있고 Windows/Mac OS X 에 는 적용되지 않는다.
+			
+value = 2로 변경?
+
+mariadb 설치 폴더 - data - my.ini 파일
+[mariadb]
+lower_case_table_names=2

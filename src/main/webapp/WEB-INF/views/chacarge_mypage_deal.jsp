@@ -21,7 +21,7 @@
 		
 		sbHtmlDeal.append("<tr>");
 		sbHtmlDeal.append("	<td width='12%'>" + board_seq + "</td>");
-		sbHtmlDeal.append("	<td width='52%'>" + board_subject + "</td>");
+		sbHtmlDeal.append("	<td width='52%'><a href='chacarge_deal_view.do?seq=" + board_seq + "'>" + board_subject + "</a></td>");
 		sbHtmlDeal.append("	<td width='12%'>" + user_id + "</td>");
 		sbHtmlDeal.append("	<td width='12%'>" + board_hit + "</td>");
 		sbHtmlDeal.append("	<td width='12%'>" + board_wdate.substring(0, 10) + "</td>");

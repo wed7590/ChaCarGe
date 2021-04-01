@@ -11,8 +11,8 @@
 			<!-- Sidebar Column -->
 			<div class="col-lg-3 mb-4">
 				<div class="list-group">
-					<a href="chacarge_mypage_privacy.do?user_seq=${login.user_seq}" class="list-group-item">내 정보 관리</a>
-					<a href="chacarge_mypage_deal.do?user_seq=${login.user_seq}" class="list-group-item">내 활동 보기</a>
-					<a href="chacarge_mypage_withdrawal.do?user_seq=${login.user_seq}" class="list-group-item">회원 탈퇴</a>
+					<a href="chacarge_mypage_privacy.do?user_id=${login.user_id}" class="list-group-item">내 정보 관리</a>
+					<a href="chacarge_mypage_deal.do?user_id=${login.user_id}" class="list-group-item">내 활동 보기</a>
+					<a href="chacarge_mypage_withdrawal.do?user_id=${login.user_id}" class="list-group-item">회원 탈퇴</a>
 				</div>
 			</div>

@@ -58,6 +58,10 @@
 	$(document).ready(function(){
 		// 제출시
 		$("#submit").on("click", function(){
+			if(document.dfrm.user_password.value.trim() == '') {
+				alert('비밀번호를 입력 하셔야 합니다.');
+				return false;
+			}
 			if(confirm("정말 탈퇴하시겠습니까?") == true) {
 				document.dfrm.submit();
 			} else {
@@ -102,18 +106,18 @@
 								<section class="docs-section" id="item-1-1">
 									<div class="board">
 										<section id="container">
-											<form action="chacarge_mypage_withdrawal_ok.do?user_seq=${login.user_seq}" method="get" name="dfrm">
+											<form action="chacarge_mypage_withdrawal_ok.do?user_id=${mypage.user_id}" method="get" name="dfrm">
 												<div class="form-group has-feedback">
 													<label class="control-label" for="userId">아이디</label>
-													<input class="form-control" type="text" id="user_id" name="user_id" value="${login.user_id}" readonly="readonly"/>
+													<input class="form-control" type="text" id="user_id" name="user_id" value="${mypage.user_id}" readonly="readonly"/>
 												</div>
-<!-- 												<div class="form-group has-feedback">
+ 												<div class="form-group has-feedback">
 													<label class="control-label" for="userPass">패스워드</label>
 													<input class="form-control" type="password" id="user_password" name="user_password" />
-												</div> -->
+												</div>
 												<div class="form-group has-feedback">
 													<label class="control-label" for="userName">성명</label>
-													<input class="form-control" type="text" id="user_name" name="user_name" value="${login.user_name}" readonly="readonly"/>
+													<input class="form-control" type="text" id="user_name" name="user_name" value="${mypage.user_name}" readonly="readonly"/>
 												</div>
 												<div class="form-group has-feedback">
 													<button class="btn btn-success" type="submit" id="submit">회원탈퇴</button>

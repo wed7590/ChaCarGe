@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service;
 
 import net.chacarge.model1.AdminDAO;
 import net.chacarge.model1.AdminTO;
+import net.chacarge.model1.LoginTO;
 import net.chacarge.model1.MypageDAO;
+import net.chacarge.model1.UserTO;
 
 @Service
 public class MypageService {
@@ -45,5 +47,9 @@ public class MypageService {
 		return flag;
 	}
 	
-	
+	// 회원 정보 수정시 password 확인용
+	// login_ok
+	public UserTO mypage_ok( AdminTO adminTO ) throws Exception {
+		return mypageDAO.mypage_ok( adminTO );
+	}
 }

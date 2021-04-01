@@ -30,8 +30,8 @@ public class UserJoin {
 						"values( ?, ?, ?, ?, 1 )";	
 			
 			// user_seq           5        6          7         8           9         10          11          12         13          14
-			String[] name = { "dinos83", "bears79", "wiz81", "twins79", "heros80", "tigers73", "giants71", "lions64", "wyverns51", "eagles46" };
-			for( int i=1; i<10; i++ ) {
+			String[] name = { "dinos83", "bears79", "wiz81", "twins79", "heros80", "tigers73", "giants71", "lions64", "wyverns51", "eagles46", "user1", "user2", "user3", "user4" };
+			for( int i=0; i<14; i++ ) {
 				UserTO to = new UserTO();
 				to.setUser_id( name[i] );
 				to.setUser_password( "1234" );

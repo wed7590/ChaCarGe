@@ -47,6 +47,10 @@
 	$(document).ready(function(){
 		// 제출시
 		$("#submit").on("click", function(){
+			if(document.mfrm.user_password.value.trim() == '') {
+				alert('비밀번호를 입력 하셔야 합니다.');
+				return false;
+			}
 			if(confirm("정말 수정하시겠습니까?") == true) {
 				document.mfrm.submit();
 			} else {
@@ -87,31 +91,35 @@
 			    <div class="docs-wrapper">
 				    <div class="docs-content">
 					    <div class="container">
-					    	<form action="chacarge_mypage_modify_ok.do?user_seq=${login.user_seq}" method="get" name="mfrm">
+					    	<form action="chacarge_mypage_modify_ok.do?user_id=${mypage.user_id}" method="get" name="mfrm">
 								<div class="form-group has-feedback">
 									<label class="control-label" for="user_id">아이디</label>
-									<input class="form-control" type="text" id="user_id" name="user_id" value="${login.user_id}" readonly="readonly"/>
+									<input class="form-control" type="text" id="user_id" name="user_id" value="${mypage.user_id}" readonly="readonly"/>
+								</div>
+								<div class="form-group has-feedback">
+									<label class="control-label" for="user_password">비밀번호</label>
+									<input class="form-control" type="password" id="user_password" name="user_password" value=""/>
 								</div>
 								<div class="form-group has-feedback">
 									<label class="control-label" for="user_name">이름</label>
-									<input class="form-control" type="text" id="user_name" name="user_name" value="${login.user_name}" />
+									<input class="form-control" type="text" id="user_name" name="user_name" value="${mypage.user_name}" />
 								</div>
 								<div class="form-group has-feedback">
 									<label class="control-label" for="user_email">e-mail</label>
-									<input class="form-control" type="text" id="user_email" name="user_email" value="${login.user_email}" />
+									<input class="form-control" type="text" id="user_email" name="user_email" value="${mypage.user_email}" />
 								</div>
 								<div class="form-group has-feedback">
 									<label class="control-label" for="user_join_date">가입일</label>
-									<input class="form-control" type="text" id="user_join_date" name="user_join_date" value="${fn:substring(login.user_join_date, 0, 10)}" readonly="readonly"/>
+									<input class="form-control" type="text" id="user_join_date" name="user_join_date" value="${fn:substring(mypage.user_join_date, 0, 10)}" readonly="readonly"/>
 								</div>
 								<c:choose>
-									<c:when test="${login.user_grade == 1}">
+									<c:when test="${mypage.user_grade == 1}">
 										<div class="form-group has-feedback">
 											<label class="control-label" for="user_grade">등급</label>
 											<input class="form-control" type="text" id="user_grade" name="user_grade" value="일반 회원" readonly="readonly"/>
 										</div>
 									</c:when>
-									<c:when test="${login.user_grade == 2}">
+									<c:when test="${mypage.user_grade == 2}">
 										<div class="form-group has-feedback">
 											<label class="control-label" for="user_grade">등급</label>
 											<input class="form-control" type="text" id="user_grade" name="user_grade" value="관리자" readonly="readonly"/>

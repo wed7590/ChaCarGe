@@ -248,6 +248,12 @@
 	</update>
 	
 	
+	<!-- mypage 들어갈 때 내용 수정된 것 반영 -->
+	<select id="mypage_ok" parameterType="net.chacarge.model1.AdminTO" resultType="net.chacarge.model1.UserTO">
+		select *
+		from user
+		where user_id = #{user_id}
+	</select>
 	<!-- mypage 회원 정보 수정 -->
 	<update id="mypage_modify" parameterType="net.chacarge.model1.AdminTO">
 		update
@@ -256,11 +262,11 @@
 		where user_id = #{user_id}
 	</update>
 	<!-- mypage 회원 활동 -->
-	<select id="mypage_deal_list" resultType="net.chacarge.model1.AdminTO">
+	<select id="mypage_deal_list" parameterType="net.chacarge.model1.AdminTO" resultType="net.chacarge.model1.AdminTO">
 		select board_seq, board_subject, board_content, board_hit, board_wdate, user.user_id
 		from board
 		join user
-		where board.user_seq = ${user_seq}
+		where user.user_id = "${user_id}"
 		and board.user_seq = user.user_seq
 	</select>
 	<!-- mypage 회원 탈퇴 -->

@@ -28,6 +28,7 @@
 	
 	<beans:bean id="loginInterceptor" class="net.chacarge.interceptor.LoginInterceptor" />
 	<beans:bean id="authInterceptor" class="net.chacarge.interceptor.AuthInterceptor" />
+	<beans:bean id="mypageInterceptor" class="net.chacarge.interceptor.MypageInterceptor" />
 	
 	<interceptors>
 		<interceptor>
@@ -45,6 +46,10 @@
 		<interceptor>
 			<mapping path="/chacarge_deal_comment_delete.do" />
 			<beans:ref bean="authInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/chacarge_mypage_privacy.do"/>
+			<beans:ref bean="mypageInterceptor"/>
 		</interceptor>
 	</interceptors>
 	

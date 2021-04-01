@@ -1,8 +1,0 @@
-admin 회원가입 - 4개
-AdminCar 로 시작하는 ID는 관리자 등급 부여
-db 생성 후 바로 회원가입
-ID			PW		- 이름		- 이메일
-AdminCar1 - !12341  - 유진영		- AdminCar1@chacarge.net
-AdminCar2 - !12342  - 윤동하		- AdminCar2@chacarge.net
-AdminCar3 - !12343  - 장진동		- AdminCar3@chacarge.net
-AdminCar4 - !12344  - 전환호		- AdminCar4@chacarge.net
