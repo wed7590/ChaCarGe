@@ -29,9 +29,11 @@ public class UserJoin {
 			String sql = "insert into user( user_id, user_password, user_email, user_name, user_grade )" + 
 						"values( ?, ?, ?, ?, 1 )";	
 			
-			for( int i=1; i<20; i++ ) {
+			// user_seq           5        6          7         8           9         10          11          12         13          14
+			String[] name = { "dinos83", "bears79", "wiz81", "twins79", "heros80", "tigers73", "giants71", "lions64", "wyverns51", "eagles46" };
+			for( int i=1; i<10; i++ ) {
 				UserTO to = new UserTO();
-				to.setUser_id( "User" + i );
+				to.setUser_id( name[i] );
 				to.setUser_password( "1234" );
 				to.setUser_name( "User" + i);
 				to.setUser_email( "User" + i + "@chacarge.net" );
