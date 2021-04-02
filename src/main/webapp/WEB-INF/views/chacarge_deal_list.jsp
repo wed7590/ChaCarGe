@@ -4,23 +4,29 @@
     pageEncoding="UTF-8"%>
 
 <%@ page import="net.chacarge.model1.BoardTO" %>
+<%@ page import="net.chacarge.model1.BoardListTO" %>
 <%@ page import="java.util.List" %>
 
 <%
 	List<BoardTO> lists = (List)request.getAttribute( "boardLists" );
-
+	BoardListTO blto = (BoardListTO)request.getAttribute( "blto" );
+	
 	int cpage = 1;
+	// cpage 값이 있으면 cpage를 그 값으로 cpage 세팅
+	if( request.getParameter( "cpage" ) != null && !request.getParameter("cpage").equals("" ) ) {
+		cpage = Integer.parseInt( request.getParameter( "cpage" ) );
+	}
 
 	StringBuffer sbHtml = new StringBuffer();
 	for( BoardTO to : lists ) {
 		String board_seq = to.getBoard_seq();
 		String board_subject = to.getBoard_subject();
-		String board_content = to.getBoard_content();
-/* 		String scontent[] = content.split( "</p>" );
+		String content = to.getBoard_content();
+ 		String scontent[] = content.split( "</p>" );
 		String board_content = "";
 		for( int i=0; i<5; i++ ) {
 			board_content += scontent[i] + "</p>";
-		} */
+		}
 		String board_hit = to.getBoard_hit();
 		String board_wdate = to.getBoard_wdate();
 		String board_pic_seq = to.getBoard_pic_seq();
@@ -35,7 +41,7 @@
 		sbHtml.append( "			</h4>" );
 		sbHtml.append( "			<p class='card-text'>" + board_content + "</p>" );
 		sbHtml.append( "		</div>" );
-		sbHtml.append( "		<span>조회수" + board_hit + "</span>" );
+		sbHtml.append( "		<span class='write' id='hit'><img src='resources/css/images/view_icon.jpg' />" + board_hit + "</span>" );
 		sbHtml.append( "	</div>" );
 		sbHtml.append( "</div>" );
 		
@@ -60,12 +66,8 @@
 <!-- Custom styles for this template -->
 <link href="resources/css/modern-business.css" rel="stylesheet">
 
-<style>
-.write {
-	text-align : right;
-	margin-bottom : 10px;
-}
-</style>
+<link href="resources/css/deal_list.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 
 <%@ include file="header.jsp" %>
 

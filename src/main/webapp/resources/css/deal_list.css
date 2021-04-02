@@ -1,0 +1,10 @@
+@charset "UTF-8";
+.write {
+	text-align : right;
+	margin-bottom : 10px;
+}
+#hit {
+	font-family: 'Nanum Pen Script', cursive;
+	font-size: 20px;
+	margin-right : 10px;
+}

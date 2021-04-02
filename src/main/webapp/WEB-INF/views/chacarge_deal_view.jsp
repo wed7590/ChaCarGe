@@ -78,33 +78,8 @@
 <!-- bxslider -->
 <link rel="stylesheet" href="resources/css/jquery.bxslider.css">
 
-<style>
-	img {
-		height: auto;
-		object-fit: cover;
-	}
-	
-	table { border-collapse:collapse; border-spacing:0;}
-	
-	.car_pic {
-		overflow: hidden;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		max-height: 600px;
-	}
-	
-	.align_left {float:left; }
-	.align_right {float:right; }
-	.comment {font:11px dotum; margin: 5px; margin-left: 30px; margin-right: 30px; padding:5px; background-color:#fafafa;border-bottom:1px dotted #d2d2d2;word-wrap: break-word; word-break: break-all;}
-	.comment_re {font:11px dotum; padding:5px; background-color:#fafafa;border-bottom:1px dotted #d2d2d2;word-wrap: break-word; word-break: break-all;}
-	.comment_re_txt {background-color:#fafafa;line-height:15px; padding:5px 0 0 0}
-
-	.comment table { border-collapse:collapse; }
-	.comment th, .board_view td {height:25px; text-align:left;padding:8px;}
-	.comment th { border-bottom:1px solid #dadada; color:#464646; font-weight:600; background-color:#f2f2f2; }
-	.comment td { border-bottom:1px solid #dadada; color:#797979; }
-</style>
+<link href="resources/css/deal_view.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 
 <script type="text/javascript">
 	window.onload = function() {
@@ -136,7 +111,7 @@
 		</ol>
 		
 	<!-- 조회수 표시 -->
-		<div class="row align_right">조회수 : <%= board_hit %></div>
+		<div class="row align_right"><img src="resources/css/images/view_icon.jpg" id="hit"/> <%= board_hit %></div>
 		
 	<!-- 매물 설명 부분 -->
 		<!-- Portfolio Item Row -->

@@ -22,11 +22,8 @@ public class UserService {
 	public void join_ok( UserTO to ) throws Exception {
 		userDAO.join_ok( to );
 	}
-	// 관리자 회원가입 처리
-	public void join_admin_ok( UserTO to ) throws Exception {
-		userDAO.join_admin_ok( to );
-	}
 	
+	// 로그인 처리
 	public UserTO login_ok( LoginTO loginTO ) throws Exception {
 		return userDAO.login_ok( loginTO );
 	}

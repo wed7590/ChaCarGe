@@ -34,8 +34,8 @@
 			alert( '내용을 입력하셔야합니다.' );
 			return false;
 		}
-/* 		// 이미지 게시판에서 추가되는 Javascript
-		if( document.wfrm.files.value.trim() == '' ) {
+
+/* 		if( document.wfrm.files.value.trim() == '' ) {
 			alert( '사진을 업로드하셔야 합니다.');
 			return false;
 		} else {

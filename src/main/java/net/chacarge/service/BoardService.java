@@ -104,6 +104,7 @@ public class BoardService {
 		
 	}
 	
+	// 매물 정보 수정
 	public int board_modify( List<MultipartFile> fileList, BoardTO bto ) throws Exception {
 		List<PictureTO> lpto = boardDAO.board_view_pic(bto);
 		System.out.println( "원래 업로드된 파일 수: " + lpto.size() );
