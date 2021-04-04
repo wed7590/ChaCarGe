@@ -36,6 +36,10 @@
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
 		<interceptor>
+			<mapping path="/kakao.do"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		<interceptor>
 			<mapping path="/chacarge_deal_write.do" />
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>

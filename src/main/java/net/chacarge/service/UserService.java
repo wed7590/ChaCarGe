@@ -27,4 +27,18 @@ public class UserService {
 	public UserTO login_ok( LoginTO loginTO ) throws Exception {
 		return userDAO.login_ok( loginTO );
 	}
+	
+	// 카카오 로그인 처리
+	public UserTO kakao_id_check( UserTO uto ) throws Exception {
+		uto = userDAO.kakao_id_check( uto );
+		
+		if( uto == null ) {
+			// 회원가입 시킴
+			userDAO.kakao_join_ok( uto );
+			// 다시 uto 받아오기
+			uto = userDAO.kakao_id_check( uto );
+		}
+
+		return uto;
+	}
 }

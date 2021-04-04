@@ -23,6 +23,9 @@
 <!-- login_form CSS - 표 양식 부분 -->
 <link href="resources/css/login_form.css" rel="stylesheet">
 
+<!-- 카카오 js -->
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
 <script>
 	window.console = window.console || function(t) {
 	};
@@ -94,9 +97,16 @@
 					<input type="password" name="user_password">
 				</label>
 			</form>
-			<p class="forgot-pass">Forgot password?</p>
 			<button type="button" id="login" class="submit">Sign In</button>
-			<button type="button" class="fb-btn">Connect with <span>kakao</span></button>
+			<div align="center">
+				<a id="custom-login-btn" 
+				href="https://kauth.kakao.com/oauth/authorize?client_id=cf6e51d95242afa1c0b94902ec143974&redirect_uri=http://localhost:8080/controller/kakao.do&response_type=code" 
+				style="left: 50px;" >
+					<img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" width="222" style="border-radius: 20px;" }/>
+				</a>
+			</div>
+			
+			<!-- <button type="button"  class="fb-btn">Connect with <span>kakao</span></button> -->
 		</div>
 		<div class="sub-cont">
 			<div class="img">
@@ -134,7 +144,6 @@
 					</label>
 				</form>	
 				<button type="button" id="join" class="submit">Sign Up</button>
-				<button type="button" class="fb-btn">Join with <span>kakao</span></button>
 			</div>
 		</div>
 	</div>

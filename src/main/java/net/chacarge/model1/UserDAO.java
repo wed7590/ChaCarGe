@@ -28,4 +28,19 @@ public class UserDAO {
 		return sqlSession.selectOne( "id_check", to );
 	}
 	
+	// kakao_id_check
+	public UserTO kakao_id_check(UserTO to) {
+		to = sqlSession.selectOne( "kakao_id_check", to );
+		if( to == null ) {
+			return null;
+		}
+		return to;
+	}
+	
+	// kakao_join_ok
+	public void kakao_join_ok(UserTO to) throws Exception {
+
+		sqlSession.insert("kakao_join_ok", to);
+	}
+	
 }

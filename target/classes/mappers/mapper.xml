@@ -14,12 +14,25 @@
 		values( #{user_id}, #{user_password}, #{user_email}, #{user_name} )
 	</insert> 
 	
-	<!-- join_ok -->
-	<insert id="join_admin_ok">
-		insert into user( user_id, user_password, user_email, user_name, user_grade )
-		values( #{user_id}, #{user_password}, #{user_email}, #{user_name}, 2 )
+	<!-- kakao_join_ok -->
+	<insert id="kakao_join_ok">
+		insert into user( user_id, user_email, user_name, user_token )
+		values( #{user_id}, #{user_email}, #{user_name}, #{user_token} )
 	</insert>
 	
+	<!-- user_seq로 user 정보 가져오기 -->
+	<select id="id_check" resultType="net.chacarge.model1.UserTO" >
+		select * 
+		from user
+		where user_seq = ${user_seq}
+	</select>
+	
+	<!-- 카카오 로그인시 회원가입 체크 (id값으로) -->
+	<select id="kakao_id_check" resultType="net.chacarge.model1.UserTO">
+		select *
+		from user
+		where user_id = #{user_id}
+	</select>
 	
 	<!-- estimate 페이지에서 car_data 테이블의 car_name 데이터 가져오기 -->
 	<select id="estimate_forSelect_carNameData" resultType="net.chacarge.model1.EstimateTO">
@@ -147,8 +160,10 @@
 	<!-- board_list -->
 	<!-- select board.board_seq, board_subject, substring_index( board_content, "<br/>", 5 ), board_hit, date_format(board_wdate, '%Y-%m-%d') board_wdate, user_seq, board_pic_seq, u_pic_name -->
 	<select id="board_list" resultType="net.chacarge.model1.BoardTO">
-		select board.board_seq, board_subject, board_content, board_hit, date_format(board_wdate, '%Y-%m-%d') board_wdate, user_seq, board_pic_seq, u_pic_name
+		select board.board_seq, board_subject, board_content, board_hit, date_format(board_wdate, '%Y-%m-%d') board_wdate, board.user_seq, board_pic_seq, u_pic_name
 		from board
+		join user
+      	on board.user_seq = user.user_seq
 		inner join board_picture
 		where board.board_seq = board_picture.board_seq
 		group by board.board_seq
@@ -166,13 +181,6 @@
 		insert into board_picture( board_pic_seq, o_pic_name, u_pic_name, board_seq )
 		values( 0, "${o_pic_name}", "${u_pic_name}", (select max(board_seq) from board) )
 	</insert>
-	
-	<!-- user_seq로 user 정보 가져오기 -->
-	<select id="id_check" resultType="net.chacarge.model1.UserTO" >
-		select * 
-		from user
-		where user_seq = ${user_seq}
-	</select>
 	
 	<!-- board_view_hit -->
 	<update id="board_view_hit" parameterType="net.chacarge.model1.BoardTO" >
@@ -197,8 +205,10 @@
 	
 	<!-- board_view_com -->
 	<select id="board_view_com" parameterType="net.chacarge.model1.BoardTO" resultType="net.chacarge.model1.CommentTO">
-		select comment_seq, comment_content, comment_wdate, user_seq, board_seq
-		from board_comment 
+		select comment_seq, comment_content, comment_wdate, board_comment.user_seq, board_seq
+		from board_comment
+		join user
+      	on board_comment.user_seq = user.user_seq 
 		where board_seq = ${board_seq}
 	</select>
 	
@@ -212,7 +222,7 @@
 	<!-- board_comment_write -->
 	<insert id="board_comment_write" parameterType="net.chacarge.model1.BoardTO" >
 		insert into board_comment( comment_seq, comment_content, comment_wdate, user_seq, board_seq )
-		values( 0, ${comment_content}, now(), ${user_seq}, ${board_seq} )
+		values( 0, "${comment_content}", now(), ${user_seq}, ${board_seq} )
 	</insert>
 	
 	<!-- board_comment_delete -->

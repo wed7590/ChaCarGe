@@ -36,9 +36,9 @@
 		sbHtml.append( "	<div class='card h-100'>" );
 		sbHtml.append( "	<a href='chacarge_deal_view.do?cpage=" + cpage + "&seq=" + board_seq + "'><img class='card-img-top' src='http://localhost:8080/img/" + u_pic_name + "' alt=''></a>" );
 		sbHtml.append( "		<div class='card-body'>" );
-		sbHtml.append( "			<h4 class='card-title'>" );
+		sbHtml.append( "			<h5 class='card-title'>" );
 		sbHtml.append( "				<a href='chacarge_deal_view.do?cpage=" + cpage + "&seq=" + board_seq + "'>" + board_subject + "</a>" );
-		sbHtml.append( "			</h4>" );
+		sbHtml.append( "			</h5>" );
 		sbHtml.append( "			<p class='card-text'>" + board_content + "</p>" );
 		sbHtml.append( "		</div>" );
 		sbHtml.append( "		<span class='write' id='hit'><img src='resources/css/images/view_icon.jpg' />" + board_hit + "</span>" );
