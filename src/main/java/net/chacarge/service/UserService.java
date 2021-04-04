@@ -30,15 +30,15 @@ public class UserService {
 	
 	// 카카오 로그인 처리
 	public UserTO kakao_id_check( UserTO uto ) throws Exception {
-		uto = userDAO.kakao_id_check( uto );
+		UserTO userTO = userDAO.kakao_id_check( uto );
 		
-		if( uto == null ) {
+		if( userTO == null ) {
 			// 회원가입 시킴
 			userDAO.kakao_join_ok( uto );
 			// 다시 uto 받아오기
-			uto = userDAO.kakao_id_check( uto );
+			userTO = userDAO.kakao_id_check( uto );
 		}
 
-		return uto;
+		return userTO;
 	}
 }
