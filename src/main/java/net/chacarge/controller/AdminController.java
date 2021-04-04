@@ -46,6 +46,21 @@ public class AdminController {
 			model.addAttribute("member_management", member_management_search);
 		}
 
+		// 탈퇴 회원 데이터 받기
+		AdminTO adminDeleteTO  = new AdminTO();
+		adminDeleteTO.setUser_search(request.getParameter("user_delete_search"));
+		
+		// 회원 목록 데이터 받기
+		if (request.getParameter("user_delete_search")==null || request.getParameter("user_delete_search").contentEquals("")) {
+			// 회원 목록 검색 X 경우
+			List<AdminTO> member_delete_management = adminDAO.member_delete_management();
+			model.addAttribute("member_delete_management", member_delete_management);
+		} else {
+			// 회원 목록 검색 O 경우
+			List<AdminTO> member_delete_management_search = adminDAO.member_delete_management_search(adminTO.getUser_search());
+			model.addAttribute("member_delete_management", member_delete_management_search);
+		}
+		
 		// 현재 회원수 데이터 받기
 		List<AdminTO> member_count = adminDAO.member_count();
 		model.addAttribute("member_count", member_count);

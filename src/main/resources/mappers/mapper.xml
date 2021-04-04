@@ -84,7 +84,7 @@
 	
 	<!-- admin_member_management -->
 	<select id="member_management" resultType="net.chacarge.model1.AdminTO">
-		select user.user_seq, user_id, user_token, user_name, user_email, user_join_date, user_grade, visitor.visit_date
+		select user.user_seq, user_id, user_name, user_email, user_join_date, user_grade, visitor.visit_date
 		from user
 		join visitor
 		where (user.user_seq = visitor.user_seq)
@@ -94,7 +94,7 @@
 	</select>
 	<!-- admin_member_management_search -->
 	<select id="member_management_search" parameterType="net.chacarge.model1.AdminTO" resultType="net.chacarge.model1.AdminTO">
-		select user.user_seq, user_id, user_token, user_name, user_email, user_join_date, user_grade, visitor.visit_date
+		select user.user_seq, user_id, user_name, user_email, user_join_date, user_grade, visitor.visit_date
 		from user
 		join visitor
 		where (user.user_seq = visitor.user_seq)
@@ -103,11 +103,45 @@
 		group by user.user_seq
 		order by user.user_seq asc
 	</select>
+	<!-- admin_member_delete_management -->
+	<select id="member_delete_management" resultType="net.chacarge.model1.AdminTO">
+		select user_delete.user_seq, user_id, user_name, user_email, user_join_date, user_grade, visitor.visit_date
+		from user_delete
+		join visitor
+		where (user_delete.user_seq = visitor.user_seq)
+		and visitor.visit_date in (select max(visitor.visit_date) from visitor group by visitor.user_seq)
+		group by user_delete.user_seq
+		order by user_delete.user_seq asc
+	</select>
+	<!-- admin_member_delete_management_search -->
+	<select id="member_delete_management_search" parameterType="net.chacarge.model1.AdminTO" resultType="net.chacarge.model1.AdminTO">
+		select user_delete.user_seq, user_id, user_name, user_email, user_join_date, user_grade, visitor.visit_date
+		from user_delete
+		join visitor
+		where (user_delete.user_seq = visitor.user_seq)
+		and visitor.visit_date in (select max(visitor.visit_date) from visitor group by visitor.user_seq)
+		and user_delete.user_id like concat('%', #{user_search}, '%')
+		group by user_delete.user_seq
+		order by user_delete.user_seq asc
+	</select>
 	<!-- admin_member_count -->
 	<select id="member_count" parameterType="net.chacarge.model1.AdminTO" resultType="net.chacarge.model1.AdminTO">
 		select count(user_seq) user_count
 		from user
 	</select>
+	
+	<!-- member_delete_move_ok -->
+	<select id="member_delete_move_ok" parameterType="net.chacarge.model1.AdminTO" resultType="net.chacarge.model1.AdminTO">
+		select user_seq, user_id, user_password, user_email, user_name, user_join_date, user_grade, user_token, user_session_key, user_session_limit
+		from user
+		where user_id = #{user_id}
+	</select>
+	<!-- member_delete_move -->
+	<insert id="member_delete_move" parameterType="net.chacarge.model1.AdminTO">
+		insert into user_delete (user_seq, user_id, user_password, user_email, user_name, user_join_date, user_grade)
+		values( ${user_seq}, "${user_id}", "${user_password}", "${user_email}",  "${user_name}", "${user_join_date}", "${user_grade}" )
+	</insert>
+	
 	<!-- admin_member_delete -->
 	<delete id="member_delete" parameterType="net.chacarge.model1.AdminTO" >
 		delete from user

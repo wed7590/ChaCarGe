@@ -8,10 +8,8 @@
 <%@ include file="header.jsp" %>
 
 <%
+	//sbHtmlManagement 안에 회원 목록 데이터 담아서 html 양식으로 출력
 	ArrayList<AdminTO> member_management = (ArrayList)request.getAttribute("member_management");
-	ArrayList<AdminTO> member_count = (ArrayList)request.getAttribute("member_count");
-	
-	// sbHtmlManagement 안에 회원 목록 데이터 담아서 html 양식으로 출력
 	StringBuffer sbHtmlManagement = new StringBuffer();
 	
 	for (AdminTO to : member_management) {
@@ -35,7 +33,33 @@
 		sbHtmlManagement.append("</tr>");
 	}
 
+	// sbHtmlDeleteManagement 안에 회원 목록 데이터 담아서 html 양식으로 출력
+	ArrayList<AdminTO> member_delete_management = (ArrayList)request.getAttribute("member_delete_management");
+	StringBuffer sbHtmlDeleteManagement = new StringBuffer();
+	
+	for (AdminTO to : member_delete_management) {
+		int user_seq = to.getUser_seq();
+		String user_id = to.getUser_id();
+		String user_token = to.getUser_token();
+		String user_name = to.getUser_name();
+		String user_email = to.getUser_email();
+		String user_join_date = to.getUser_join_date();
+		String user_grade = to.getUser_grade();
+		String visit_date = to.getVisit_date();
+		
+		sbHtmlDeleteManagement.append("<tr>");
+		sbHtmlDeleteManagement.append("	<td width='12%'>" + user_seq + "</td>");
+		sbHtmlDeleteManagement.append("	<td width='12%'>" + user_id + "</td>");
+		sbHtmlDeleteManagement.append("	<td width='12%'>" + user_name + "</td>");
+		sbHtmlDeleteManagement.append("	<td width='28%'>" + user_email + "</td>");
+		sbHtmlDeleteManagement.append("	<td width='12%'>" + user_join_date.substring(0, 10) + "</td>");
+		sbHtmlDeleteManagement.append("	<td width='12%'>" + user_grade + "</td>");
+		sbHtmlDeleteManagement.append("	<td width='12%'>" + visit_date.substring(0, 10) + "</td>");
+		sbHtmlDeleteManagement.append("</tr>");
+	}
+	
 	// sbHtmlCount 안에 회원 수 데이터 담아서 html 양식으로 출력
+	ArrayList<AdminTO> member_count = (ArrayList)request.getAttribute("member_count");
 	StringBuffer sbHtmlCount = new StringBuffer();
 	
 	for (AdminTO to : member_count) {
@@ -176,6 +200,34 @@
 												<button class="btn btn-success" type="submit" id="submit">회원탈퇴</button>
 											</div>
 										</form>
+									</div>
+									<hr/>
+									<span id="list_modal">
+										<h4 class="section-heading">탈퇴 회원 목록</h4>
+									</span>
+									<span id="setting_modal">
+										<form action="chacarge_admin_member.do" method="get">
+											<input type="text" name="user_delete_search" id="user_delete_search" placeholder="회원 ID 검색" value="${user_delete_search }"/>
+											<button type="submit">검색</button>
+										</form>
+									</span>
+									<div class="board">
+										<table class="table paginated">
+											<thead>
+												<tr>
+	 												<th width="12%">번호</th>
+													<th width="12%">ID</th>
+													<th width="12%">이름</th>
+													<th width="28%">이메일</th>
+													<th width="12%">가입일</th>
+													<th width="12%">등급</th>
+													<th width="12%">최종방문일</th>
+												</tr>
+											</thead>
+											<tbody>
+												<%=sbHtmlDeleteManagement %>
+											</tbody>
+										</table>
 									</div>
 									<hr/>
 									<h4 class="section-heading">현재 회원 수</h4>

@@ -26,6 +26,12 @@ public class MypageDAO {
 		return deal_list;
 	}
 	
+	// 탈퇴 회원 table 로 이관
+	public void mypage_delete_move(AdminTO adminTO) {
+		
+		AdminTO member_delete_move_ok = sqlSession.selectOne("member_delete_move_ok", adminTO);
+		sqlSession.insert("member_delete_move", member_delete_move_ok);
+	}
 	// 회원 탈퇴
 	public int mypage_withdrawal_ok(AdminTO adminTO) {
 		

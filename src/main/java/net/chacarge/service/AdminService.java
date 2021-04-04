@@ -19,6 +19,7 @@ public class AdminService {
 	
 	// 회원 삭제
 	public int member_delete(AdminTO adminTO) throws Exception {
+		adminDAO.member_delete_move(adminTO);
 		int result = adminDAO.member_delete(adminTO);
 		if (result == 1) {
 			return result;

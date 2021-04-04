@@ -9,6 +9,19 @@ CREATE TABLE `User` (
  `user_name` varchar(15) NOT NULL,
  `user_join_date` datetime NOT NULL DEFAULT DATE_FORMAT(now(), '%Y-%m-%d'), -- now() 로 변경
  `user_grade` varchar(1) NOT NULL DEFAULT 1,
+ `user_token` varchar(100) NULL DEFAULT NULL,
+ `user_session_key` varchar(50) NOT NULL DEFAULT 'none',
+ `user_session_limit` TIMESTAMP
+);
+
+CREATE TABLE `User_delete` (
+ `user_seq` int NOT NULL,
+ `user_id` varchar(15) NOT NULL,
+ `user_password` varchar(100) NOT NULL,
+ `user_email` varchar(30) NOT NULL,
+ `user_name` varchar(15) NOT NULL,
+ `user_join_date` datetime NOT NULL,
+ `user_grade` varchar(1) NOT NULL,
  `user_token` varchar(15) NULL DEFAULT NULL,
  `user_session_key` varchar(50) NOT NULL DEFAULT 'none',
  `user_session_limit` TIMESTAMP
@@ -16,6 +29,15 @@ CREATE TABLE `User` (
 
 CREATE TABLE `board` (
  `board_seq` int NOT NULL primary key auto_increment,
+ `board_subject` varchar(200) NOT NULL,
+ `board_content` varchar(10000) NOT NULL,
+ `board_hit` int NOT NULL,
+ `board_wdate` datetime NOT NULL,
+ `user_seq` int NOT NULL
+);
+
+CREATE TABLE `board_delete` (
+ `board_seq` int NOT NULL,
  `board_subject` varchar(200) NOT NULL,
  `board_content` varchar(10000) NOT NULL,
  `board_hit` int NOT NULL,
@@ -31,6 +53,14 @@ CREATE TABLE `visitor` (
 
 CREATE TABLE `board_comment` (
  `comment_seq` int NOT NULL primary key auto_increment,
+ `comment_content` varchar(500) NOT NULL,
+ `comment_wdate` datetime NOT NULL,
+ `user_seq` int NOT NULL,
+ `board_seq` int NOT NULL
+);
+
+CREATE TABLE `board_comment_delete` (
+ `comment_seq` int NOT NULL,
  `comment_content` varchar(500) NOT NULL,
  `comment_wdate` datetime NOT NULL,
  `user_seq` int NOT NULL,
@@ -377,15 +407,11 @@ insert into board_picture values( 0, 'venue_2.jpg', 'venue_2.jpg', 15 );
 insert into board_picture values( 0, 'venue_3.jpg', 'venue_3.jpg', 15 );
 insert into board_picture values( 0, 'venue_4.jpg', 'venue_4.jpg', 15 );
 
--- board_comment 테이블 dummy 데이터
-insert into board_comment values( 0, '123', now(), 1, 1 );
-insert into board_comment values( 0, '456', now(), 1, 1 );
-
 -- estimate 페이지 car_data 테이블 dummy 데이터
 insert into car_data values (0, "아반테", "18500000", "Avante.jpg");
 insert into car_data values (0, "벨로스터", "21000000", "Veloster.jpg");
 insert into car_data values (0, "소나타", "24000000", "sonata.png");
-insert into car_data values (0, "그랜져", "33000000", "Grandeur.jpg");
+insert into car_data values (0, "그렌져", "33000000", "Grandeur.jpg");
 insert into car_data values (0, "투싼", "24500000", "Tucson.png");
 insert into car_data values (0, "싼타페", "32000000", "Santafe.png");
 insert into car_data values (0, "베뉴", "36000000", "Venue.png");
@@ -449,35 +475,28 @@ insert into car_reference_year values ("투싼", "2015", "0.75");
 insert into car_reference_year values ("투싼", "2014", "0.72");
 insert into car_reference_year values ("투싼", "2013", "0.7");
 insert into car_reference_year values ("투싼", "2012", "0.7");
+insert into car_reference_year values ("베뉴", "2021", "1");
+insert into car_reference_year values ("베뉴", "2020", "0.95");
+insert into car_reference_year values ("베뉴", "2019", "0.9");
+insert into car_reference_year values ("코나", "2021", "1");
+insert into car_reference_year values ("코나", "2020", "0.95");
+insert into car_reference_year values ("코나", "2019", "0.9");
+insert into car_reference_year values ("코나", "2018", "0.85");
+insert into car_reference_year values ("코나", "2017", "0.8");
+insert into car_reference_year values ("싼타페", "2021", "1");
+insert into car_reference_year values ("싼타페", "2020", "0.95");
+insert into car_reference_year values ("싼타페", "2019", "0.9");
+insert into car_reference_year values ("싼타페", "2018", "0.85");
+insert into car_reference_year values ("싼타페", "2017", "0.8");
 insert into car_reference_year values ("싼타페", "2016", "0.77");
 insert into car_reference_year values ("싼타페", "2015", "0.75");
 insert into car_reference_year values ("싼타페", "2014", "0.72");
 insert into car_reference_year values ("싼타페", "2013", "0.7");
 insert into car_reference_year values ("싼타페", "2012", "0.7");
-insert into car_reference_year values ("베뉴", "2019", "0.9");
-insert into car_reference_year values ("베뉴", "2018", "0.85");
-insert into car_reference_year values ("베뉴", "2017", "0.8");
-insert into car_reference_year values ("베뉴", "2016", "0.77");
-insert into car_reference_year values ("베뉴", "2015", "0.75");
-insert into car_reference_year values ("베뉴", "2014", "0.72");
-insert into car_reference_year values ("베뉴", "2013", "0.7");
-insert into car_reference_year values ("베뉴", "2012", "0.7");
-insert into car_reference_year values ("코나", "2017", "0.8");
-insert into car_reference_year values ("코나", "2016", "0.77");
-insert into car_reference_year values ("코나", "2015", "0.75");
-insert into car_reference_year values ("코나", "2014", "0.72");
-insert into car_reference_year values ("코나", "2013", "0.7");
-insert into car_reference_year values ("코나", "2012", "0.7");
 insert into car_reference_year values ("펠리세이드", "2021", "1");
 insert into car_reference_year values ("펠리세이드", "2020", "0.95");
 insert into car_reference_year values ("펠리세이드", "2019", "0.9");
 insert into car_reference_year values ("펠리세이드", "2018", "0.85");
-insert into car_reference_year values ("펠리세이드", "2017", "0.8");
-insert into car_reference_year values ("펠리세이드", "2016", "0.77");
-insert into car_reference_year values ("펠리세이드", "2015", "0.75");
-insert into car_reference_year values ("펠리세이드", "2014", "0.72");
-insert into car_reference_year values ("펠리세이드", "2013", "0.7");
-insert into car_reference_year values ("펠리세이드", "2012", "0.7");
 insert into car_reference_year values ("스타렉스", "2021", "1");
 insert into car_reference_year values ("스타렉스", "2020", "0.95");
 insert into car_reference_year values ("스타렉스", "2019", "0.9");

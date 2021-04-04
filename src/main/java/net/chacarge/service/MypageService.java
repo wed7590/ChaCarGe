@@ -4,9 +4,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import net.chacarge.model1.AdminDAO;
 import net.chacarge.model1.AdminTO;
-import net.chacarge.model1.LoginTO;
 import net.chacarge.model1.MypageDAO;
 import net.chacarge.model1.UserTO;
 
@@ -38,6 +36,7 @@ public class MypageService {
 	public int mypage_withdrawal_ok(AdminTO adminTO) {
 		
 		int flag = 2;
+		mypageDAO.mypage_delete_move(adminTO);
 		int result = mypageDAO.mypage_withdrawal_ok(adminTO);
 		if (result==0) {
 			flag = 1;		// 삭제 안된 경우

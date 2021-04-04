@@ -22,7 +22,7 @@
 		
 		sbHtmlManagement.append("<tr>");
 		sbHtmlManagement.append("	<td width='12%'>" + board_seq + "</td>");
-		sbHtmlManagement.append("	<td width='52%'>" + board_subject + "</td>");
+		sbHtmlManagement.append("	<td width='52%'><a href='chacarge_deal_view.do?seq=" + board_seq + "'>" + board_subject + "</a></td>");
 		sbHtmlManagement.append("	<td width='12%'>" + user_id + "</td>");
 		sbHtmlManagement.append("	<td width='12%'>" + board_hit + "</td>");
 		sbHtmlManagement.append("	<td width='12%'>" + board_wdate.substring(0, 10) + "</td>");

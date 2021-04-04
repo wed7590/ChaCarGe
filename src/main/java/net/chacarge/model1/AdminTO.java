@@ -9,6 +9,8 @@ public class AdminTO {
 	private String user_join_date;
 	private String user_grade;
 	private String user_token;
+	private String user_session_key;
+	private String user_session_limit;
 	
 	private int user_count;
 	private int user_sum_count;
@@ -34,6 +36,18 @@ public class AdminTO {
 	private String comment_content;
 	private String comment_wdate;
 	
+	public String getUser_session_key() {
+		return user_session_key;
+	}
+	public void setUser_session_key(String user_session_key) {
+		this.user_session_key = user_session_key;
+	}
+	public String getUser_session_limit() {
+		return user_session_limit;
+	}
+	public void setUser_session_limit(String user_session_limit) {
+		this.user_session_limit = user_session_limit;
+	}
 	public String getUser_search() {
 		return user_search;
 	}
