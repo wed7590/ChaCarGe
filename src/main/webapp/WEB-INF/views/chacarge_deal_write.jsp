@@ -25,7 +25,8 @@
 <link rel="stylesheet" href="resources/summernote/summernote-lite.css" >
 
 <script type="text/javascript">
-	const checkfrm = function() {
+window.onload = function() {
+	document.getElementById( 'submit1' ).onclick = function() {
 		if ( document.wfrm.board_subject.value.trim() == '' ) {
 			alert( '글제목을 입력하셔야합니다.' );
 			return false;
@@ -34,18 +35,15 @@
 			alert( '내용을 입력하셔야합니다.' );
 			return false;
 		}
-
-/* 		if( document.wfrm.files.value.trim() == '' ) {
-			alert( '사진을 업로드하셔야 합니다.');
+		
+		if( document.wfrm.files[1].value.trim().split( '.' ).pop() == '' ) {
+			alert( '파일을 업로드하셔야 합니다.');
 			return false;
-		} else {
-			const extension = document.wfrm.files.value.split( '.' ).pop();
-			if( extension != 'png' && extension != 'jpg' && extenstion != 'jpeg' ){
-				alert( '사진파일을 업로드하셔야 합니다.(png, jpg, ipeg 파일)')
-			}
-		} */
+		} 
+		
 		document.wfrm.submit();
-	};
+	}		
+}
 </script>
 
 <%@ include file="header.jsp" %>
@@ -58,7 +56,7 @@
 		<!-- Page Heading/Breadcrumbs -->
 		<h1 class="mt-4 mb-3"> 차량 매물 등록 </h1>
 
-		<form action="chacarge_deal_write_ok.do" method="post" name="wfrm" onsubmit="return checkfrm()" enctype="multipart/form-data">
+		<form action="chacarge_deal_write_ok.do" method="post" name="wfrm" enctype="multipart/form-data">
 			<input type="hidden" name="user_seq" value="${login.user_seq}" />
 			<div class="write">
 				<div class="subject" >
@@ -77,14 +75,14 @@
 					</textarea>
 				</div>
 				<div class="btn_area">
-					<input multiple="multiple" type="file" name="files" />
+					<input multiple="multiple" type="file" name="files" id="files" accept="image/*"/>
 					<div class="align_left">
 						<a href="chacarge_deal_list.do">
 						<input type="button" value="차량매물" class="btn_list btn_txt02" style="cursor: pointer;"  />
 						</a>
 					</div>
 					<div class="align_right">			
-						<button id="wbtn" class="btn_write btn_txt01" style="cursor: pointer;">등록</button>			
+						<input type="button" id="submit1" value="등록" class="btn_write btn_txt01" style="cursor: pointer;" />			
 					</div>	
 				</div>		
 			<!--//게시판-->
@@ -127,41 +125,8 @@ $(document).ready(function() {
 		lang: "ko-KR",
 	 	placeholder: 'Hello stand alone ui',
         tabsize: 2,	
-		toolbar: toolbar,
-		callbacks: { // 이미지 첨부 부분
-			onImageUpload: function( files, editor, welEditable ) {
-				for( var i = files.length - 1; i >= 0; i-- ) {
-					uploadSummernoteImageFile( files[i], this );
-				}
-			},
-			onPaste: function (e) {
-				var clipboardData = e.originalEvent.clipboardData;
-				if (clipboardData && clipboardData.items && clipboardData.items.length) {
-					var item = clipboardData.items[0];
-					if (item.kind === 'file' && item.type.indexOf('image/') !== -1) {
-						e.preventDefault();
-					}
-				}
-			}
-		}
+		toolbar: toolbar
 	};
-	
-	// 이미지 파일 업로드
-	function uploadSummernoteImageFile(file, el) {
-		data = new FormData();
-		data.append("file", file);
-		$.ajax({
-			data : data,
-			type : "POST",
-			url : "uploadSummernoteImageFile",
-			contentType : false,
-			enctype : 'multipart/form-data',
-			processData : false,
-			success : function(data) {
-				$(el).summernote('editor.insertImage', data.url);
-			}
-		});
-	}
 	
 	$('#summernote').summernote(setting); 
 });
