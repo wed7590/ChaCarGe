@@ -68,6 +68,10 @@
 <!-- SummerNote CSS -->
 <link rel="stylesheet" href="resources/summernote/summernote-lite.css" >
 
+<style>
+.btn-space {margin-right: 5px;}
+</style>
+
 <script type="text/javascript">
 window.onload = function() {
 	document.getElementById( 'submit1' ).onclick = function() {
@@ -109,20 +113,27 @@ window.onload = function() {
 						<%= board_content %>
 					</textarea>
 				</div>
-				<div class="btn_area">
-					<c:forEach var="PictureTO" items="${lpto}" >
-					기존 파일 : <c:out value="${PictureTO.o_pic_name }" /><br />
-					</c:forEach>
-					<input multiple="multiple" type="file" name="files" id="files" accept="image/*"/>
-					<div class="align_left">
-						<a href="chacarge_deal_list.do">
-						<input type="button" value="차량매물" class="btn_list btn_txt02" style="cursor: pointer;"  />
-						</a>
+				<div class="row">
+					<div class="col-6">
+						<div class="btn_area">
+							<c:forEach var="PictureTO" items="${lpto}" >
+							기존 파일 : <c:out value="${PictureTO.o_pic_name }" /><br />
+							</c:forEach>
+							<input multiple="multiple" type="file" name="files" id="files" accept="image/*"/>
+						</div>
 					</div>
-					<div class="align_right">			
-						<input type="button" id="submit1" value="수정" class="btn_write btn_txt01" style="cursor: pointer;" />			
+					<div class="col-6">
+						<div class="btn_area">
+							<input type="button" id="submit1" value="수정" class="btn btn-secondary float-right btn-space" style="cursor: pointer;" />
+							<a href="chacarge_deal_list.do">
+								<input type="button" value="매물 목록 보기" class="btn btn-secondary float-right btn-space" style="cursor: pointer;"  />
+							</a>
+							<a href="chacarge_deal_view.do?seq=<%=board_seq %>" >
+								<input type="button" value="수정 취소" class="btn btn-secondary float-right btn-space" style="cursor: pointer;"  />
+							</a>
+						</div>	
 					</div>	
-				</div>		
+				</div>	
 			<!--//게시판-->
 			</div>
 		</form>

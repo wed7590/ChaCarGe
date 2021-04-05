@@ -93,7 +93,9 @@
 	}
 </script>
 
-
+<style>
+.btn-space {margin-right: 5px;}
+</style>
 
 <%@ include file="header.jsp" %>
 

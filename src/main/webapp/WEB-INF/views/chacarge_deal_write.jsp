@@ -82,30 +82,25 @@ window.onload = function() {
 			<div class="row">
 				<div class="col-6">
 					<div class="btn_area">
-						<input multiple="multiple" type="file" name="files" />
+						<input multiple="multiple" type="file" name="files" id="files" accept="image/*"/>
 					</div>
 				</div>
 				<div class="col-6">
 					<div class="btn_area">
+						<input type="button" id="submit1" value="등록" class="btn btn-secondary float-right btn-space" style="cursor: pointer;" />
 						<a href="chacarge_deal_list.do">
-							<!-- <input type="button" value="차량 매물" class="btn_list btn_txt02" id="wbtn" style="cursor: pointer;"  /> -->
-							<input type="button" value="차량 매물" class="btn btn-secondary float-right btn-space" style="cursor: pointer;"  />
+							<input type="button" value="매물 목록 보기" class="btn btn-secondary float-right btn-space" style="cursor: pointer;"  />
 						</a>
-						 <button id="wbtn" class="btn btn-secondary float-right btn-space" style="cursor: pointer;">등록</button> 
-						<!--<input type="button" value="등록" class="btn btn-secondary float-right btn-space" style="cursor: pointer;" /> -->
 					</div>
 				</div>
 			</div>
-				<div class="btn_area">
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			</div>	
-			<!--//게시판-->
-			</div>
 		</form>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<!--//게시판-->
 	</div>
 	<!-- /.container -->
 
