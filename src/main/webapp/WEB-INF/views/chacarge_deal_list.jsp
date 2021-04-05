@@ -82,7 +82,7 @@
 	<!-- 게시글 작성 버튼 -->
 		<div class="write">
 			<%-- <span>총 <%= totalRecord %> 건</span> --%>
-			<input type="button" value="매물등록" onclick="location.href='chacarge_deal_write.do'" />
+			<input type="button" value="매물 등록" class="btn btn-secondary " onclick="location.href='chacarge_deal_write.do'" />
 		</div>
 		
 	<!-- 페이지 경로 표시 -->

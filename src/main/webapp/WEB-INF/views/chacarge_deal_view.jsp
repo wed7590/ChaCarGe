@@ -134,9 +134,9 @@
 		</div>
 		<!-- /.row -->
 		
-		<div>
-			<a href="chacarge_deal_delete.do?cpage=<%=cpage %>&seq=<%=board_seq %>&user_seq=${login.user_seq}"><button class="view_button" id="delete">글 삭제</button></a>
-			<a href="chacarge_deal_modify.do?cpage=<%=cpage %>&seq=<%=board_seq %>&user_seq=${login.user_seq}"><button class="view_button" id="modify">글 수정</button></a>
+		<div class = "row">
+			<a href="chacarge_deal_delete.do?cpage=<%=cpage %>&seq=<%=board_seq %>&user_seq=${login.user_seq}"><button class="btn btn-secondary float-right btn-space" id="delete">글 삭제</button></a>
+			<a href="chacarge_deal_modify.do?cpage=<%=cpage %>&seq=<%=board_seq %>&user_seq=${login.user_seq}"><button class="btn btn-secondary float-right btn-space" id="modify">글 수정</button></a>
 		</div>
 
 		<div class="comment">

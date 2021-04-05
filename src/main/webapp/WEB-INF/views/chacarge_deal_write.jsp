@@ -24,6 +24,10 @@
 <!-- SummerNote CSS -->
 <link rel="stylesheet" href="resources/summernote/summernote-lite.css" >
 
+<style>
+.btn-space {margin-right: 5px;}
+</style>
+
 <script type="text/javascript">
 window.onload = function() {
 	document.getElementById( 'submit1' ).onclick = function() {
@@ -74,17 +78,31 @@ window.onload = function() {
 <p></p>
 					</textarea>
 				</div>
-				<div class="btn_area">
-					<input multiple="multiple" type="file" name="files" id="files" accept="image/*"/>
-					<div class="align_left">
-						<a href="chacarge_deal_list.do">
-						<input type="button" value="차량매물" class="btn_list btn_txt02" style="cursor: pointer;"  />
-						</a>
+			</div>
+			<div class="row">
+				<div class="col-6">
+					<div class="btn_area">
+						<input multiple="multiple" type="file" name="files" />
 					</div>
-					<div class="align_right">			
-						<input type="button" id="submit1" value="등록" class="btn_write btn_txt01" style="cursor: pointer;" />			
-					</div>	
-				</div>		
+				</div>
+				<div class="col-6">
+					<div class="btn_area">
+						<a href="chacarge_deal_list.do">
+							<!-- <input type="button" value="차량 매물" class="btn_list btn_txt02" id="wbtn" style="cursor: pointer;"  /> -->
+							<input type="button" value="차량 매물" class="btn btn-secondary float-right btn-space" style="cursor: pointer;"  />
+						</a>
+						 <button id="wbtn" class="btn btn-secondary float-right btn-space" style="cursor: pointer;">등록</button> 
+						<!--<input type="button" value="등록" class="btn btn-secondary float-right btn-space" style="cursor: pointer;" /> -->
+					</div>
+				</div>
+			</div>
+				<div class="btn_area">
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			</div>	
 			<!--//게시판-->
 			</div>
 		</form>
