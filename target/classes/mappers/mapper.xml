@@ -7,6 +7,12 @@
 		from user
 		where user_id = #{userId}
 	</select>
+	
+	<!-- visit_login -->
+	<insert id="visit_login" parameterType="net.chacarge.model1.UserTO">
+		insert into visitor( visit_seq, visit_date, user_seq )
+		values( 0, date_format( now(), '%Y-%m-%d'), #{user_seq} )
+	</insert>
 
 	<!-- join_ok -->
 	<insert id="join_ok">
@@ -207,7 +213,7 @@
 	<!-- board_write_ok -->
 	<insert id="board_write_ok" >
 		insert into board( board_seq, board_subject, board_content, board_hit, board_wdate, user_seq )
-		values( 0, "${board_subject}", '${board_content}', 0, now(), ${user_seq} )
+		values( 0, "${board_subject}", '${board_content}', 0, date_format( now(), '%Y-%m-%d'), ${user_seq} )
 	</insert>
 	
 	<!-- insert into board_picture( board_pic_seq, o_pic_name, u_pic_name, board_seq) values( 0, 0, 0, (select max(board_seq) from board) ); -->
@@ -256,7 +262,7 @@
 	<!-- board_comment_write -->
 	<insert id="board_comment_write" parameterType="net.chacarge.model1.BoardTO" >
 		insert into board_comment( comment_seq, comment_content, comment_wdate, user_seq, board_seq )
-		values( 0, "${comment_content}", now(), ${user_seq}, ${board_seq} )
+		values( 0, "${comment_content}", date_format( now(), '%Y-%m-%d'), ${user_seq}, ${board_seq} )
 	</insert>
 	
 	<!-- board_comment_delete -->

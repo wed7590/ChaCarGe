@@ -97,80 +97,9 @@ CREATE TABLE `car_reference_accident` (
  `car_ref_accident_rate` varchar(10) NOT NULL
 );
 
-ALTER TABLE `board` ADD CONSTRAINT `FK_User_TO_board_1` FOREIGN KEY (
- `user_seq`
-)
-REFERENCES `User` (
- `user_seq`
-);
-
-ALTER TABLE `visitor` ADD CONSTRAINT `FK_User_TO_visitor_1` FOREIGN KEY (
- `user_seq`
-)
-REFERENCES `User` (
- `user_seq`
-);
-
-ALTER TABLE `board_comment` ADD CONSTRAINT `FK_User_TO_board_comment_1` FOREIGN KEY (
- `user_seq`
-)
-REFERENCES `User` (
- `user_seq`
-);
-
-ALTER TABLE `board_comment` ADD CONSTRAINT `FK_board_TO_board_comment_1` FOREIGN KEY (
- `board_seq`
-)
-REFERENCES `board` (
- `board_seq`
-);
-
-ALTER TABLE `board_picture` ADD CONSTRAINT `FK_board_TO_board_picture_1` FOREIGN KEY (
- `board_seq`
-)
-REFERENCES `board` (
- `board_seq`
-);
 
 -- windows의 mariadb는 대소문자 구분 안해서 만들때 유의
 -- linux의 mariadb에서는 대소문자를 구분 할 것이므로 sql문 작성할때 대소문자 구분 잘하기
-
--- visitor 테이블 dummy 데이터
-insert into visitor values (0, '2021-03-17', 1);
-insert into visitor values (0, '2021-03-16', 1);
-insert into visitor values (0, '2021-03-15', 1);
-insert into visitor values (0, '2021-03-14', 1);
-insert into visitor values (0, '2021-03-15', 2);
-insert into visitor values (0, '2021-03-14', 2);
-insert into visitor values (0, '2021-03-13', 2);
-insert into visitor values (0, '2021-03-12', 2);
-insert into visitor values (0, '2021-03-13', 3);
-insert into visitor values (0, '2021-03-12', 3);
-insert into visitor values (0, '2021-03-11', 3);
-insert into visitor values (0, '2021-03-10', 3);
-insert into visitor values (0, '2021-03-11', 4);
-insert into visitor values (0, '2021-03-10', 4);
-insert into visitor values (0, '2021-03-09', 4);
-insert into visitor values (0, '2021-03-08', 4);
-insert into visitor values(0, DATE_FORMAT(now(), '%Y-%m-%d'), 5);
-insert into visitor values(0, DATE_FORMAT(now(), '%Y-%m-%d'), 6);
-insert into visitor values(0, DATE_FORMAT(now(), '%Y-%m-%d'), 7);
-insert into visitor values(0, DATE_FORMAT(now(), '%Y-%m-%d'), 8);
-insert into visitor values(0, DATE_FORMAT(now(), '%Y-%m-%d'), 9);
-insert into visitor values(0, DATE_FORMAT(now(), '%Y-%m-%d'), 10);
-insert into visitor values(0, DATE_FORMAT(now(), '%Y-%m-%d'), 11);
-insert into visitor values(0, DATE_FORMAT(now(), '%Y-%m-%d'), 12);
-insert into visitor values(0, DATE_FORMAT(now(), '%Y-%m-%d'), 13);
-insert into visitor values(0, DATE_FORMAT(now(), '%Y-%m-%d'), 14);
-insert into visitor values(0, DATE_FORMAT(now(), '%Y-%m-%d'), 15);
-insert into visitor values(0, DATE_FORMAT(now(), '%Y-%m-%d'), 16);
-insert into visitor values(0, DATE_FORMAT(now(), '%Y-%m-%d'), 17);
-insert into visitor values(0, DATE_FORMAT(now(), '%Y-%m-%d'), 18);
-insert into visitor values(0, DATE_FORMAT(now(), '%Y-%m-%d'), 19);
-insert into visitor values(0, DATE_FORMAT(now(), '%Y-%m-%d'), 20);
-insert into visitor values(0, DATE_FORMAT(now(), '%Y-%m-%d'), 21);
-insert into visitor values(0, DATE_FORMAT(now(), '%Y-%m-%d'), 22);
-insert into visitor values(0, DATE_FORMAT(now(), '%Y-%m-%d'), 23);
 
 -- board 테이블 dummy 데이터
 insert into board values (0, 
@@ -415,7 +344,7 @@ insert into car_data values (0, "그렌져", "33000000", "Grandeur.jpg");
 insert into car_data values (0, "투싼", "24500000", "Tucson.png");
 insert into car_data values (0, "싼타페", "32000000", "Santafe.png");
 insert into car_data values (0, "베뉴", "36000000", "Venue.png");
-insert into car_data values (0, "코나", "19000000", "kona.png");
+insert into car_data values (0, "코나", "19000000", "konaaaa.png");
 insert into car_data values (0, "펠리세이드", "36000000", "Palisade.jpg");
 insert into car_data values (0, "스타렉스", "24000000", "Starex.jpg");
 insert into car_data values (0, "i30", "19000000", "i30.png");
@@ -425,7 +354,6 @@ insert into car_data values (0, "제네시스g80", "54000000", "Genesisg80.jpg")
 insert into car_data values (0, "제네시스g90", "78000000", "Genesisg90.jpg");
 
 -- estimate 페이지 car_reference_year 테이블 dummy 데이터
-insert into car_reference_year values ("아반테", "2021", "1");
 insert into car_reference_year values ("아반테", "2020", "0.95");
 insert into car_reference_year values ("아반테", "2019", "0.9");
 insert into car_reference_year values ("아반테", "2018", "0.85");
@@ -434,8 +362,8 @@ insert into car_reference_year values ("아반테", "2016", "0.77");
 insert into car_reference_year values ("아반테", "2015", "0.75");
 insert into car_reference_year values ("아반테", "2014", "0.72");
 insert into car_reference_year values ("아반테", "2013", "0.7");
-insert into car_reference_year values ("아반테", "2012", "0.7");
-insert into car_reference_year values ("벨로스터", "2021", "1");
+insert into car_reference_year values ("아반테", "2012", "0.68");
+insert into car_reference_year values ("아반테", "2011", "0.65");
 insert into car_reference_year values ("벨로스터", "2020", "0.95");
 insert into car_reference_year values ("벨로스터", "2019", "0.9");
 insert into car_reference_year values ("벨로스터", "2018", "0.85");
@@ -444,8 +372,8 @@ insert into car_reference_year values ("벨로스터", "2016", "0.77");
 insert into car_reference_year values ("벨로스터", "2015", "0.75");
 insert into car_reference_year values ("벨로스터", "2014", "0.72");
 insert into car_reference_year values ("벨로스터", "2013", "0.7");
-insert into car_reference_year values ("벨로스터", "2012", "0.7");
-insert into car_reference_year values ("소나타", "2021", "1");
+insert into car_reference_year values ("벨로스터", "2012", "0.68");
+insert into car_reference_year values ("벨로스터", "2011", "0.65");
 insert into car_reference_year values ("소나타", "2020", "0.95");
 insert into car_reference_year values ("소나타", "2019", "0.9");
 insert into car_reference_year values ("소나타", "2018", "0.85");
@@ -454,8 +382,8 @@ insert into car_reference_year values ("소나타", "2016", "0.77");
 insert into car_reference_year values ("소나타", "2015", "0.75");
 insert into car_reference_year values ("소나타", "2014", "0.72");
 insert into car_reference_year values ("소나타", "2013", "0.7");
-insert into car_reference_year values ("소나타", "2012", "0.7");
-insert into car_reference_year values ("그렌져", "2021", "1");
+insert into car_reference_year values ("소나타", "2012", "0.68");
+insert into car_reference_year values ("소나타", "2011", "0.65");
 insert into car_reference_year values ("그렌져", "2020", "0.95");
 insert into car_reference_year values ("그렌져", "2019", "0.9");
 insert into car_reference_year values ("그렌져", "2018", "0.85");
@@ -464,8 +392,8 @@ insert into car_reference_year values ("그렌져", "2016", "0.77");
 insert into car_reference_year values ("그렌져", "2015", "0.75");
 insert into car_reference_year values ("그렌져", "2014", "0.72");
 insert into car_reference_year values ("그렌져", "2013", "0.7");
-insert into car_reference_year values ("그렌져", "2012", "0.7");
-insert into car_reference_year values ("투싼", "2021", "1");
+insert into car_reference_year values ("그렌져", "2012", "0.68");
+insert into car_reference_year values ("그렌져", "2011", "0.65");
 insert into car_reference_year values ("투싼", "2020", "0.95");
 insert into car_reference_year values ("투싼", "2019", "0.9");
 insert into car_reference_year values ("투싼", "2018", "0.85");
@@ -474,16 +402,8 @@ insert into car_reference_year values ("투싼", "2016", "0.77");
 insert into car_reference_year values ("투싼", "2015", "0.75");
 insert into car_reference_year values ("투싼", "2014", "0.72");
 insert into car_reference_year values ("투싼", "2013", "0.7");
-insert into car_reference_year values ("투싼", "2012", "0.7");
-insert into car_reference_year values ("베뉴", "2021", "1");
-insert into car_reference_year values ("베뉴", "2020", "0.95");
-insert into car_reference_year values ("베뉴", "2019", "0.9");
-insert into car_reference_year values ("코나", "2021", "1");
-insert into car_reference_year values ("코나", "2020", "0.95");
-insert into car_reference_year values ("코나", "2019", "0.9");
-insert into car_reference_year values ("코나", "2018", "0.85");
-insert into car_reference_year values ("코나", "2017", "0.8");
-insert into car_reference_year values ("싼타페", "2021", "1");
+insert into car_reference_year values ("투싼", "2012", "0.68");
+insert into car_reference_year values ("투싼", "2011", "0.65");
 insert into car_reference_year values ("싼타페", "2020", "0.95");
 insert into car_reference_year values ("싼타페", "2019", "0.9");
 insert into car_reference_year values ("싼타페", "2018", "0.85");
@@ -492,12 +412,22 @@ insert into car_reference_year values ("싼타페", "2016", "0.77");
 insert into car_reference_year values ("싼타페", "2015", "0.75");
 insert into car_reference_year values ("싼타페", "2014", "0.72");
 insert into car_reference_year values ("싼타페", "2013", "0.7");
-insert into car_reference_year values ("싼타페", "2012", "0.7");
-insert into car_reference_year values ("펠리세이드", "2021", "1");
+insert into car_reference_year values ("싼타페", "2012", "0.68");
+insert into car_reference_year values ("싼타페", "2011", "0.65");
+insert into car_reference_year values ("베뉴", "2020", "0.95");
+insert into car_reference_year values ("베뉴", "2019", "0.9");
+insert into car_reference_year values ("코나", "2020", "0.95");
+insert into car_reference_year values ("코나", "2019", "0.9");
+insert into car_reference_year values ("코나", "2018", "0.85");
+insert into car_reference_year values ("코나", "2017", "0.8");
 insert into car_reference_year values ("펠리세이드", "2020", "0.95");
 insert into car_reference_year values ("펠리세이드", "2019", "0.9");
 insert into car_reference_year values ("펠리세이드", "2018", "0.85");
-insert into car_reference_year values ("스타렉스", "2021", "1");
+insert into car_reference_year values ("펠리세이드", "2017", "0.8");
+insert into car_reference_year values ("펠리세이드", "2016", "0.77");
+insert into car_reference_year values ("펠리세이드", "2015", "0.75");
+insert into car_reference_year values ("펠리세이드", "2014", "0.72");
+insert into car_reference_year values ("펠리세이드", "2013", "0.7");
 insert into car_reference_year values ("스타렉스", "2020", "0.95");
 insert into car_reference_year values ("스타렉스", "2019", "0.9");
 insert into car_reference_year values ("스타렉스", "2018", "0.85");
@@ -506,7 +436,8 @@ insert into car_reference_year values ("스타렉스", "2016", "0.77");
 insert into car_reference_year values ("스타렉스", "2015", "0.75");
 insert into car_reference_year values ("스타렉스", "2014", "0.72");
 insert into car_reference_year values ("스타렉스", "2013", "0.7");
-insert into car_reference_year values ("스타렉스", "2012", "0.7");
+insert into car_reference_year values ("스타렉스", "2012", "0.68");
+insert into car_reference_year values ("스타렉스", "2011", "0.65");
 insert into car_reference_year values ("i30", "2020", "0.95");
 insert into car_reference_year values ("i30", "2019", "0.9");
 insert into car_reference_year values ("i30", "2018", "0.85");
@@ -515,7 +446,8 @@ insert into car_reference_year values ("i30", "2016", "0.77");
 insert into car_reference_year values ("i30", "2015", "0.75");
 insert into car_reference_year values ("i30", "2014", "0.72");
 insert into car_reference_year values ("i30", "2013", "0.7");
-insert into car_reference_year values ("i30", "2012", "0.7");
+insert into car_reference_year values ("i30", "2012", "0.68");
+insert into car_reference_year values ("i30", "2011", "0.65");
 insert into car_reference_year values ("i40", "2019", "0.9");
 insert into car_reference_year values ("i40", "2018", "0.85");
 insert into car_reference_year values ("i40", "2017", "0.8");
@@ -523,16 +455,23 @@ insert into car_reference_year values ("i40", "2016", "0.77");
 insert into car_reference_year values ("i40", "2015", "0.75");
 insert into car_reference_year values ("i40", "2014", "0.72");
 insert into car_reference_year values ("i40", "2013", "0.7");
-insert into car_reference_year values ("i40", "2012", "0.7");
-insert into car_reference_year values ("제네시스g70", "2021", "1");
+insert into car_reference_year values ("i40", "2012", "0.68");
+insert into car_reference_year values ("i40", "2011", "0.65");
 insert into car_reference_year values ("제네시스g70", "2020", "0.95");
 insert into car_reference_year values ("제네시스g70", "2019", "0.9");
 insert into car_reference_year values ("제네시스g70", "2018", "0.85");
 insert into car_reference_year values ("제네시스g70", "2017", "0.8");
-insert into car_reference_year values ("제네시스g80", "2021", "1");
+insert into car_reference_year values ("제네시스g70", "2016", "0.77");
 insert into car_reference_year values ("제네시스g80", "2020", "0.95");
-insert into car_reference_year values ("제네시스g90", "2021", "1");
+insert into car_reference_year values ("제네시스g80", "2019", "0.9");
+insert into car_reference_year values ("제네시스g80", "2018", "0.85");
+insert into car_reference_year values ("제네시스g80", "2017", "0.8");
+insert into car_reference_year values ("제네시스g80", "2016", "0.77");
 insert into car_reference_year values ("제네시스g90", "2020", "0.95");
+insert into car_reference_year values ("제네시스g90", "2019", "0.9");
+insert into car_reference_year values ("제네시스g90", "2018", "0.85");
+insert into car_reference_year values ("제네시스g90", "2017", "0.8");
+insert into car_reference_year values ("제네시스g90", "2016", "0.77");
 
 -- estimate 페이지 car_reference_distance 테이블 dummy 데이터
 insert into car_reference_distance values("10000", "500000");
@@ -556,15 +495,3 @@ insert into car_reference_accident values("1", "1");
 insert into car_reference_accident values("2", "0.9");
 insert into car_reference_accident values("3", "0.85");
 insert into car_reference_accident values("4", "0.8");
-
--- auto_increment 1부터 초기화하는 구문 (데이터 다지우고 1로 시작할 때 - 테이블에 새로 시작할 값보다 높은 값이 있으면 안됨 )
-alter table user auto_increment=1;
-
--- auto_increment 1부터 다시 새로 만들어줌
-alter table user auto_increment=1;
-set @count = 0;
-update user set user_seq = @count:=@count+1;
-
-alter table board auto_increment=1;
-set @count = 0;
-update board set board_seq = @count:=@count+1;

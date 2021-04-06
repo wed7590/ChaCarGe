@@ -22,6 +22,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		ModelMap modelMap = modelAndView.getModelMap();
 		Object userTO = modelMap.get( "user" );
 		if( userTO != null ) {
+			// 로그인 성공시 세션 저장 후 홈페이지로
 			logger.info( "new login success" );
 			httpSession.setAttribute( LOGIN, userTO );
 			response.sendRedirect( "chacarge_home.do" );

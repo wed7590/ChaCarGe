@@ -45,6 +45,16 @@ public class AdminController {
 			List<AdminTO> member_management_search = adminDAO.member_management_search(adminTO.getUser_search());
 			model.addAttribute("member_management", member_management_search);
 		}
+		
+		// 현재 회원수 데이터 받기
+		List<AdminTO> member_count = adminDAO.member_count();
+		model.addAttribute("member_count", member_count);
+		
+		return "chacarge_admin_member";
+	}
+	
+	@RequestMapping(value = "/chacarge_admin_withdrawal.do", method = RequestMethod.GET)
+	public String chacarge_admin_withdrawal(HttpServletRequest request, Locale locale, Model model) {
 
 		// 탈퇴 회원 데이터 받기
 		AdminTO adminDeleteTO  = new AdminTO();
@@ -57,15 +67,11 @@ public class AdminController {
 			model.addAttribute("member_delete_management", member_delete_management);
 		} else {
 			// 회원 목록 검색 O 경우
-			List<AdminTO> member_delete_management_search = adminDAO.member_delete_management_search(adminTO.getUser_search());
+			List<AdminTO> member_delete_management_search = adminDAO.member_delete_management_search(adminDeleteTO.getUser_search());
 			model.addAttribute("member_delete_management", member_delete_management_search);
 		}
 		
-		// 현재 회원수 데이터 받기
-		List<AdminTO> member_count = adminDAO.member_count();
-		model.addAttribute("member_count", member_count);
-		
-		return "chacarge_admin_member";
+		return "chacarge_admin_withdrawal";
 	}
 
 	@RequestMapping(value = "/chacarge_admin_member_delete.do", method = RequestMethod.GET)

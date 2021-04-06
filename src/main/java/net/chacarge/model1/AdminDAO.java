@@ -26,6 +26,15 @@ public class AdminDAO {
 		List<AdminTO> member_management_search = sqlSession.selectList("member_management_search", user_search);
 		return member_management_search;
 	}
+	// 현재 회원수 출력
+	// member_count
+	public List<AdminTO> member_count() {
+		
+		List<AdminTO> member_count = sqlSession.selectList("member_count");
+		return member_count;
+	}
+	
+	
 	// 탈퇴 회원 관리
 	// member_delete_management
 	public List<AdminTO> member_delete_management() {
@@ -40,13 +49,6 @@ public class AdminDAO {
 		List<AdminTO> member_delete_management_search = sqlSession.selectList("member_delete_management_search", user_search);
 		return member_delete_management_search;
 	}	
-	// 현재 회원수 출력
-	// member_count
-	public List<AdminTO> member_count() {
-		
-		List<AdminTO> member_count = sqlSession.selectList("member_count");
-		return member_count;
-	}
 	
 	
 	// 탈퇴 회원 table 로 이관

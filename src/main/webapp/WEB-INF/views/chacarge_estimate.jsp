@@ -217,7 +217,7 @@
 	   		<div class="row">
 		   		<div class="col">
 					<div style="text-align:center;">
-						<input type="submit" class="btn btn-secondary btn-block btn-lg" value="ChaCarGe.net 견적 검색"/>
+						<input type="submit" class="btn btn-secondary btn-block btn-lg" value="ChaCarGe.shop 견적 검색"/>
 					</div>
 					<hr/>
 					<div class="row">

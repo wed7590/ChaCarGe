@@ -44,6 +44,7 @@
 							<a class="nav-link dropdown-toggle" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor:pointer">관리자 페이지</a>
 							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
 								<a class="dropdown-item" href="chacarge_admin_member.do">회원 관리</a>
+								<a class="dropdown-item" href="chacarge_admin_withdrawal.do">탈퇴 회원 관리</a>
 								<a class="dropdown-item" href="chacarge_admin_deal.do">매물 게시판 관리</a>
 								<a class="dropdown-item" href="chacarge_admin_statistics_visitor.do">방문자 통계</a>
 								<a class="dropdown-item" href="chacarge_admin_statistics_member.do">회원 통계</a>

@@ -8,11 +8,11 @@
 <%@ include file="header.jsp" %>
 
 <%
-	//sbHtmlManagement 안에 회원 목록 데이터 담아서 html 양식으로 출력
-	ArrayList<AdminTO> member_management = (ArrayList)request.getAttribute("member_management");
-	StringBuffer sbHtmlManagement = new StringBuffer();
+	// sbHtmlDeleteManagement 안에 회원 목록 데이터 담아서 html 양식으로 출력
+	ArrayList<AdminTO> member_delete_management = (ArrayList)request.getAttribute("member_delete_management");
+	StringBuffer sbHtmlDeleteManagement = new StringBuffer();
 	
-	for (AdminTO to : member_management) {
+	for (AdminTO to : member_delete_management) {
 		int user_seq = to.getUser_seq();
 		String user_id = to.getUser_id();
 		String user_token = to.getUser_token();
@@ -22,31 +22,17 @@
 		String user_grade = to.getUser_grade();
 		String visit_date = to.getVisit_date();
 		
-		sbHtmlManagement.append("<tr>");
-		sbHtmlManagement.append("	<td width='12%'>" + user_seq + "</td>");
-		sbHtmlManagement.append("	<td width='12%'>" + user_id + "</td>");
-		sbHtmlManagement.append("	<td width='12%'>" + user_name + "</td>");
-		sbHtmlManagement.append("	<td width='28%'>" + user_email + "</td>");
-		sbHtmlManagement.append("	<td width='12%'>" + user_join_date.substring(0, 10) + "</td>");
-		if (user_grade.equals("1")) {
-			sbHtmlManagement.append("	<td width='12%'>" + "일반 회원" + "</td>");
-		} else if (user_grade.equals("2")) {
-			sbHtmlManagement.append("	<td width='12%'>" + "관리자" + "</td>");
-		}
-		sbHtmlManagement.append("	<td width='12%'>" + visit_date.substring(0, 10) + "</td>");
-		sbHtmlManagement.append("</tr>");
+		sbHtmlDeleteManagement.append("<tr>");
+		sbHtmlDeleteManagement.append("	<td width='12%'>" + user_seq + "</td>");
+		sbHtmlDeleteManagement.append("	<td width='12%'>" + user_id + "</td>");
+		sbHtmlDeleteManagement.append("	<td width='12%'>" + user_name + "</td>");
+		sbHtmlDeleteManagement.append("	<td width='28%'>" + user_email + "</td>");
+		sbHtmlDeleteManagement.append("	<td width='12%'>" + user_join_date.substring(0, 10) + "</td>");
+		sbHtmlDeleteManagement.append("	<td width='12%'>" + user_grade + "</td>");
+		sbHtmlDeleteManagement.append("	<td width='12%'>" + visit_date.substring(0, 10) + "</td>");
+		sbHtmlDeleteManagement.append("</tr>");
 	}
-	// sbHtmlCount 안에 회원 수 데이터 담아서 html 양식으로 출력
-	ArrayList<AdminTO> member_count = (ArrayList)request.getAttribute("member_count");
-	StringBuffer sbHtmlCount = new StringBuffer();
 	
-	for (AdminTO to : member_count) {
-		int user_count = to.getUser_count();
-		
-		sbHtmlCount.append("<tr>");
-		sbHtmlCount.append("	<td width='100%'>" + user_count + "</td>");
-		sbHtmlCount.append("</tr>");
-	}
 %>
 
 <!DOCTYPE html>
@@ -91,20 +77,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="resources/js/board_paging.js"></script>
 
-<!-- 삭제용 확인창 부분 -->
-<script type="text/javascript">
-	$(document).ready(function(){
-		// 제출시
-		$("#submit").on("click", function(){
-			if(confirm("정말 탈퇴시키겠습니까?") == true) {
-				document.dfrm.submit();
-			} else {
-				return false;
-			}
-		});
-	})
-</script>
-
 </head>
 
 <body>
@@ -140,11 +112,11 @@
 						    <article class="docs-article" id="section-1">
 								<section class="docs-section" id="item-1-1">
 									<span id="list_modal">
-										<h4 class="section-heading">회원 목록</h4>
+										<h4 class="section-heading">탈퇴 회원 목록</h4>
 									</span>
 									<span id="setting_modal">
 										<form action="chacarge_admin_member.do" method="get">
-											<input type="text" name="user_search" id="user_search" placeholder="회원 ID 검색" value="${user_search }"/>
+											<input type="text" name="user_delete_search" id="user_delete_search" placeholder="회원 ID 검색" value="${user_delete_search }"/>
 											<button type="submit">검색</button>
 										</form>
 									</span>
@@ -162,31 +134,8 @@
 												</tr>
 											</thead>
 											<tbody>
-												<%=sbHtmlManagement %>
+												<%=sbHtmlDeleteManagement %>
 											</tbody>
-										</table>
-									</div>
-									<hr/>
-									<h4 class="section-heading">회원 강제 탈퇴</h4>
-									<div class="board">
-										<form action="chacarge_admin_member_delete.do" method="get" name="dfrm">
-											<div class="form-group has-feedback">
-												<label class="control-label" for="userId">아이디</label>
-												<input class="form-control" type="text" id="user_id" name="user_id" placeholder="탈퇴시킬 회원 ID" />
-											</div>
-											<div class="form-group has-feedback">
-												<button class="btn btn-success" type="submit" id="submit">회원탈퇴</button>
-											</div>
-										</form>
-									</div>
-									<hr/>
-									<h4 class="section-heading">현재 회원 수</h4>
-									<div class="board">
-										<table class="table">
-											<tr>
- 												<th width="100%">현재 회원 수</th>
-											</tr>
-											<%=sbHtmlCount %>
 										</table>
 									</div>
 								</section>

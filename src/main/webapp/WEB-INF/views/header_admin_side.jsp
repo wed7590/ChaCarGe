@@ -12,6 +12,7 @@
 			<div class="col-lg-3 mb-4">
 				<div class="list-group">
 					<a href="chacarge_admin_member.do" class="list-group-item">회원 관리</a>
+					<a href="chacarge_admin_withdrawal.do" class="list-group-item">탈퇴 회원 관리</a>
 					<a href="chacarge_admin_deal.do" class="list-group-item">매물 게시판 관리</a>
 					<a href="chacarge_admin_statistics_visitor.do" class="list-group-item">방문자 통계</a>
 					<a href="chacarge_admin_statistics_member.do" class="list-group-item">회원 통계</a>

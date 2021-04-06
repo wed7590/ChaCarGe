@@ -43,4 +43,8 @@ public class UserDAO {
 		sqlSession.insert("kakao_join_ok", to);
 	}
 	
+	public void visit_login(UserTO to) throws Exception {
+		sqlSession.insert("visit_login", to);
+	}
+	
 }

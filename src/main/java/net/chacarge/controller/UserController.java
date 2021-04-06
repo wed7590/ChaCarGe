@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 
 import net.chacarge.model1.LoginTO;
+import net.chacarge.model1.UserDAO;
 import net.chacarge.model1.UserTO;
 import net.chacarge.service.KakaoAPI;
 import net.chacarge.service.UserService;
@@ -59,6 +60,9 @@ public class UserController {
 		if( userTO == null || !BCrypt.checkpw( loginTO.getUserPw(), userTO.getUser_password() ) ) {
 			return;
 		}
+		
+		// 로그인 성공시 visitor 정보 추가
+		userService.visit_login( userTO );
 		
 		model.addAttribute( "user", userTO );
 	}

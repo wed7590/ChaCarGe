@@ -19,13 +19,18 @@ public class UserService {
 	}
 	
 	// 회원 가입 처리
-	public void join_ok( UserTO to ) throws Exception {
-		userDAO.join_ok( to );
+	public void join_ok( UserTO uto ) throws Exception {
+		userDAO.join_ok( uto );
 	}
 	
 	// 로그인 처리
 	public UserTO login_ok( LoginTO loginTO ) throws Exception {
 		return userDAO.login_ok( loginTO );
+	}
+	
+	// 방문자 처리
+	public void visit_login( UserTO uto ) throws Exception {
+		userDAO.visit_login( uto );
 	}
 	
 	// 카카오 로그인 처리

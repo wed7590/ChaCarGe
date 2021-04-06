@@ -73,7 +73,7 @@
 						<p class="card-text">9501**-1******</p>
 					</div>
 					<div class="card-footer">
-						<a href="#" class="btn btn-primary">Learn More</a>
+						<a href="https://github.com/wed7590" class="btn btn-primary">GitHub</a>
 					</div>
 				</div>
 			</div>
@@ -84,7 +84,7 @@
 						<p class="card-text">8806**-1******</p>
 					</div>
 					<div class="card-footer">
-						<a href="#" class="btn btn-primary">Learn More</a>
+						<a href="https://github.com/yeastriver" class="btn btn-primary">GitHub</a>
 					</div>
 				</div>
 			</div>
@@ -95,7 +95,7 @@
 						<p class="card-text">9507**-1******</p>
 					</div>
 					<div class="card-footer">
-						<a href="#" class="btn btn-primary">Learn More</a>
+						<a href="https://github.com/Jindong-Jang" class="btn btn-primary">GitHub</a>
 					</div>
 				</div>
 			</div>
@@ -106,7 +106,7 @@
 						<p class="card-text">9408**-1******</p>
 					</div>
 					<div class="card-footer">
-						<a href="#" class="btn btn-primary">Learn More</a>
+						<a href="https://github.com/shinytiger94" class="btn btn-primary">GitHub</a>
 					</div>
 				</div>
 			</div>
