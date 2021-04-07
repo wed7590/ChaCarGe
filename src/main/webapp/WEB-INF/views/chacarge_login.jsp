@@ -100,7 +100,7 @@
 			<button type="button" id="login" class="submit">Sign In</button>
 			<div align="center">
 				<a id="custom-login-btn" 
-				href="https://kauth.kakao.com/oauth/authorize?client_id=cf6e51d95242afa1c0b94902ec143974&redirect_uri=http://localhost:8080/controller/kakao.do&response_type=code" 
+				href="https://kauth.kakao.com/oauth/authorize?client_id=cf6e51d95242afa1c0b94902ec143974&redirect_uri=http://27.96.131.8:8080/ChaCarGe/kakao.do&response_type=code" 
 				style="left: 50px;" >
 					<img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" width="222" style="border-radius: 20px;" }/>
 				</a>

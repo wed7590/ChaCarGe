@@ -63,7 +63,7 @@
 								<li class="nav-item"><a class="nav-link" href="chacarge_logout.do">로그아웃</a></li>
 							</c:if>
 							<c:if test="${login.user_token != null}">
-								<li class="nav-item"><a class="nav-link" href="https://kauth.kakao.com/oauth/logout?client_id=cf6e51d95242afa1c0b94902ec143974&logout_redirect_uri=http://localhost:8080/controller/kakao_logout.do">로그아웃</a></li>
+								<li class="nav-item"><a class="nav-link" href="https://kauth.kakao.com/oauth/logout?client_id=cf6e51d95242afa1c0b94902ec143974&logout_redirect_uri=http://27.96.131.8:8080/ChaCarGe/kakao_logout.do">로그아웃</a></li>
 							</c:if>
 								<li class="nav-item"><div id="profile" onclick="location.href='chacarge_mypage_privacy.do?user_id=${login.user_id}'" style="cursor:pointer;">&nbsp;&nbsp;로그인 유저 : ${login.user_name}&nbsp;&nbsp;</div></li>
 						</c:otherwise>

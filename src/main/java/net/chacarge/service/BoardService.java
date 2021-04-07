@@ -42,7 +42,10 @@ public class BoardService {
 			// 파일이 저장될 경로 설정
 			// resources/image/ 에 저장하고 싶음
 			//String path = request.getSession().getServletContext().getRealPath( "/resource/image/" );
-			String path = "C://upload/";
+			// 윈도우 로컬용 업로드 경로
+			//String path = "C://upload/";
+			// 리눅스 서버용 업로드 경로
+			String path = "/home/upload/";
 			
 			File dir = new File(path);
 			if(!dir.isDirectory()){
@@ -92,7 +95,10 @@ public class BoardService {
 	// 실제 파일 삭제
 	public void board_real_delete_pic(List<PictureTO> lpto) {
 		for( PictureTO pto : lpto ) {
-			String filePath = "C://upload/" + pto.getU_pic_name();
+			// 윈도우 로컬용 삭제 경로
+			//String filePath = "C://upload/" + pto.getU_pic_name();
+			// 리눅스 서버용 삭제 경로
+			String filePath = "/home/upload/" + pto.getU_pic_name();
 			File deleteFile = new File(filePath);
 			
 			// 파일이 존재하는지 체크 존재할 경우 true, 존재하지 않을 경우 false
